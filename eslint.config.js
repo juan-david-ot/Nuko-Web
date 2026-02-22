@@ -9,14 +9,6 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 export default defineConfig([
     globalIgnores(['build', 'node_modules', 'vite.config.ts']),
     {
-        files: ['**/*.{js,jsx}'],
-        extends: [js.configs.recommended],
-        languageOptions: {
-            ecmaVersion: 'latest',
-            globals: globals.browser
-        }
-    },
-    {
         files: ['**/*.{ts,tsx}'],
         extends: [
             js.configs.recommended,
@@ -49,7 +41,9 @@ export default defineConfig([
             'object-curly-spacing': ['error', 'always'],
             'array-bracket-spacing': ['error', 'never'],
             'keyword-spacing': ['error', { before: true, after: true }],
-            'space-before-blocks': ['error', 'always']
+            'space-before-blocks': ['error', 'always'],
+            'eol-last': ['error', 'always'],
+            'no-trailing-spaces': 'error'
         }
     }
 ])
