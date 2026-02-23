@@ -1,7 +1,6 @@
 {
     "name": "nuko-web",
     "version": "0.0.0",
-    "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "tsc -b && vite build",
@@ -9,6 +8,7 @@
         "preview": "vite preview",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "type": "module",
     "dependencies": {
         "react": "19.2.0",
         "react-dom": "19.2.0"
