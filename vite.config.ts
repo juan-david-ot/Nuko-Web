@@ -1,13 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [react()],
-	build: {
-		outDir: 'build'
-	},
-	server: {
-		port: 2409
-	}
+    plugins: [
+        react(),
+        tailwindcss()
+    ],
+    build: {
+        outDir: 'build'
+    },
+    server: {
+        port: 2409
+    }
 })
