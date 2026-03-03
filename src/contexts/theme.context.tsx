@@ -1,11 +1,6 @@
 import { createContext, useEffect, useState, type ReactNode } from 'react'
-
-export type Theme = 'light' | 'dark'
-
-export interface ThemeContextType {
-    theme: Theme
-    toggleTheme: () => void
-}
+import type { ThemeContextType } from '../definitions/interfaces'
+import type { Theme } from '../definitions/types'
 
 const ThemeContext = createContext<ThemeContextType | null>(null)
 
