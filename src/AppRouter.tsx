@@ -1,5 +1,9 @@
+import { Routes } from 'react-router-dom'
+
 function AppRouter() {
-    return
+    return (
+        <Routes></Routes>
+    )
 }
 
 export default AppRouter
