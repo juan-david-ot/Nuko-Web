@@ -11,6 +11,7 @@ function App(): JSX.Element {
 
     return (
         <main className='bg-background text-foreground'>
+            <title>Nuko</title>
             <Button onClick={toggleTheme}>
                 Cambiar tema
             </Button>
