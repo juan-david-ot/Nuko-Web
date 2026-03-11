@@ -1,8 +1,10 @@
-import { Routes } from 'react-router'
+import { Route, Routes } from 'react-router'
 
 function AppRouter() {
     return (
-        <Routes></Routes>
+        <Routes>
+            <Route></Route>
+        </Routes>
     )
 }
 
