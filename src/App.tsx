@@ -10,7 +10,7 @@ function App(): JSX.Element {
     const { toggleTheme } = useTheme()
 
     return (
-        <div className='bg-background text-foreground'>
+        <main className='bg-background text-foreground'>
             <Button onClick={toggleTheme}>
                 Cambiar tema
             </Button>
@@ -34,7 +34,7 @@ function App(): JSX.Element {
             <p className='read-the-docs'>
                 Click on the Vite and React logos to learn more
             </p>
-        </div>
+        </main>
     )
 }
 
