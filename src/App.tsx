@@ -10,7 +10,7 @@ function App(): JSX.Element {
     const { toggleTheme } = useTheme()
 
     return (
-        <main className='bg-background text-foreground'>
+        <main className='m-0 h-screen flex justify-center bg-background text-foreground'>
             <title>Nuko</title>
             <Button onClick={toggleTheme}>
                 Cambiar tema
