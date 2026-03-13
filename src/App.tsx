@@ -4,10 +4,14 @@ import Navbar from './components/Navbar'
 
 function App() {
     return (
-        <main className='m-0 h-screen grid justify-center bg-background text-foreground'>
+        <main className='m-0 h-screen flex flex-col-reverse justify-between items-center bg-background text-foreground'>
             <title>Nuko</title>
-            <Navbar />
-            <AppRouter />
+            <nav className='m-1'>
+                <Navbar />
+            </nav>
+            <article className='h-full'>
+                <AppRouter />
+            </article>
         </main>
     )
 }
