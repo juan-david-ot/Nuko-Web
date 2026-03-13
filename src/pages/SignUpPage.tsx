@@ -13,11 +13,11 @@ function SignUpPage() {
     }
     return (
         <article className='h-full flex justify-center items-center'>
-            <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+            <Form className='flex w-96 flex-col gap-4' onSubmit={onSubmit}>
                 <TextField
                     isRequired
-                    name="email"
-                    type="email"
+                    name='email'
+                    type='email'
                     validate={(value) => {
                         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
                             return 'Please enter a valid email address'
@@ -26,14 +26,14 @@ function SignUpPage() {
                     }}
                 >
                     <Label>Email</Label>
-                    <Input placeholder="john@example.com" />
+                    <Input placeholder='john@example.com' />
                     <FieldError />
                 </TextField>
                 <TextField
                     isRequired
                     minLength={8}
-                    name="password"
-                    type="password"
+                    name='password'
+                    type='password'
                     validate={(value) => {
                         if (value.length < 8) {
                             return 'Password must be at least 8 characters'
@@ -48,16 +48,16 @@ function SignUpPage() {
                     }}
                 >
                     <Label>Password</Label>
-                    <Input placeholder="Enter your password" />
+                    <Input placeholder='Enter your password' />
                     <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
                     <FieldError />
                 </TextField>
-                <div className="flex gap-2">
-                    <Button type="submit">
+                <div className='flex gap-2'>
+                    <Button type='submit'>
                         <GoCheck />
                         Submit
                     </Button>
-                    <Button type="reset" variant="secondary">
+                    <Button type='reset' variant='secondary'>
                         Reset
                     </Button>
                 </div>
