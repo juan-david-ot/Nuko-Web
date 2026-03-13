@@ -12,7 +12,7 @@ function SignUpPage() {
         alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`)
     }
     return (
-        <article className='h-full flex place-content-center'>
+        <article className='h-full flex justify-center items-center'>
             <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
                 <TextField
                     isRequired

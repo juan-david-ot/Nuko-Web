@@ -8,7 +8,7 @@ function HomePage() {
     const [count, setCount] = useState(0)
     const { toggleTheme } = useTheme()
     return (
-        <>
+        <article className='h-full flex justify-center items-center'>
             <Button
                 className='bg-accent-soft transition-all hover:scale-110 hover:bg-accent hover:rotate-45'
                 onClick={toggleTheme}
@@ -35,7 +35,7 @@ function HomePage() {
             <p className='read-the-docs'>
                 Click on the Vite and React logos to learn more
             </p>
-        </>
+        </article>
     )
 }
 

@@ -24,8 +24,8 @@ function Navbar() {
             selectedKey={location.pathname}
             onSelectionChange={(key) => navigate(String(key))}
         >
-            <Tabs.ListContainer>
-                <Tabs.List aria-label="Options">
+            <Tabs.ListContainer className='w-full max-w-md'>
+                <Tabs.List className='w-full' aria-label="Options">
                     <Tabs.Tab id="/">
                         Home
                         <Tabs.Indicator />
@@ -44,15 +44,6 @@ function Navbar() {
                     </Tabs.Tab>
                 </Tabs.List>
             </Tabs.ListContainer>
-            {/* <Tabs.Panel className="pt-4" id="overview">
-                <p>View your project overview and recent activity.</p>
-            </Tabs.Panel>
-            <Tabs.Panel className="pt-4" id="analytics">
-                <p>Track your metrics and analyze performance data.</p>
-            </Tabs.Panel>
-            <Tabs.Panel className="pt-4" id="reports">
-                <p>Generate and download detailed reports.</p>
-            </Tabs.Panel> */}
         </Tabs>
     )
 }
