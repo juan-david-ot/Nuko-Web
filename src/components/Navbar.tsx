@@ -1,8 +1,7 @@
-import { type JSX } from 'react'
 import { Tabs } from '@heroui/react'
 import { useLocation, useNavigate } from 'react-router'
 
-function Navbar(): JSX.Element {
+function Navbar() {
     const location = useLocation()
     const navigate = useNavigate()
     return (
@@ -21,12 +20,12 @@ function Navbar(): JSX.Element {
                         Overview
                         <Tabs.Indicator />
                     </Tabs.Tab>
-                    <Tabs.Tab id="/analytics">
-                        Analytics
+                    <Tabs.Tab id="/iniciar-sesion">
+                        Iniciar Ses.
                         <Tabs.Indicator />
                     </Tabs.Tab>
-                    <Tabs.Tab id="/reports">
-                        Reports
+                    <Tabs.Tab id="/registrarse">
+                        Registrarse
                         <Tabs.Indicator />
                     </Tabs.Tab>
                 </Tabs.List>

@@ -1,10 +1,10 @@
-import { useState, type JSX } from 'react'
+import { useState } from 'react'
 import { Button } from '@heroui/react'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 import { useTheme } from '../contexts/useTheme'
 
-function HomePage(): JSX.Element {
+function HomePage() {
     const [count, setCount] = useState(0)
     const { toggleTheme } = useTheme()
     return (
