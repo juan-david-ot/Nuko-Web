@@ -3,8 +3,8 @@ import { Tabs } from '@heroui/react'
 import { useLocation, useNavigate } from 'react-router'
 
 function Navbar(): JSX.Element {
-    const navigate = useNavigate()
     const location = useLocation()
+    const navigate = useNavigate()
     return (
         <Tabs
             className="w-full max-w-md"
@@ -13,6 +13,10 @@ function Navbar(): JSX.Element {
         >
             <Tabs.ListContainer>
                 <Tabs.List aria-label="Options">
+                    <Tabs.Tab id="/">
+                        Home
+                        <Tabs.Indicator />
+                    </Tabs.Tab>
                     <Tabs.Tab id="/overview">
                         Overview
                         <Tabs.Indicator />
