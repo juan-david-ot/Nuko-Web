@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState, type ReactNode } from 'react'
-import type { ThemeContextType } from '../definitions/interfaces'
-import type { Theme } from '../definitions/types'
+import type { Theme, ThemeContextType } from '../definitions/types'
 
 const ThemeContext = createContext<ThemeContextType | null>(null)
 
