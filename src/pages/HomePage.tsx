@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Button } from '@heroui/react'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
-import { useTheme } from '../contexts/useTheme'
+import { useTheme } from '../contexts/theme/useTheme'
 
 function HomePage() {
     const [count, setCount] = useState(0)
