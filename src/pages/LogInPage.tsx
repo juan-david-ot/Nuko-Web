@@ -1,8 +1,13 @@
+import { useNavigate } from 'react-router'
 import { Button, FieldError, Form, Input, Label, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
 import * as authService from '../services/auth.service'
+import { useAuth } from '../contexts/auth/useAuth'
 
 function LogInPage() {
+    const { authUser } = useAuth()
+    const navigate = useNavigate()
+
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
@@ -22,6 +27,8 @@ function LogInPage() {
             .logIn(data)
             .then(({ data }) => {
                 localStorage.setItem('authToken', data.authToken)
+                authUser()
+                navigate('/')
                 console.log(data)
             })
             .catch(error => console.error(error))
