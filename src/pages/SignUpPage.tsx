@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router'
-import { Button, FieldError, Form, Input, Label, TextField } from '@heroui/react'
+import { Button, ErrorMessage, FieldError, Form, Input, Label, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
 import * as authService from '../services/auth.service'
 import { useState } from 'react'
@@ -67,6 +67,7 @@ function SignUpPage() {
                     <Input placeholder="Introduce tu contraseña" />
                     <FieldError />
                 </TextField>
+                <ErrorMessage>{errors.join('. ')}</ErrorMessage>
                 <div className="flex gap-2">
                     <Button type="submit">
                         <GoCheck />
