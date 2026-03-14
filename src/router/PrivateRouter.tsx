@@ -2,9 +2,9 @@ import { Navigate, Outlet } from 'react-router'
 import { useAuth } from '../contexts/auth/useAuth'
 
 function PrivateRouter() {
-    const { user, isLoading } = useAuth()
+    const { user, loading } = useAuth()
 
-    if (isLoading) {
+    if (loading) {
         return <h1>Loading...</h1>
     }
 
