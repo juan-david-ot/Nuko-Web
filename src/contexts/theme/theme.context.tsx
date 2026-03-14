@@ -3,8 +3,7 @@ import type { Theme, ThemeContextType } from '../../definitions/types'
 
 const ThemeContext = createContext<ThemeContextType | null>(null)
 
-const ThemeProviderWrapper = ({ children }: { children: ReactNode }) => {
-
+function ThemeProviderWrapper({ children }: { children: ReactNode }) {
     const [theme, setTheme] = useState<Theme>((localStorage.getItem('theme') as Theme) || 'dark')
 
     const toggleTheme = () => {
@@ -22,7 +21,6 @@ const ThemeProviderWrapper = ({ children }: { children: ReactNode }) => {
             {children}
         </ThemeContext.Provider>
     )
-
 }
 
 export {
