@@ -28,7 +28,7 @@ function LogInPage() {
             .then(({ data }) => {
                 localStorage.setItem('authToken', data.authToken)
                 authUser()
-                navigate('/')
+                navigate('/home')
                 console.log(data)
             })
             .catch(error => console.error(error))
@@ -41,17 +41,16 @@ function LogInPage() {
                     name="identifier"
                     type='text'
                 >
-                    <Label>Email/Username</Label>
+                    <Label>Email/Nombre de usuario</Label>
                     <Input placeholder="Introduce tu email o nombre de usuario" />
                     <FieldError />
                 </TextField>
                 <TextField
                     isRequired
-                    minLength={8}
                     name="password"
                     type="password"
                 >
-                    <Label>Password</Label>
+                    <Label>Contraseña</Label>
                     <Input placeholder="Introduce tu contraseña" />
                     <FieldError />
                 </TextField>

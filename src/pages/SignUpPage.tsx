@@ -1,7 +1,13 @@
-import { Button, Description, FieldError, Form, Input, Label, TextField } from '@heroui/react'
+import { useNavigate } from 'react-router'
+import { Button, FieldError, Form, Input, Label, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
+import * as authService from '../services/auth.service'
+import { useState } from 'react'
 
 function SignUpPage() {
+    const navigate = useNavigate()
+    const [errors, setErrors] = useState([])
+
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
@@ -9,55 +15,64 @@ function SignUpPage() {
         formData.forEach((value, key) => {
             data[key] = value.toString()
         })
-        alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`)
+
+        authService
+            .signUp(data)
+            .then(() => navigate('/iniciar-sesion'))
+            .catch(error => setErrors(error.response.data.error))
     }
     return (
-        <article className='h-full flex justify-center items-center'>
-            <Form className='flex w-96 flex-col gap-4' onSubmit={onSubmit}>
+        <article className='h-full flex justify-center items-center lg:items-start lg:pt-40'>
+            <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
                 <TextField
                     isRequired
-                    name='email'
+                    name="email"
                     type='email'
-                    validate={(value) => {
-                        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                            return 'Please enter a valid email address'
-                        }
-                        return null
-                    }}
                 >
                     <Label>Email</Label>
-                    <Input placeholder='john@example.com' />
+                    <Input placeholder="Introduce tu email" />
                     <FieldError />
                 </TextField>
                 <TextField
                     isRequired
-                    minLength={8}
-                    name='password'
-                    type='password'
-                    validate={(value) => {
-                        if (value.length < 8) {
-                            return 'Password must be at least 8 characters'
-                        }
-                        if (!/[A-Z]/.test(value)) {
-                            return 'Password must contain at least one uppercase letter'
-                        }
-                        if (!/[0-9]/.test(value)) {
-                            return 'Password must contain at least one number'
-                        }
-                        return null
-                    }}
+                    name="username"
+                    type='text'
                 >
-                    <Label>Password</Label>
-                    <Input placeholder='Enter your password' />
-                    <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
+                    <Label>Nombre de usuario</Label>
+                    <Input placeholder="Introduce tu nombre de usuario" />
                     <FieldError />
                 </TextField>
-                <div className='flex gap-2'>
-                    <Button type='submit'>
+                <TextField
+                    name="name"
+                    type='text'
+                >
+                    <Label>Nombre</Label>
+                    <Input placeholder="Introduce tu nombre" />
+                    <FieldError />
+                </TextField>
+                <TextField
+                    name="surname"
+                    type="text"
+                >
+                    <Label>Apellido</Label>
+                    <Input placeholder="Introduce tu apellido" />
+                    <FieldError />
+                </TextField>
+                <TextField
+                    isRequired
+                    name="password"
+                    type="password"
+                >
+                    <Label>Contraseña</Label>
+                    <Input placeholder="Introduce tu contraseña" />
+                    <FieldError />
+                </TextField>
+                <div className="flex gap-2">
+                    <Button type="submit">
                         <GoCheck />
                         Submit
                     </Button>
-                    <Button type='reset' variant='secondary'>
+                    <Button type="reset" variant="secondary">
                         Reset
                     </Button>
                 </div>
