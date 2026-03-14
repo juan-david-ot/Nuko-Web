@@ -15,7 +15,7 @@ function AppRouter() {
             </Route>
             <Route element={<PrivateRouter />}>
                 <Route path='/home' element={<HomePage />} />
-                <Route path='/overview' element={<HomePage />} />
+                <Route path='/overview/:id' element={<HomePage />} />
             </Route>
         </Routes>
     )

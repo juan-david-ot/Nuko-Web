@@ -34,7 +34,7 @@ function Navbar() {
                         Home
                         <Tabs.Indicator />
                     </Tabs.Tab>
-                    <Tabs.Tab id="/overview">
+                    <Tabs.Tab id="/overview/1">
                         Overview
                         <Tabs.Indicator />
                     </Tabs.Tab>
