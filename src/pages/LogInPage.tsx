@@ -1,29 +1,38 @@
 import { Button, FieldError, Form, Input, Label, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
+import * as authService from '../services/auth.service'
 
 function LogInPage() {
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
+
         const formData = new FormData(e.currentTarget)
-        const data: Record<string, string> = {}
-        formData.forEach((value, key) => {
-            data[key] = value.toString()
-        })
-        alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`)
+
+        const identifier = formData.get('identifier') as string
+        const password = formData.get('password') as string
+
+        const data = {
+            ...(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(identifier) ? { email: identifier } : { username: identifier }),
+            password
+        }
+
+        // /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+
+        authService
+            .logIn(data)
+            .then(({ data }) => {
+                localStorage.setItem('authToken', data.authToken)
+                console.log(data)
+            })
+            .catch(error => console.error(error))
     }
     return (
         <article className='h-full flex justify-center items-center'>
             <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
                 <TextField
                     isRequired
-                    name="email"
-                    type="email"
-                    validate={(value) => {
-                        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                            return 'Please enter a valid email address'
-                        }
-                        return null
-                    }}
+                    name="identifier"
+                    type='text'
                 >
                     <Label>Email</Label>
                     <Input placeholder="Enter your email" />
