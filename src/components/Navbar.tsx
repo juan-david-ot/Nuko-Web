@@ -19,13 +19,13 @@ function Navbar() {
 
     return (
         <Tabs
-            className="w-full max-w-md"
+            className="w-full"
             orientation={isDesktop ? 'vertical' : 'horizontal'}
             selectedKey={location.pathname}
             onSelectionChange={(key) => navigate(String(key))}
         >
-            <Tabs.ListContainer className='w-full max-w-md'>
-                <Tabs.List className='w-full' aria-label="Options">
+            <Tabs.ListContainer className='w-full'>
+                <Tabs.List className='w-full backdrop-blur-xl bg-background/70 border border-white/10 rounded-4xl' aria-label="Options">
                     <Tabs.Tab id="/">
                         Home
                         <Tabs.Indicator />

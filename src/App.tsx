@@ -10,15 +10,25 @@ function App() {
             <title>Nuko</title>
             {
                 authenticatedUser ?
-                    <nav className='m-1 lg:m-0 lg:p-3 lg:h-full lg:max-w-72 lg:bg-background-tertiary lg:rounded-4xl lg:flex-1'>
+                    // <nav className='m-1 lg:m-0 lg:p-3 lg:h-full lg:max-w-72 lg:bg-background-tertiary lg:rounded-4xl lg:flex-1'>
+                    //     <Navbar />
+                    // </nav>
+                    <nav
+                        className="fixed bottom-0 left-0 right-0 z-50 m-2 rounded-4xl lg:static lg:m-0 lg:p-3 lg:h-full lg:max-w-72 lg:bg-background-tertiary lg:flex-1"
+                    >
                         <Navbar />
                     </nav>
                     :
                     null
             }
-            <article className='h-full lg:flex-6'>
+            <article className='h-screen w-screen lg:pb-0 lg:flex-6'>
                 <AppRouter />
             </article>
+            {/*
+            <article className='h-screen w-screen pb-12 lg:pb-0 lg:flex-6'>
+                <AppRouter />
+            </article>
+            */}
         </main>
     )
 }
