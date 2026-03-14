@@ -1,4 +1,4 @@
-import { Button, Description, FieldError, Form, Input, Label, TextField } from '@heroui/react'
+import { Button, FieldError, Form, Input, Label, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
 
 function LogInPage() {
@@ -26,7 +26,7 @@ function LogInPage() {
                     }}
                 >
                     <Label>Email</Label>
-                    <Input placeholder="john@example.com" />
+                    <Input placeholder="Enter your email" />
                     <FieldError />
                 </TextField>
                 <TextField
@@ -34,22 +34,9 @@ function LogInPage() {
                     minLength={8}
                     name="password"
                     type="password"
-                    validate={(value) => {
-                        if (value.length < 8) {
-                            return 'Password must be at least 8 characters'
-                        }
-                        if (!/[A-Z]/.test(value)) {
-                            return 'Password must contain at least one uppercase letter'
-                        }
-                        if (!/[0-9]/.test(value)) {
-                            return 'Password must contain at least one number'
-                        }
-                        return null
-                    }}
                 >
                     <Label>Password</Label>
                     <Input placeholder="Enter your password" />
-                    <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
                     <FieldError />
                 </TextField>
                 <div className="flex gap-2">

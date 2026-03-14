@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router'
 import HomePage from '../pages/HomePage'
-import LogInPage from '../pages/LoginPage'
+import LogInPage from '../pages/LogInPage'
 import SignUpPage from '../pages/SignUpPage'
 
 function AppRouter() {
