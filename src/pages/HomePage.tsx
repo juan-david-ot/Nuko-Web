@@ -1,12 +1,20 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 import { Button } from '@heroui/react'
+import { useTheme } from '../contexts/theme/useTheme'
+import { useAuth } from '../contexts/auth/useAuth'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
-import { useTheme } from '../contexts/theme/useTheme'
 
 function HomePage() {
-    const [count, setCount] = useState(0)
+    const navigate = useNavigate()
+    const { logOut } = useAuth()
     const { toggleTheme } = useTheme()
+    const [count, setCount] = useState(0)
+    function closeSession() {
+        logOut()
+        navigate('/iniciar-sesion')
+    }
     return (
         <article className='h-full flex justify-center items-center'>
             <Button
@@ -14,6 +22,12 @@ function HomePage() {
                 onClick={toggleTheme}
             >
                 Cambiar tema
+            </Button>
+            <Button
+                className='bg-accent-soft transition-all hover:scale-110 hover:bg-accent hover:-rotate-45'
+                onClick={closeSession}
+            >
+                Cerrar sesion
             </Button>
             <div>
                 <a href='https://vite.dev' target='_blank' rel='noreferrer'>

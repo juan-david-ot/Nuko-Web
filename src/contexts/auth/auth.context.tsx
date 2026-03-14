@@ -8,7 +8,7 @@ function AuthProviderWrapper({ children }: { children: ReactNode }) {
     const [authenticatedUser, setAuthenticatedUser] = useState<AuthUser | null>(null)
     const [isLoading, setIsLoading] = useState(true)
 
-    function authUser() {
+    async function authUser() {
         const token = localStorage.getItem('authToken')
 
         if (token) {
@@ -28,7 +28,7 @@ function AuthProviderWrapper({ children }: { children: ReactNode }) {
         }
     }
 
-    function logOut() {
+    async function logOut() {
         localStorage.removeItem('authToken')
         setAuthenticatedUser(null)
         setIsLoading(false)

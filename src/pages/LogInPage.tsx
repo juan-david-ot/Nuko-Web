@@ -34,15 +34,15 @@ function LogInPage() {
             .catch(error => console.error(error))
     }
     return (
-        <article className='h-full flex justify-center items-center'>
+        <article className='h-full flex justify-center items-center lg:items-start lg:pt-40'>
             <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
                 <TextField
                     isRequired
                     name="identifier"
                     type='text'
                 >
-                    <Label>Email</Label>
-                    <Input placeholder="Enter your email" />
+                    <Label>Email/Username</Label>
+                    <Input placeholder="Introduce tu email o nombre de usuario" />
                     <FieldError />
                 </TextField>
                 <TextField
@@ -52,7 +52,7 @@ function LogInPage() {
                     type="password"
                 >
                     <Label>Password</Label>
-                    <Input placeholder="Enter your password" />
+                    <Input placeholder="Introduce tu contraseña" />
                     <FieldError />
                 </TextField>
                 <div className="flex gap-2">
