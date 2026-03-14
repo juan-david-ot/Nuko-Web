@@ -5,7 +5,7 @@ import type { AuthUser, AuthContextType } from '../../definitions/types'
 const AuthContext = createContext<AuthContextType | null>(null)
 
 function AuthProviderWrapper({ children }: { children: ReactNode }) {
-    const [authenticatedUser, setAuthenticatedUser] = useState<AuthUser | null>(null)
+    const [user, setUser] = useState<AuthUser | null>(null)
     const [isLoading, setIsLoading] = useState(true)
 
     async function authUser() {
@@ -15,7 +15,7 @@ function AuthProviderWrapper({ children }: { children: ReactNode }) {
             authService
                 .verify(token)
                 .then(({ data }) => {
-                    setAuthenticatedUser(data.authUser)
+                    setUser(data.authUser)
                     setIsLoading(false)
                 })
                 .catch(error => {
@@ -30,7 +30,7 @@ function AuthProviderWrapper({ children }: { children: ReactNode }) {
 
     async function logOut() {
         localStorage.removeItem('authToken')
-        setAuthenticatedUser(null)
+        setUser(null)
         setIsLoading(false)
     }
 
@@ -39,7 +39,7 @@ function AuthProviderWrapper({ children }: { children: ReactNode }) {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ authenticatedUser, isLoading, authUser, logOut }}>
+        <AuthContext.Provider value={{ user, isLoading, authUser, logOut }}>
             {children}
         </AuthContext.Provider>
     )

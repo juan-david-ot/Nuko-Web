@@ -9,7 +9,7 @@ export type AuthUser = {
 }
 
 export type AuthContextType = {
-    authenticatedUser: unknown,
+    user: unknown,
     authUser: () => void,
     isLoading: boolean,
     logOut: () => void
