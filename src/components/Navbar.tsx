@@ -1,6 +1,6 @@
-import { Tabs } from '@heroui/react'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
+import { Tabs } from '@heroui/react'
 
 function Navbar() {
     const location = useLocation()

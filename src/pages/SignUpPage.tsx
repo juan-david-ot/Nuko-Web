@@ -1,8 +1,8 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Button, ErrorMessage, FieldError, Form, Input, Label, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
 import * as authService from '../services/auth.service'
-import { useState } from 'react'
 
 function SignUpPage() {
     const navigate = useNavigate()
