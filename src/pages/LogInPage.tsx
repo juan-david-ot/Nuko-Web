@@ -1,12 +1,14 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { Button, FieldError, Form, Input, Label, TextField } from '@heroui/react'
+import { Button, ErrorMessage, FieldError, Form, Input, Label, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
-import * as authService from '../services/auth.service'
 import { useAuth } from '../contexts/auth/useAuth'
+import * as authService from '../services/auth.service'
 
 function LogInPage() {
     const { authUser } = useAuth()
     const navigate = useNavigate()
+    const [errors, setErrors] = useState([])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -31,7 +33,7 @@ function LogInPage() {
                 navigate('/home')
                 console.log(data)
             })
-            .catch(error => console.error(error))
+            .catch(error => setErrors(error.response.data.error))
     }
     return (
         <article className='h-full flex justify-center items-center lg:items-start lg:pt-40'>
@@ -54,6 +56,7 @@ function LogInPage() {
                     <Input placeholder="Introduce tu contraseña" />
                     <FieldError />
                 </TextField>
+                <ErrorMessage>{errors.join('. ')}</ErrorMessage>
                 <div className="flex gap-2">
                     <Button type="submit">
                         <GoCheck />
