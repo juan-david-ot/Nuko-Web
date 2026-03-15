@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { Tabs } from '@heroui/react'
+import { AiFillSetting } from 'react-icons/ai'
+import { RiShieldKeyholeFill } from 'react-icons/ri'
+import { MdViewComfy } from 'react-icons/md'
+import { GoHomeFill } from 'react-icons/go'
 
 function Navbar() {
     const location = useLocation()
@@ -30,19 +34,35 @@ function Navbar() {
                     aria-label="Navbar"
                 >
                     <Tabs.Tab id="/">
-                        Main
+                        {isDesktop ? 'Main' : <MdViewComfy size={20} />}
                         <Tabs.Indicator />
                     </Tabs.Tab>
                     <Tabs.Tab id="/home">
-                        Home
+                        {isDesktop ? 'Home' : <GoHomeFill size={20} />}
                         <Tabs.Indicator />
                     </Tabs.Tab>
                     <Tabs.Tab id="/overview/1">
-                        Overview
+                        {isDesktop ? 'Overview' : <MdViewComfy size={20} />}
                         <Tabs.Indicator />
                     </Tabs.Tab>
-                    <Tabs.Tab id="/auth">
-                        Auth
+                    <Tabs.Tab id="/auth/iniciar-sesion">
+                        {isDesktop ? 'Auth' : <RiShieldKeyholeFill size={20} />}
+                        <Tabs.Indicator />
+                    </Tabs.Tab>
+                    <Tabs.Tab id="/Ajustes">
+                        {isDesktop ? 'Ajustes' : <AiFillSetting size={20} />}
+                        <Tabs.Indicator />
+                    </Tabs.Tab>
+                    <Tabs.Tab id="/1">
+                        {isDesktop ? 'Main' : <MdViewComfy size={20} />}
+                        <Tabs.Indicator />
+                    </Tabs.Tab>
+                    <Tabs.Tab id="/2">
+                        {isDesktop ? 'Main' : <MdViewComfy size={20} />}
+                        <Tabs.Indicator />
+                    </Tabs.Tab>
+                    <Tabs.Tab id="/3">
+                        {isDesktop ? 'Main' : <MdViewComfy size={20} />}
                         <Tabs.Indicator />
                     </Tabs.Tab>
                 </Tabs.List>

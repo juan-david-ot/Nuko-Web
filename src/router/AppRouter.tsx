@@ -4,17 +4,18 @@ import PrivateRouter from './PrivateRouter'
 import AuthPage from '../pages/AuthPage'
 import HomePage from '../pages/HomePage'
 import NotFoundPage from '../pages/NotFoundPage'
+import TestPage from '../pages/TestPape'
 
 function AppRouter() {
     return (
         <Routes>
             <Route element={<GuestRouter />}>
-                <Route path='/' element={<HomePage />} />
-                <Route path='/auth' element={<AuthPage />} />
+                <Route path='/' element={<TestPage />} />
+                <Route path='/auth/:mode' element={<AuthPage />} />
             </Route>
             <Route element={<PrivateRouter />}>
                 <Route path='/home' element={<HomePage />} />
-                <Route path='/overview/:id' element={<HomePage />} />
+                <Route path='/overview/:id' element={<TestPage />} />
             </Route>
             <Route path='*' element={<NotFoundPage />}></Route>
         </Routes>
