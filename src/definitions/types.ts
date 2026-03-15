@@ -1,5 +1,10 @@
-export type TestType = {
-    test: string
+export type User = {
+    id?: string
+    email?: string
+    username?: string
+    password?: string
+    name?: string
+    surname?: string
 }
 
 export type AuthUser = {
@@ -9,7 +14,7 @@ export type AuthUser = {
 }
 
 export type AuthContextType = {
-    user: unknown,
+    user: AuthUser | null,
     authUser: () => void,
     loading: boolean,
     logOut: () => void

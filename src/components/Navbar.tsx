@@ -25,7 +25,10 @@ function Navbar() {
             onSelectionChange={(key) => navigate(String(key))}
         >
             <Tabs.ListContainer className='w-full'>
-                <Tabs.List className='w-full backdrop-blur-xl bg-background/70 border border-white/10' aria-label="Navbar">
+                <Tabs.List
+                    className='w-full backdrop-blur-xl bg-background/70 border border-white/10'
+                    aria-label="Navbar"
+                >
                     <Tabs.Tab id="/">
                         Main
                         <Tabs.Indicator />

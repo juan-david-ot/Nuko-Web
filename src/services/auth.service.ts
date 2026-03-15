@@ -1,10 +1,11 @@
+import type { User } from '../definitions/types'
 import { server } from './server'
 
-async function signUp(user: unknown) {
+async function signUp(user: User) {
     return server.post('/signUp', user)
 }
 
-async function logIn(user: unknown) {
+async function logIn(user: User) {
     return server.post('/logIn', user)
 }
 

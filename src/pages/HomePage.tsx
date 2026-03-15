@@ -10,7 +10,9 @@ function HomePage() {
     const navigate = useNavigate()
     const { logOut } = useAuth()
     const { toggleTheme } = useTheme()
+
     const [count, setCount] = useState(0)
+
     function closeSession() {
         logOut()
         navigate('/iniciar-sesion')
