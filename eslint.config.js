@@ -36,7 +36,6 @@ export default defineConfig([
             'react-hooks/exhaustive-deps': 'off',
             'quotes': ['error', 'single'],
             'semi': ['error', 'never'],
-            'indent': ['error', 4],
             'brace-style': ['error', 'stroustrup'],
             'comma-dangle': ['error', 'never'],
             'object-curly-spacing': ['error', 'always'],

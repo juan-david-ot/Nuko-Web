@@ -6,6 +6,7 @@ import { TbListDetails } from 'react-icons/tb'
 import { FaDollarSign } from 'react-icons/fa6'
 import { BiCalendar } from 'react-icons/bi'
 import { AiFillSetting } from 'react-icons/ai'
+import { getActiveTab } from '../utils'
 
 function Navbar() {
     const location = useLocation()
@@ -26,7 +27,7 @@ function Navbar() {
         <Tabs
             className="w-full"
             orientation={isDesktop ? 'vertical' : 'horizontal'}
-            selectedKey={location.pathname}
+            selectedKey={getActiveTab(location.pathname)}
             onSelectionChange={(key) => navigate(String(key))}
         >
             <Tabs.ListContainer className='w-full'>
