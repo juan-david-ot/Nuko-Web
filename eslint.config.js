@@ -33,6 +33,7 @@ export default defineConfig([
         rules: {
             '@typescript-eslint/no-unused-vars': 'warn',
             'react/react-in-jsx-scope': 'off',
+            'react-hooks/exhaustive-deps': 'off',
             'quotes': ['error', 'single'],
             'semi': ['error', 'never'],
             'indent': ['error', 4],
