@@ -3,7 +3,7 @@ import GuestRouter from './GuestRouter'
 import PrivateRouter from './PrivateRouter'
 import AuthPage from '../pages/AuthPage'
 import HomePage from '../pages/HomePage'
-import ErrorPage from '../pages/ErrorPage'
+import NotFoundPage from '../pages/NotFoundPage'
 
 function AppRouter() {
     return (
@@ -16,7 +16,7 @@ function AppRouter() {
                 <Route path='/home' element={<HomePage />} />
                 <Route path='/overview/:id' element={<HomePage />} />
             </Route>
-            <Route path='*' element={<ErrorPage />}></Route>
+            <Route path='*' element={<NotFoundPage />}></Route>
         </Routes>
     )
 }

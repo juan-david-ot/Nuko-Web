@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-function ErrorPage() {
+function NotFoundPage() {
     return (
         <section className="h-full w-full flex flex-col items-center justify-center gap-6 text-center">
             <h1 className="text-8xl font-bold tracking-tight">
@@ -21,4 +21,4 @@ function ErrorPage() {
     )
 }
 
-export default ErrorPage
+export default NotFoundPage
