@@ -9,7 +9,7 @@ function PrivateRouter() {
     }
 
     if (!user) {
-        return <Navigate to='/iniciar-sesion' />
+        return <Navigate to='/auth' />
     }
 
     return <Outlet />

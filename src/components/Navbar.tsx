@@ -41,12 +41,8 @@ function Navbar() {
                         Overview
                         <Tabs.Indicator />
                     </Tabs.Tab>
-                    <Tabs.Tab id="/iniciar-sesion">
-                        Iniciar Ses.
-                        <Tabs.Indicator />
-                    </Tabs.Tab>
-                    <Tabs.Tab id="/registrarse">
-                        Registrarse
+                    <Tabs.Tab id="/auth">
+                        Auth
                         <Tabs.Indicator />
                     </Tabs.Tab>
                 </Tabs.List>

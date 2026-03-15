@@ -1,9 +1,8 @@
 import { Route, Routes } from 'react-router'
 import GuestRouter from './GuestRouter'
 import PrivateRouter from './PrivateRouter'
+import AuthPage from '../pages/AuthPage'
 import HomePage from '../pages/HomePage'
-import LogInPage from '../pages/LogInPage'
-import SignUpPage from '../pages/SignUpPage'
 import ErrorPage from '../pages/ErrorPage'
 
 function AppRouter() {
@@ -11,8 +10,7 @@ function AppRouter() {
         <Routes>
             <Route element={<GuestRouter />}>
                 <Route path='/' element={<HomePage />} />
-                <Route path='/iniciar-sesion' element={<LogInPage />} />
-                <Route path='/registrarse' element={<SignUpPage />} />
+                <Route path='/auth' element={<AuthPage />} />
             </Route>
             <Route element={<PrivateRouter />}>
                 <Route path='/home' element={<HomePage />} />
