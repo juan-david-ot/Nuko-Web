@@ -6,7 +6,7 @@ function AuthPage() {
 
     return (
         <article className='h-full flex justify-center items-start pt-20 lg:items-start lg:pt-40'>
-            <div className="flex flex-col items-center justify-center rounded-4xl bg-surface p-6">
+            <div className="flex flex-col items-center justify-center rounded-4xl bg-surface p-3">
                 <Tabs className="w-fit max-w-md">
                     <Tabs.ListContainer>
                         <Tabs.List
