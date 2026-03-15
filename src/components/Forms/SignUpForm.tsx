@@ -2,37 +2,23 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Surface, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
-import { useAuth } from '../../contexts/auth/useAuth'
 import * as authService from '../../services/auth.service'
 
-function LogInForm() {
-    const { authUser } = useAuth()
+function SignUpForm() {
     const navigate = useNavigate()
     const [errors, setErrors] = useState([])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-
         const formData = new FormData(e.currentTarget)
-
-        const identifier = formData.get('identifier') as string
-        const password = formData.get('password') as string
-
-        const data = {
-            ...(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(identifier) ? { email: identifier } : { username: identifier }),
-            password
-        }
-
-        // /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+        const data: Record<string, string> = {}
+        formData.forEach((value, key) => {
+            data[key] = value.toString()
+        })
 
         authService
-            .logIn(data)
-            .then(({ data }) => {
-                localStorage.setItem('authToken', data.authToken)
-                authUser()
-                navigate('/home')
-                console.log(data)
-            })
+            .signUp(data)
+            .then(() => navigate('/iniciar-sesion'))
             .catch(error => setErrors(error.response.data.error))
     }
 
@@ -41,17 +27,45 @@ function LogInForm() {
             <Surface className="w-full min-w-95">
                 <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
                     <Fieldset>
-                        <Fieldset.Legend>¡Inicia sesión!</Fieldset.Legend>
-                        <Description>Ha-Nuko Matata</Description>
+                        <Fieldset.Legend>¡Regístrate!</Fieldset.Legend>
+                        <Description>Ha-Nuko Matata. Convive y deja vivir.</Description>
                         <FieldGroup>
                             <TextField
                                 variant='secondary'
                                 isRequired
-                                name="identifier"
+                                name="email"
+                                type='email'
+                            >
+                                <Label>Email</Label>
+                                <Input placeholder="Introduce tu email" />
+                                <FieldError />
+                            </TextField>
+                            <TextField
+                                variant='secondary'
+                                isRequired
+                                name="username"
                                 type='text'
                             >
-                                <Label>Email/Nombre de usuario</Label>
-                                <Input placeholder="Introduce tu email o nombre de usuario" />
+                                <Label>Nombre de usuario</Label>
+                                <Input placeholder="Introduce tu nombre de usuario" />
+                                <FieldError />
+                            </TextField>
+                            <TextField
+                                variant='secondary'
+                                name="name"
+                                type='text'
+                            >
+                                <Label>Nombre</Label>
+                                <Input placeholder="Introduce tu nombre" />
+                                <FieldError />
+                            </TextField>
+                            <TextField
+                                variant='secondary'
+                                name="surname"
+                                type="text"
+                            >
+                                <Label>Apellido</Label>
+                                <Input placeholder="Introduce tu apellido" />
                                 <FieldError />
                             </TextField>
                             <TextField
@@ -82,4 +96,4 @@ function LogInForm() {
     )
 }
 
-export default LogInForm
+export default SignUpForm

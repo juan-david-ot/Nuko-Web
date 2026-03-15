@@ -15,6 +15,7 @@ function HomePage() {
         logOut()
         navigate('/iniciar-sesion')
     }
+
     return (
         <article className='h-full flex justify-center items-center'>
             <Button
