@@ -15,7 +15,11 @@ function AppRouter() {
             </Route>
             <Route element={<PrivateRouter />}>
                 <Route path='/home' element={<HomePage />} />
-                <Route path='/overview/:id' element={<TestPage />} />
+                <Route path='/tareas' element={<TestPage />} />
+                <Route path='/finanzas' element={<TestPage />} />
+                <Route path='/calendario' element={<HomePage />} />
+                <Route path='/ajustes/auth/:mode' element={<AuthPage />} />
+                <Route path='/ajustes' element={<AuthPage />} />
             </Route>
             <Route path='*' element={<NotFoundPage />}></Route>
         </Routes>

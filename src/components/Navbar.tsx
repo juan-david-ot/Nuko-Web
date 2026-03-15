@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { Tabs } from '@heroui/react'
-import { AiFillSetting } from 'react-icons/ai'
-import { RiShieldKeyholeFill } from 'react-icons/ri'
-import { MdViewComfy } from 'react-icons/md'
 import { GoHomeFill } from 'react-icons/go'
+import { TbListDetails } from 'react-icons/tb'
+import { FaDollarSign } from 'react-icons/fa6'
+import { BiCalendar } from 'react-icons/bi'
+import { AiFillSetting } from 'react-icons/ai'
 
 function Navbar() {
     const location = useLocation()
@@ -33,36 +34,24 @@ function Navbar() {
                     className='w-full backdrop-blur-xl bg-background/70 border border-white/10'
                     aria-label="Navbar"
                 >
-                    <Tabs.Tab id="/">
-                        {isDesktop ? 'Main' : <MdViewComfy size={20} />}
-                        <Tabs.Indicator />
-                    </Tabs.Tab>
                     <Tabs.Tab id="/home">
-                        {isDesktop ? 'Home' : <GoHomeFill size={20} />}
+                        {isDesktop ? 'Home' : <GoHomeFill size={25} />}
                         <Tabs.Indicator />
                     </Tabs.Tab>
-                    <Tabs.Tab id="/overview/1">
-                        {isDesktop ? 'Overview' : <MdViewComfy size={20} />}
+                    <Tabs.Tab id="/calendario">
+                        {isDesktop ? 'Calendario' : <BiCalendar size={26} />}
                         <Tabs.Indicator />
                     </Tabs.Tab>
-                    <Tabs.Tab id="/auth/iniciar-sesion">
-                        {isDesktop ? 'Auth' : <RiShieldKeyholeFill size={20} />}
+                    <Tabs.Tab id="/finanzas">
+                        {isDesktop ? 'Finanzas' : <FaDollarSign size={24} />}
                         <Tabs.Indicator />
                     </Tabs.Tab>
-                    <Tabs.Tab id="/Ajustes">
-                        {isDesktop ? 'Ajustes' : <AiFillSetting size={20} />}
+                    <Tabs.Tab id="/tareas">
+                        {isDesktop ? 'Tareas' : <TbListDetails size={25} />}
                         <Tabs.Indicator />
                     </Tabs.Tab>
-                    <Tabs.Tab id="/1">
-                        {isDesktop ? 'Main' : <MdViewComfy size={20} />}
-                        <Tabs.Indicator />
-                    </Tabs.Tab>
-                    <Tabs.Tab id="/2">
-                        {isDesktop ? 'Main' : <MdViewComfy size={20} />}
-                        <Tabs.Indicator />
-                    </Tabs.Tab>
-                    <Tabs.Tab id="/3">
-                        {isDesktop ? 'Main' : <MdViewComfy size={20} />}
+                    <Tabs.Tab id="/ajustes">
+                        {isDesktop ? 'Ajustes' : <AiFillSetting size={25} />}
                         <Tabs.Indicator />
                     </Tabs.Tab>
                 </Tabs.List>
