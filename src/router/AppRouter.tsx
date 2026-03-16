@@ -18,8 +18,7 @@ function AppRouter() {
                 <Route path='/tareas' element={<TestPage />} />
                 <Route path='/finanzas' element={<TestPage />} />
                 <Route path='/calendario' element={<HomePage />} />
-                <Route path='/ajustes/auth/:mode' element={<AuthPage />} />
-                <Route path='/ajustes' element={<AuthPage />} />
+                <Route path='/ajustes' element={<HomePage />} />
             </Route>
             <Route path='*' element={<NotFoundPage />}></Route>
         </Routes>

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router'
 import { Button } from '@heroui/react'
+import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import { useAuth } from '../contexts/auth/useAuth'
 import { useTheme } from '../contexts/theme/useTheme'
-import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 
 function HomePage() {
     const navigate = useNavigate()
