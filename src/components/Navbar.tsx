@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import { Button, Popover, Tabs } from '@heroui/react'
+import { Button, Dropdown, Header, Label, Tabs, type Selection } from '@heroui/react'
 import { GoHomeFill } from 'react-icons/go'
 import { FaDollarSign } from 'react-icons/fa6'
 import { BiAtom, BiCalendar } from 'react-icons/bi'
 import { AiFillSetting } from 'react-icons/ai'
-import { getActiveTab } from '../utils'
 import { TbListDetails } from 'react-icons/tb'
+import { IoCheckmarkCircle } from 'react-icons/io5'
 import { useTheme } from '../contexts/theme/useTheme'
+import { getActiveTab } from '../utils'
 
 function Navbar() {
     const location = useLocation()
     const navigate = useNavigate()
     const { theme } = useTheme()
 
+    const [coreSelected, setCoreSelected] = useState<Selection>()
     const [isDesktop, setIsDesktop] = useState(() => window.matchMedia('(min-width: 1024px)').matches)
 
     useEffect(() => {
@@ -27,7 +29,7 @@ function Navbar() {
 
     return (
         <>
-            <Popover>
+            <Dropdown>
                 <Button
                     className={`${theme === 'dark' ? 'bg-background border-accent/70' : 'bg-accent'} scale-105 backdrop-blur-xl border hover:scale-110 lg:w-full lg:scale-100 transition-all`}
                     variant='tertiary'
@@ -36,15 +38,42 @@ function Navbar() {
                 >
                     {isDesktop ? 'Nucleos' : <BiAtom className='scale-125' />}
                 </Button>
-                <Popover.Content className="max-w-64" offset={10}>
-                    <Popover.Dialog>
-                        <Popover.Heading>Nucleo Activo</Popover.Heading>
-                        <p className="mt-2 text-sm text-muted">
-                            Aqui va a salir una lista de todos los nucleos.
-                        </p>
-                    </Popover.Dialog>
-                </Popover.Content>
-            </Popover>
+                <Dropdown.Popover className='transition-all'>
+                    <Dropdown.Menu
+                        selectedKeys={coreSelected}
+                        selectionMode='single'
+                        onSelectionChange={setCoreSelected}
+                    >
+                        <Dropdown.Section>
+                            <Header>Escoge un Nucleo</Header>
+                            <Dropdown.Item id="casaSanchezID" textValue="Casa Sanchez">
+                                <Dropdown.ItemIndicator>
+                                    {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
+                                </Dropdown.ItemIndicator>
+                                <Label>Casa Sanchez</Label>
+                            </Dropdown.Item>
+                            <Dropdown.Item id="pisoLosChavalesID" textValue="Piso Los Chavales">
+                                <Dropdown.ItemIndicator>
+                                    {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
+                                </Dropdown.ItemIndicator>
+                                <Label>Piso Los Chavales</Label>
+                            </Dropdown.Item>
+                            <Dropdown.Item id="viajeSevillaID" textValue="Viaje Sevilla">
+                                <Dropdown.ItemIndicator>
+                                    {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
+                                </Dropdown.ItemIndicator>
+                                <Label>Viaje Sevilla</Label>
+                            </Dropdown.Item>
+                            <Dropdown.Item id="casaConSaraID" textValue="Casa Con Sara">
+                                <Dropdown.ItemIndicator>
+                                    {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
+                                </Dropdown.ItemIndicator>
+                                <Label>Casa Con Sara</Label>
+                            </Dropdown.Item>
+                        </Dropdown.Section>
+                    </Dropdown.Menu>
+                </Dropdown.Popover>
+            </Dropdown>
             <Tabs
                 className="w-full"
                 orientation={isDesktop ? 'vertical' : 'horizontal'}
