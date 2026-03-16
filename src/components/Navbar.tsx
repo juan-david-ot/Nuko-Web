@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { Button, Popover, Tabs } from '@heroui/react'
 import { GoHomeFill } from 'react-icons/go'
-import { TbAtom2, TbListDetails } from 'react-icons/tb'
 import { FaDollarSign } from 'react-icons/fa6'
 import { BiAtom, BiCalendar } from 'react-icons/bi'
 import { AiFillSetting } from 'react-icons/ai'
 import { getActiveTab } from '../utils'
-import { FaEllipsisH } from 'react-icons/fa'
-import { LuAtom } from 'react-icons/lu'
+import { TbListDetails } from 'react-icons/tb'
 
 function Navbar() {
     const location = useLocation()
@@ -29,7 +27,7 @@ function Navbar() {
         <>
             <Popover>
                 <Button
-                    className='scale-105 backdrop-blur-xl bg-accent/85 border border-white/10 text-accent-foreground hover:scale-110 lg:w-full lg:scale-100'
+                    className='scale-105 backdrop-blur-xl bg-accent/85 border border-white/10 text-accent-foreground hover:scale-110 lg:w-full lg:scale-100 transition-all'
                     variant='tertiary'
                     size={isDesktop ? 'md' : 'lg'}
                     isIconOnly
