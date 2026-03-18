@@ -11,6 +11,7 @@ export default defineConfig({
     build: {
         outDir: 'build'
     },
+    envPrefix: 'REACT_APP_',
     server: {
         port: 2409
     }

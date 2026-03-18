@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const server = axios.create({
-    baseURL: `${import.meta.env.VITE_APP_API_URL}/auth`
+    baseURL: `${import.meta.env.REACT_APP_API_URL}/auth`
 })
 
 server.interceptors.request.use((config) => {
