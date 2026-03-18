@@ -13,7 +13,7 @@ async function verify(authToken: string) {
     return server.get('/verify', { headers: { Authorization: `Bearer ${authToken}` } })
 }
 
-export {
+export default {
     signUp,
     logIn,
     verify

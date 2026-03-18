@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Surface, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
-import * as authService from '../../services/auth.service'
+import authService from '../../services/auth.service'
 
 function SignUpForm() {
     const navigate = useNavigate()
