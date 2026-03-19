@@ -91,10 +91,7 @@ function LogInForm() {
                     <Fieldset.Actions>
                         <Button type="submit">
                             <GoCheck />
-                            Submit
-                        </Button>
-                        <Button type="reset" variant="tertiary">
-                            Reset
+                            Iniciar Sesión
                         </Button>
                     </Fieldset.Actions>
                 </Fieldset>
