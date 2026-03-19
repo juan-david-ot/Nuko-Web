@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import { Button, Dropdown, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Header, Input, Label, Modal, Surface, Tabs, TextField, type Selection } from '@heroui/react'
-import { GoCheck, GoHomeFill } from 'react-icons/go'
+import { Button, Dropdown, Header, Label, Tabs, type Selection } from '@heroui/react'
+import { GoHomeFill } from 'react-icons/go'
 import { FaDollarSign } from 'react-icons/fa6'
 import { BiAtom, BiCalendar } from 'react-icons/bi'
 import { AiFillSetting } from 'react-icons/ai'
 import { TbListDetails } from 'react-icons/tb'
 import { IoCheckmarkCircle } from 'react-icons/io5'
 import { useTheme } from '../contexts/theme/useTheme'
+import CreateCoreModal from './CreateCoreModal'
 import { getActiveTab } from '../utils'
 
 function Navbar() {
@@ -20,20 +21,6 @@ function Navbar() {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
-
-    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault()
-
-        const formData = new FormData(e.currentTarget)
-        const data: Record<string, any> = {}
-        formData.forEach((value, key) => {
-            data[key] = value
-        })
-
-        setIsModalOpen(false)
-
-        alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`)
-    }
 
     useEffect(() => {
         const media = window.matchMedia('(min-width: 64rem)')
@@ -74,25 +61,25 @@ function Navbar() {
                         </Dropdown.Section>
                         <Dropdown.Section>
                             <Header>Escoge un Núcleo</Header>
-                            <Dropdown.Item id="casaSanchezID" textValue="Casa Sanchez">
+                            <Dropdown.Item id="casaSanchezId" textValue="Casa Sanchez">
                                 <Dropdown.ItemIndicator>
                                     {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
                                 </Dropdown.ItemIndicator>
                                 <Label>Casa Sanchez</Label>
                             </Dropdown.Item>
-                            <Dropdown.Item id="pisoLosChavalesID" textValue="Piso Los Chavales">
+                            <Dropdown.Item id="pisoLosChavalesId" textValue="Piso Los Chavales">
                                 <Dropdown.ItemIndicator>
                                     {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
                                 </Dropdown.ItemIndicator>
                                 <Label>Piso Los Chavales</Label>
                             </Dropdown.Item>
-                            <Dropdown.Item id="viajeSevillaID" textValue="Viaje Sevilla">
+                            <Dropdown.Item id="viajeSevillaId" textValue="Viaje Sevilla">
                                 <Dropdown.ItemIndicator>
                                     {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
                                 </Dropdown.ItemIndicator>
                                 <Label>Viaje Sevilla</Label>
                             </Dropdown.Item>
-                            <Dropdown.Item id="casaConSaraID" textValue="Casa Con Sara">
+                            <Dropdown.Item id="casaConSaraId" textValue="Casa Con Sara">
                                 <Dropdown.ItemIndicator>
                                     {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
                                 </Dropdown.ItemIndicator>
@@ -102,54 +89,7 @@ function Navbar() {
                     </Dropdown.Menu>
                 </Dropdown.Popover>
             </Dropdown>
-            <Modal isOpen={isModalOpen} onOpenChange={setIsModalOpen}>
-                <div className='flex flex-col justify-center items-center'>
-                    <Modal.Backdrop variant='blur'>
-                        <Modal.Container placement='center' size='xs'>
-                            <Modal.Dialog className="sm:max-w-md">
-                                {/* <Modal.CloseTrigger /> */}
-                                <Modal.Header>
-                                    <Modal.Icon className="bg-accent text-accent-foreground">
-                                        <BiAtom className="scale-125" />
-                                    </Modal.Icon>
-                                    <Modal.Heading>¡Crea un Nuevo Núcleo!</Modal.Heading>
-                                </Modal.Header>
-                                <Modal.Body className="p-6">
-                                    <Surface variant="default">
-                                        <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
-                                            <Fieldset>
-                                                <FieldGroup>
-                                                    <TextField
-                                                        variant='secondary'
-                                                        className="w-full"
-                                                        isRequired
-                                                        name="name"
-                                                        type="text"
-                                                    >
-                                                        <Label>Nombre</Label>
-                                                        <Input placeholder="Nombre de tu nuevo Núcleo" />
-                                                        <FieldError>Este campo es obligatorio</FieldError>
-                                                    </TextField>
-                                                    <ErrorMessage>{[].join('. ')}</ErrorMessage>
-                                                </FieldGroup>
-                                                <Fieldset.Actions className='flex-row-reverse justify-start'>
-                                                    <Button type="submit">
-                                                        <GoCheck />
-                                                        Submit
-                                                    </Button>
-                                                    <Button slot='close' variant="tertiary">
-                                                        Cancel
-                                                    </Button>
-                                                </Fieldset.Actions>
-                                            </Fieldset>
-                                        </Form>
-                                    </Surface>
-                                </Modal.Body>
-                            </Modal.Dialog>
-                        </Modal.Container>
-                    </Modal.Backdrop>
-                </div>
-            </Modal>
+            <CreateCoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
             <Tabs
                 className="w-full"
                 orientation={isDesktop ? 'vertical' : 'horizontal'}
