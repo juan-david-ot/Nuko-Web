@@ -93,7 +93,7 @@ function LogInForm() {
                             <GoCheck />
                             Submit
                         </Button>
-                        <Button type="reset" variant="secondary">
+                        <Button type="reset" variant="tertiary">
                             Reset
                         </Button>
                     </Fieldset.Actions>
