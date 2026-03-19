@@ -21,7 +21,7 @@ function AuthPage() {
                             aria-label="Auth"
                         >
                             <Tabs.Tab id="iniciar-sesion">
-                                Iniciar Sesion
+                                Iniciar Sesión
                                 <Tabs.Indicator />
                             </Tabs.Tab>
                             <Tabs.Tab id="registrarse">
