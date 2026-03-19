@@ -5,6 +5,14 @@ export type User = {
     password?: string
     name?: string
     surname?: string
+    createdAt?: Date
+}
+
+export type Core = {
+    id?: string
+    name?: string
+    creatorId?: string
+    createdAt?: Date
 }
 
 export type AuthUser = {
