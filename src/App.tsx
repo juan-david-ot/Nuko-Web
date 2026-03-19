@@ -11,7 +11,7 @@ function App() {
     const { theme } = useTheme()
 
     return (
-        <main className='m-0 h-screen w-screen flex flex-col-reverse justify-between items-center lg:flex-row lg:justify-start lg:items-start bg-background text-foreground'>
+        <main className='m-0 h-screen w-screen overflow-hidden flex flex-col-reverse justify-between items-center lg:flex-row lg:justify-start lg:items-start bg-background text-foreground'>
             <title>Nuko</title>
             <link rel="icon" type="image/svg+xml" href={theme === 'dark' ? nukoLight : nukoDark} />
             {
