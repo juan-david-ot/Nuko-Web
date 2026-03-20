@@ -7,10 +7,10 @@ import { BiAtom, BiCalendar } from 'react-icons/bi'
 import { AiFillSetting } from 'react-icons/ai'
 import { TbListDetails } from 'react-icons/tb'
 import { IoCheckmarkCircle } from 'react-icons/io5'
-import { useTheme } from '../contexts/theme/useTheme'
-import { useDesktop } from '../hooks/useDesktop'
-import { useCore } from '../contexts/core/useCore'
 import type { Core } from '../definitions/types'
+import { useTheme } from '../contexts/theme/useTheme'
+import { useCore } from '../contexts/core/useCore'
+import { useMediaQuery } from '../hooks'
 import CoreModal from './CoreModal'
 import coreService from '../services/core.service'
 import { getActiveTab } from '../utils'
@@ -18,9 +18,11 @@ import { getActiveTab } from '../utils'
 function Navbar() {
     const location = useLocation()
     const navigate = useNavigate()
+
     const { theme } = useTheme()
-    const isDesktop = useDesktop()
     const { core, setCore } = useCore()
+
+    const isDesktop = useMediaQuery('(min-width: 1024px)')
 
     const [userCores, setUserCores] = useState<Core[]>([])
 
