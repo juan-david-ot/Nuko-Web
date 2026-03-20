@@ -7,9 +7,10 @@ import { useState } from 'react'
 type Props = {
     isOpen: boolean
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+    getCores: () => void
 }
 
-function CreateCoreModal({ isOpen, setIsOpen }: Props) {
+function CreateCoreModal({ isOpen, setIsOpen, getCores }: Props) {
     const [errors, setErrors] = useState([])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -23,7 +24,10 @@ function CreateCoreModal({ isOpen, setIsOpen }: Props) {
 
         coreService
             .createCore(data)
-            .then(() => setIsOpen(false))
+            .then(() => {
+                getCores()
+                setIsOpen(false)
+            })
             .catch(error => setErrors(error.response.data.error))
     }
     return (

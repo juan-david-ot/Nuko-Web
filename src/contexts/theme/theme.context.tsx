@@ -6,7 +6,7 @@ const ThemeContext = createContext<ThemeContextType | null>(null)
 function ThemeProviderWrapper({ children }: { children: ReactNode }) {
     const [theme, setTheme] = useState<Theme>((localStorage.getItem('theme') as Theme) || 'dark')
 
-    const toggleTheme = () => {
+    function toggleTheme() {
         const newTheme = theme === 'dark' ? 'light' : 'dark'
         setTheme(newTheme)
         localStorage.setItem('theme', newTheme)
