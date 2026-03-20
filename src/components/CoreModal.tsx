@@ -10,7 +10,7 @@ type Props = {
     getCores: () => void
 }
 
-function CreateCoreModal({ isOpen, setIsOpen, getCores }: Props) {
+function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
     const [errors, setErrors] = useState([])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -36,7 +36,7 @@ function CreateCoreModal({ isOpen, setIsOpen, getCores }: Props) {
                 <Modal.Backdrop variant='blur'>
                     <Modal.Container placement='center' size='xs'>
                         <Modal.Dialog className="sm:max-w-md">
-                            {/* <Modal.CloseTrigger /> */}
+                            <Modal.CloseTrigger />
                             <Modal.Header>
                                 <Modal.Icon className="bg-accent text-accent-foreground">
                                     <BiAtom className="scale-125" />
@@ -82,4 +82,4 @@ function CreateCoreModal({ isOpen, setIsOpen, getCores }: Props) {
     )
 }
 
-export default CreateCoreModal
+export default CoreModal

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import { Button, Dropdown, Header, Label, Tabs, type Selection } from '@heroui/react'
+import { Button, Dropdown, Header, Label, Tabs } from '@heroui/react'
 import { GoHomeFill } from 'react-icons/go'
 import { FaDollarSign } from 'react-icons/fa6'
 import { BiAtom, BiCalendar } from 'react-icons/bi'
@@ -8,19 +8,21 @@ import { AiFillSetting } from 'react-icons/ai'
 import { TbListDetails } from 'react-icons/tb'
 import { IoCheckmarkCircle } from 'react-icons/io5'
 import { useTheme } from '../contexts/theme/useTheme'
-import CreateCoreModal from './CreateCoreModal'
+import { useDesktop } from '../hooks/useDesktop'
+import { useCore } from '../contexts/core/useCore'
+import type { Core } from '../definitions/types'
+import CoreModal from './CoreModal'
 import coreService from '../services/core.service'
 import { getActiveTab } from '../utils'
-import type { Core } from '../definitions/types'
 
 function Navbar() {
     const location = useLocation()
     const navigate = useNavigate()
     const { theme } = useTheme()
+    const isDesktop = useDesktop()
+    const { core, setCore } = useCore()
 
     const [userCores, setUserCores] = useState<Core[]>([])
-    const [coreSelected, setCoreSelected] = useState<Selection>()
-    const [isDesktop, setIsDesktop] = useState(() => window.matchMedia('(min-width: 1024px)').matches)
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -32,15 +34,10 @@ function Navbar() {
             .catch((error) => console.error(error))
     }
 
+    console.log(core, typeof core)
+
     useEffect(() => {
         getMyCores()
-
-        const media = window.matchMedia('(min-width: 64rem)')
-
-        const listener = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
-        media.addEventListener('change', listener)
-
-        return () => media.removeEventListener('change', listener)
     }, [])
 
     return (
@@ -56,9 +53,9 @@ function Navbar() {
                 </Button>
                 <Dropdown.Popover className='transition-all'>
                     <Dropdown.Menu
-                        selectedKeys={coreSelected}
+                        selectedKeys={core}
                         selectionMode='single'
-                        onSelectionChange={setCoreSelected}
+                        onSelectionChange={setCore}
                     >
                         <Dropdown.Section>
                             <Dropdown.Item
@@ -80,7 +77,7 @@ function Navbar() {
                                         {
                                             userCores.map((core) => {
                                                 return (
-                                                    <Dropdown.Item key={core.name} id={core.id} textValue={core.name}>
+                                                    <Dropdown.Item key={core.id} id={core.id} textValue={core.name}>
                                                         <Dropdown.ItemIndicator>
                                                             {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
                                                         </Dropdown.ItemIndicator>
@@ -97,7 +94,7 @@ function Navbar() {
                     </Dropdown.Menu>
                 </Dropdown.Popover>
             </Dropdown>
-            <CreateCoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getMyCores} />
+            <CoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getMyCores} />
             <Tabs
                 className="w-full"
                 orientation={isDesktop ? 'vertical' : 'horizontal'}

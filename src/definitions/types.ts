@@ -1,3 +1,5 @@
+import type { Selection } from '@heroui/react'
+
 export type User = {
     id?: string
     email?: string
@@ -5,13 +7,6 @@ export type User = {
     password?: string
     name?: string
     surname?: string
-    createdAt?: Date
-}
-
-export type Core = {
-    id?: string
-    name?: string
-    creatorId?: string
     createdAt?: Date
 }
 
@@ -26,6 +21,18 @@ export type AuthContextType = {
     authUser: () => void,
     loading: boolean,
     logOut: () => void
+}
+
+export type Core = {
+    id?: string
+    name?: string
+    creatorId?: string
+    createdAt?: Date
+}
+
+export type CoreContextType = {
+    core: Selection
+    setCore: React.Dispatch<React.SetStateAction<Selection>>
 }
 
 export type Theme = 'light' | 'dark'

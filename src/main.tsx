@@ -4,13 +4,16 @@ import { AuthProviderWrapper } from './contexts/auth/auth.context.tsx'
 import { ThemeProviderWrapper } from './contexts/theme/theme.context.tsx'
 import App from './App.tsx'
 import './index.css'
+import { CoreProviderWrapper } from './contexts/core/core.context.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <AuthProviderWrapper>
         <ThemeProviderWrapper>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
+            <CoreProviderWrapper>
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            </CoreProviderWrapper>
         </ThemeProviderWrapper>
     </AuthProviderWrapper>
 )
