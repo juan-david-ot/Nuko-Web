@@ -5,7 +5,7 @@ import coreService from '../services/core.service'
 import { useState } from 'react'
 
 type Props = {
-    isOpen: boolean,
+    isOpen: boolean
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
