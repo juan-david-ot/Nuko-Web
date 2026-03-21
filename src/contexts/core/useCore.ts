@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { CoreContext } from './core.context'
 
-const useCore = () => {
+function useCore() {
     const context = useContext(CoreContext)
 
     if (!context) {

@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { ThemeContext } from './theme.context'
 
-const useTheme = () => {
+function useTheme() {
     const context = useContext(ThemeContext)
 
     if (!context) {
