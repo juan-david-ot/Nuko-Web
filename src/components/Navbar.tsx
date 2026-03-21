@@ -36,15 +36,13 @@ function Navbar() {
             .catch((error) => console.error(error))
     }
 
-    console.log(core, typeof core)
-
     useEffect(() => {
         getMyCores()
     }, [])
 
     return (
         <>
-            <Dropdown isOpen={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+            <Dropdown isOpen={isDropdownOpen} onOpenChange={setIsDropdownOpen} className='transition-all'>
                 <Button
                     className={`${theme === 'dark' ? 'bg-background border-accent/70' : 'bg-accent'} scale-105 backdrop-blur-xl border hover:scale-105 lg:w-full lg:scale-100 transition-all`}
                     variant='tertiary'
