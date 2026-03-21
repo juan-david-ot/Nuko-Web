@@ -5,7 +5,7 @@ import type { CoreContextType } from '../../definitions/types'
 const CoreContext = createContext<CoreContextType | null>(null)
 
 function CoreProviderWrapper({ children }: { children: ReactNode }) {
-    const [core, setCore] = useState<Selection>(new Set(['']))
+    const [core, setCore] = useState<Selection>(new Set())
 
     return (
         <CoreContext.Provider value={{ core, setCore }}>
