@@ -9,8 +9,8 @@ import TestPage from '../pages/TestPape'
 function AppRouter() {
     return (
         <Routes>
+            <Route path='/' element={<TestPage />} />
             <Route element={<GuestRouter />}>
-                <Route path='/' element={<TestPage />} />
                 <Route path='/auth/:mode' element={<AuthPage />} />
             </Route>
             <Route element={<PrivateRouter />}>
