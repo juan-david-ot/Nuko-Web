@@ -1,8 +1,9 @@
-import { Navigate, Outlet } from 'react-router'
+import { Navigate, Outlet, useLocation } from 'react-router'
 import { useAuth } from '../contexts/auth/useAuth'
 import Loading from '../components/Loading'
 
 function GuestRouter() {
+    const location = useLocation()
     const { user, loading } = useAuth()
 
     if (loading) {
@@ -10,7 +11,13 @@ function GuestRouter() {
     }
 
     if (user) {
-        return <Navigate to='/home' />
+        const from = location.state?.from?.pathname || '/home'
+        return (
+            <Navigate
+                to={from}
+                replace
+            />
+        )
     }
 
     return <Outlet />

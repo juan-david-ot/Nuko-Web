@@ -1,16 +1,19 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Spinner, Surface, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
 import { useAuth } from '../../contexts/auth/useAuth'
 import authService from '../../services/auth.service'
 
 function LogInForm() {
-    const { authUser } = useAuth()
+    const location = useLocation()
     const navigate = useNavigate()
+    const { authUser } = useAuth()
 
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState([])
+
+    const from = location.state?.from?.pathname || '/home'
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -35,7 +38,7 @@ function LogInForm() {
                 localStorage.setItem('authToken', data.authToken)
                 setLoading(false)
                 authUser()
-                navigate('/home')
+                navigate(from, { replace: true })
                 console.log(data)
             })
             .catch(error => {

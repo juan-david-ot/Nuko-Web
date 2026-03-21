@@ -25,7 +25,7 @@ function SignUpForm() {
             .signUp(data)
             .then(() => {
                 setLoading(false)
-                navigate('/iniciar-sesion')
+                navigate('/auth/iniciar-sesion')
             })
             .catch(error => {
                 setLoading(false)
