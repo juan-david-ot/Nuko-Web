@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Surface, TextField } from '@heroui/react'
+import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Spinner, Surface, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
 import authService from '../../services/auth.service'
 
 function SignUpForm() {
     const navigate = useNavigate()
+
+    const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState([])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
+
+        setLoading(true)
+
         const formData = new FormData(e.currentTarget)
         const data: Record<string, string> = {}
         formData.forEach((value, key) => {
@@ -18,8 +23,14 @@ function SignUpForm() {
 
         authService
             .signUp(data)
-            .then(() => navigate('/iniciar-sesion'))
-            .catch(error => setErrors(error.response.data.error))
+            .then(() => {
+                setLoading(false)
+                navigate('/iniciar-sesion')
+            })
+            .catch(error => {
+                setLoading(false)
+                setErrors(error.response.data.error)
+            })
     }
 
     return (
@@ -100,12 +111,20 @@ function SignUpForm() {
                             <Input placeholder="Introduce tu contraseña" />
                             <FieldError>Este campo es obligatorio</FieldError>
                         </TextField>
-                        <ErrorMessage>{errors.join('. ')}</ErrorMessage>
+                        <ErrorMessage>{Array.isArray(errors) ? errors.join('. ') : errors}</ErrorMessage>
                     </FieldGroup>
                     <Fieldset.Actions>
                         <Button type="submit">
-                            <GoCheck />
-                            Registarse
+                            {
+                                loading
+                                    ?
+                                    <Spinner color='current' size='lg' />
+                                    :
+                                    <>
+                                        <GoCheck />
+                                        Registarse
+                                    </>
+                            }
                         </Button>
                     </Fieldset.Actions>
                 </Fieldset>

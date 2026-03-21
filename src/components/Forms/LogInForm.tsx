@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Surface, TextField } from '@heroui/react'
+import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Spinner, Surface, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
 import { useAuth } from '../../contexts/auth/useAuth'
 import authService from '../../services/auth.service'
@@ -8,10 +8,14 @@ import authService from '../../services/auth.service'
 function LogInForm() {
     const { authUser } = useAuth()
     const navigate = useNavigate()
+
+    const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState([])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
+
+        setLoading(true)
 
         const formData = new FormData(e.currentTarget)
 
@@ -29,11 +33,15 @@ function LogInForm() {
             .logIn(data)
             .then(({ data }) => {
                 localStorage.setItem('authToken', data.authToken)
+                setLoading(false)
                 authUser()
                 navigate('/home')
                 console.log(data)
             })
-            .catch(error => setErrors(error.response.data.error))
+            .catch(error => {
+                setLoading(false)
+                setErrors(error.response.data.error)
+            })
     }
 
     return (
@@ -86,12 +94,20 @@ function LogInForm() {
                             <Input placeholder="Introduce tu contraseña" />
                             <FieldError>Este campo es obligatorio</FieldError>
                         </TextField>
-                        <ErrorMessage>{errors.join('. ')}</ErrorMessage>
+                        <ErrorMessage>{Array.isArray(errors) ? errors.join('. ') : errors}</ErrorMessage>
                     </FieldGroup>
                     <Fieldset.Actions>
                         <Button type="submit">
-                            <GoCheck />
-                            Iniciar Sesión
+                            {
+                                loading
+                                    ?
+                                    <Spinner color='current' size='lg' />
+                                    :
+                                    <>
+                                        <GoCheck />
+                                        Iniciar Sesión
+                                    </>
+                            }
                         </Button>
                     </Fieldset.Actions>
                 </Fieldset>

@@ -1,4 +1,4 @@
-import { Button, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Modal, Surface, TextField } from '@heroui/react'
+import { Button, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Modal, Spinner, Surface, TextField } from '@heroui/react'
 import { BiAtom } from 'react-icons/bi'
 import { GoCheck } from 'react-icons/go'
 import coreService from '../services/core.service'
@@ -11,10 +11,13 @@ type Props = {
 }
 
 function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
+    const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState([])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
+
+        setLoading(true)
 
         const formData = new FormData(e.currentTarget)
         const data: Record<string, any> = {}
@@ -25,10 +28,14 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
         coreService
             .createCore(data)
             .then(() => {
+                setLoading(false)
                 getCores()
                 setIsOpen(false)
             })
-            .catch(error => setErrors(error.response.data.error))
+            .catch(error => {
+                setLoading(false)
+                setErrors(error.response.data.error)
+            })
     }
     return (
         <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
@@ -36,7 +43,6 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                 <Modal.Backdrop variant='blur'>
                     <Modal.Container placement='center' size='xs'>
                         <Modal.Dialog className="sm:max-w-md">
-                            <Modal.CloseTrigger />
                             <Modal.Header>
                                 <Modal.Icon className="bg-accent text-accent-foreground">
                                     <BiAtom className="scale-125" />
@@ -59,12 +65,20 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                                                     <Input placeholder="Nombre de tu nuevo Núcleo" />
                                                     <FieldError>Este campo es obligatorio</FieldError>
                                                 </TextField>
-                                                <ErrorMessage>{errors.join('. ')}</ErrorMessage>
+                                                <ErrorMessage>{Array.isArray(errors) ? errors.join('. ') : errors}</ErrorMessage>
                                             </FieldGroup>
                                             <Fieldset.Actions className='flex-row-reverse justify-start'>
                                                 <Button type="submit">
-                                                    <GoCheck />
-                                                    Submit
+                                                    {
+                                                        loading
+                                                            ?
+                                                            <Spinner color='current' size='lg' />
+                                                            :
+                                                            <>
+                                                                <GoCheck />
+                                                                Submit
+                                                            </>
+                                                    }
                                                 </Button>
                                                 <Button slot='close' variant="tertiary">
                                                     Cancel
