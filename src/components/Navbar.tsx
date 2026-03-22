@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import { Button, Dropdown, Header, Label, Tabs } from '@heroui/react'
+import { Tabs } from '@heroui/react'
 import { GoHomeFill } from 'react-icons/go'
 import { FaDollarSign } from 'react-icons/fa6'
-import { BiAtom, BiCalendar } from 'react-icons/bi'
+import { BiCalendar } from 'react-icons/bi'
 import { AiFillSetting } from 'react-icons/ai'
 import { TbListDetails } from 'react-icons/tb'
-import { IoCheckmarkCircle } from 'react-icons/io5'
 import type { Core } from '../definitions/types'
 import { useTheme } from '../contexts/theme/useTheme'
 import { useCore } from '../contexts/core/useCore'
@@ -14,13 +13,14 @@ import { useMediaQuery } from '../hooks'
 import CoreModal from './CoreModal'
 import coreService from '../services/core.service'
 import { getActiveTab } from '../utils'
+import CoreDropdown from './CoreDropdown'
 
 function Navbar() {
     const location = useLocation()
     const navigate = useNavigate()
 
     const { theme } = useTheme()
-    const { core, setCore } = useCore()
+    const { setCore } = useCore()
 
     const isDesktop = useMediaQuery('(min-width: 1024px)')
 
@@ -44,15 +44,6 @@ function Navbar() {
         getMyCores()
     }, [])
 
-    // useEffect(() => {
-    //     if (coreId) {
-    //         setCore(new Set([coreId]))
-    //     }
-    //     if (coreId !== 'undefined' && !userCores.some((core) => core.id === coreId)) {
-    //         navigate(`${getActiveTab(location.pathname)}/undefined`)
-    //     }
-    // }, [coreId, userCores])
-
     useEffect(() => {
         if (loading) return
 
@@ -68,7 +59,7 @@ function Navbar() {
 
     return (
         <>
-            <Dropdown isOpen={isDropdownOpen} onOpenChange={setIsDropdownOpen} className='transition-all'>
+            {/* <Dropdown isOpen={isDropdownOpen} onOpenChange={setIsDropdownOpen} className='transition-all'>
                 <Button
                     className={`${theme === 'dark' ? 'bg-background border-accent/70' : 'bg-accent'} scale-105 backdrop-blur-xl border hover:scale-105 lg:w-full lg:scale-100 transition-all`}
                     variant='tertiary'
@@ -124,7 +115,8 @@ function Navbar() {
                         </Dropdown.Section>
                     </Dropdown.Menu>
                 </Dropdown.Popover>
-            </Dropdown>
+            </Dropdown> */}
+            <CoreDropdown isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} userCores={userCores} />
             <CoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getMyCores} />
             <Tabs
                 className="w-full"
