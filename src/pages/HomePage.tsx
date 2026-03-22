@@ -11,7 +11,7 @@ function HomePage() {
 
     function closeSession() {
         logOut()
-        navigate('/iniciar-sesion')
+        navigate('/auth/iniciar-sesion')
     }
 
     return (
