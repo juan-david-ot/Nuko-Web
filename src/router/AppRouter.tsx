@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router'
 import GuestRouter from './GuestRouter'
 import PrivateRouter from './PrivateRouter'
+import InvitePage from '../pages/InvitePage'
 import AuthPage from '../pages/AuthPage'
 import HomePage from '../pages/HomePage'
 import NotFoundPage from '../pages/NotFoundPage'
 import TestPage from '../pages/TestPape'
-import InvitePage from '../pages/InvitePage'
 
 function AppRouter() {
     return (
