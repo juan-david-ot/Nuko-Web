@@ -13,8 +13,13 @@ async function createInvitationToCore(coreId: string) {
     return server.post(`/cores/${coreId}/invitation`)
 }
 
+async function acceptInvitationToCore(token: string) {
+    return server.post(`/cores/invitation/${token}`)
+}
+
 export default {
     getMyCores,
     createCore,
-    createInvitationToCore
+    createInvitationToCore,
+    acceptInvitationToCore
 }
