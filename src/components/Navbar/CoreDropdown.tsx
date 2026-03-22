@@ -2,10 +2,10 @@ import { useNavigate } from 'react-router'
 import { Button, Dropdown, Header, Label } from '@heroui/react'
 import { BiAtom } from 'react-icons/bi'
 import { IoCheckmarkCircle } from 'react-icons/io5'
-import { useTheme } from '../contexts/theme/useTheme'
-import { useCore } from '../contexts/core/useCore'
-import { useMediaQuery } from '../hooks'
-import { getActiveTab } from '../utils'
+import { useTheme } from '../../contexts/theme/useTheme'
+import { useCore } from '../../contexts/core/useCore'
+import { useMediaQuery } from '../../hooks'
+import { getActiveTab } from '../../utils'
 
 type Props = {
     isOpen: boolean
