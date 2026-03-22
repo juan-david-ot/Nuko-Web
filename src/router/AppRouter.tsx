@@ -5,6 +5,7 @@ import AuthPage from '../pages/AuthPage'
 import HomePage from '../pages/HomePage'
 import NotFoundPage from '../pages/NotFoundPage'
 import TestPage from '../pages/TestPape'
+import InvitePage from '../pages/InvitePage'
 
 function AppRouter() {
     return (
@@ -14,6 +15,7 @@ function AppRouter() {
                 <Route path='/auth/:mode' element={<AuthPage />} />
             </Route>
             <Route element={<PrivateRouter />}>
+                <Route path='/invite/:token' element={<InvitePage />} />
                 <Route path='/home/:coreId' element={<HomePage />} />
                 <Route path='/tareas/:coreId' element={<TestPage />} />
                 <Route path='/finanzas/:coreId' element={<TestPage />} />
