@@ -28,17 +28,43 @@ function Navbar() {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [loading, setLoading] = useState(true)
+
+    const coreId = location.pathname.split('/')[2]
 
     function getMyCores() {
         coreService
             .getMyCores()
             .then((res) => setUserCores(res.data))
             .catch((error) => console.error(error))
+            .finally(() => setLoading(false))
     }
 
     useEffect(() => {
         getMyCores()
     }, [])
+
+    // useEffect(() => {
+    //     if (coreId) {
+    //         setCore(new Set([coreId]))
+    //     }
+    //     if (coreId !== 'undefined' && !userCores.some((core) => core.id === coreId)) {
+    //         navigate(`${getActiveTab(location.pathname)}/undefined`)
+    //     }
+    // }, [coreId, userCores])
+
+    useEffect(() => {
+        if (loading) return
+
+        if (coreId && userCores.some((c) => c.id === coreId)) {
+            setCore(new Set([coreId]))
+        }
+        else {
+            const baseRoute = getActiveTab(location.pathname)
+            navigate(`${baseRoute}/undefined`)
+            setCore(new Set())
+        }
+    }, [coreId, userCores, loading])
 
     return (
         <>
@@ -55,7 +81,12 @@ function Navbar() {
                     <Dropdown.Menu
                         selectedKeys={core}
                         selectionMode='single'
-                        onSelectionChange={setCore}
+                        onSelectionChange={(key) => {
+                            setCore(key)
+                            const selected = Array.from(key)[0]
+                            const baseRoute = getActiveTab(location.pathname)
+                            navigate(`${baseRoute}/${selected}`)
+                        }}
                     >
                         <Dropdown.Section>
                             <Dropdown.Item
@@ -99,7 +130,7 @@ function Navbar() {
                 className="w-full"
                 orientation={isDesktop ? 'vertical' : 'horizontal'}
                 selectedKey={getActiveTab(location.pathname)}
-                onSelectionChange={(key) => navigate(String(key))}
+                onSelectionChange={(key) => navigate(`${key}/${coreId}`)}
             >
                 <Tabs.ListContainer className='w-full'>
                     <Tabs.List

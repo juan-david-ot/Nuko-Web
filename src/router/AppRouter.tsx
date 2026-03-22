@@ -14,11 +14,11 @@ function AppRouter() {
                 <Route path='/auth/:mode' element={<AuthPage />} />
             </Route>
             <Route element={<PrivateRouter />}>
-                <Route path='/home' element={<HomePage />} />
-                <Route path='/tareas' element={<TestPage />} />
-                <Route path='/finanzas' element={<TestPage />} />
-                <Route path='/calendario' element={<HomePage />} />
-                <Route path='/ajustes' element={<HomePage />} />
+                <Route path='/home/:coreId' element={<HomePage />} />
+                <Route path='/tareas/:coreId' element={<TestPage />} />
+                <Route path='/finanzas/:coreId' element={<TestPage />} />
+                <Route path='/calendario/:coreId' element={<HomePage />} />
+                <Route path='/ajustes/:coreId' element={<HomePage />} />
             </Route>
             <Route path='*' element={<NotFoundPage />}></Route>
         </Routes>

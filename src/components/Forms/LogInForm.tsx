@@ -13,7 +13,7 @@ function LogInForm() {
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState([])
 
-    const from = location.state?.from?.pathname || '/home'
+    const from = location.state?.from?.pathname || '/home/undefined'
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -39,7 +39,6 @@ function LogInForm() {
                 setLoading(false)
                 authUser()
                 navigate(from, { replace: true })
-                console.log(data)
             })
             .catch(error => {
                 setLoading(false)

@@ -11,10 +11,9 @@ function GuestRouter() {
     }
 
     if (user) {
-        const from = location.state?.from?.pathname || '/home'
         return (
             <Navigate
-                to={from}
+                to={location.state?.from?.pathname || '/home/undefined'}
                 replace
             />
         )
