@@ -30,7 +30,9 @@ function Navbar() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [loading, setLoading] = useState(true)
 
+    const isPrivateRoute = /^\/(home|tareas|finanzas|calendario|ajustes)/.test(location.pathname)
     const coreId = location.pathname.split('/')[2]
+    console.log(location.pathname.split('/'), coreId)
 
     function getMyCores() {
         coreService
@@ -45,6 +47,7 @@ function Navbar() {
     }, [])
 
     useEffect(() => {
+        if (!isPrivateRoute) return
         if (loading) return
 
         if (coreId && userCores.some((c) => c.id === coreId)) {
@@ -52,7 +55,7 @@ function Navbar() {
         }
         else {
             const baseRoute = getActiveTab(location.pathname)
-            navigate(`${baseRoute}/undefined`)
+            navigate(`${baseRoute}/undefined`, { replace: true })
             setCore(new Set())
         }
     }, [coreId, userCores, loading])
@@ -122,7 +125,10 @@ function Navbar() {
                 className="w-full"
                 orientation={isDesktop ? 'vertical' : 'horizontal'}
                 selectedKey={getActiveTab(location.pathname)}
-                onSelectionChange={(key) => navigate(`${key}/${coreId}`)}
+                onSelectionChange={(key) => {
+                    if (!isPrivateRoute) return
+                    navigate(`${key}/${coreId || undefined}`)
+                }}
             >
                 <Tabs.ListContainer className='w-full'>
                     <Tabs.List
