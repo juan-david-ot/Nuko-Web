@@ -28,14 +28,11 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
         coreService
             .createCore(data)
             .then(() => {
-                setLoading(false)
                 getCores()
                 setIsOpen(false)
             })
-            .catch(error => {
-                setLoading(false)
-                setErrors(error.response.data.error)
-            })
+            .catch(error => setErrors(error.response.data.error))
+            .finally(() => setLoading(false))
     }
     return (
         <Modal isOpen={isOpen} onOpenChange={setIsOpen}>

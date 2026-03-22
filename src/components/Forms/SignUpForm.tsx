@@ -23,14 +23,9 @@ function SignUpForm() {
 
         authService
             .signUp(data)
-            .then(() => {
-                setLoading(false)
-                navigate('/auth/iniciar-sesion')
-            })
-            .catch(error => {
-                setLoading(false)
-                setErrors(error.response.data.error)
-            })
+            .then(() => navigate('/auth/iniciar-sesion'))
+            .catch(error => setErrors(error.response.data.error))
+            .finally(() => setLoading(false))
     }
 
     return (

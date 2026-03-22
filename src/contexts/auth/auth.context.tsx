@@ -14,14 +14,12 @@ function AuthProviderWrapper({ children }: { children: ReactNode }) {
         if (token) {
             authService
                 .verify(token)
-                .then(({ data }) => {
-                    setUser(data.authUser)
-                    setLoading(false)
-                })
+                .then(({ data }) => setUser(data.authUser))
                 .catch(error => {
                     console.error(error)
                     logOut()
                 })
+                .finally(() => setLoading(false))
         }
         else {
             logOut()

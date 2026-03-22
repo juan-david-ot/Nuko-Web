@@ -36,14 +36,11 @@ function LogInForm() {
             .logIn(data)
             .then(({ data }) => {
                 localStorage.setItem('authToken', data.authToken)
-                setLoading(false)
                 authUser()
                 navigate(from, { replace: true })
             })
-            .catch(error => {
-                setLoading(false)
-                setErrors(error.response.data.error)
-            })
+            .catch(error => setErrors(error.response.data.error))
+            .finally(() => setLoading(false))
     }
 
     return (
