@@ -65,13 +65,13 @@ function HomePage() {
                     <Label>Generar invitacion</Label>
                     <InputGroup>
                         <InputGroup.Prefix>
-                            <Button className='active:bg-accent-soft' isIconOnly aria-label="Copy" size="sm" variant="ghost" onClick={createInvitation}>
+                            <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" onClick={createInvitation}>
                                 <FaLink className="size-6" />
                             </Button>
                         </InputGroup.Prefix>
                         <InputGroup.Input className="w-full" disabled />
                         <InputGroup.Suffix className="pr-0">
-                            <Button className='active:bg-accent-soft' isIconOnly aria-label="Copy" size="sm" variant="ghost" onClick={copyLink}>
+                            <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" onClick={copyLink}>
                                 <BiCopy className="size-6" />
                             </Button>
                         </InputGroup.Suffix>
