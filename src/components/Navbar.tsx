@@ -6,7 +6,6 @@ import { FaDollarSign } from 'react-icons/fa6'
 import { BiCalendar } from 'react-icons/bi'
 import { AiFillSetting } from 'react-icons/ai'
 import { TbListDetails } from 'react-icons/tb'
-import type { Core } from '../definitions/types'
 import { useTheme } from '../contexts/theme/useTheme'
 import { useCore } from '../contexts/core/useCore'
 import { useMediaQuery } from '../hooks'
@@ -20,11 +19,11 @@ function Navbar() {
     const navigate = useNavigate()
 
     const { theme } = useTheme()
-    const { setCore } = useCore()
+    const { setCore, cores, setCores } = useCore()
 
     const isDesktop = useMediaQuery('(min-width: 1024px)')
 
-    const [userCores, setUserCores] = useState<Core[]>([])
+    // const [userCores, setUserCores] = useState<Core[]>([])
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -37,7 +36,7 @@ function Navbar() {
     function getMyCores() {
         coreService
             .getMyCores()
-            .then((res) => setUserCores(res.data))
+            .then((res) => setCores(res.data))
             .catch((error) => console.error(error))
             .finally(() => setLoading(false))
     }
@@ -50,7 +49,7 @@ function Navbar() {
         if (!isPrivateRoute) return
         if (loading) return
 
-        if (coreId && userCores.some((c) => c.id === coreId)) {
+        if (coreId && cores.some((c) => c.id === coreId)) {
             setCore(new Set([coreId]))
         }
         else {
@@ -58,7 +57,7 @@ function Navbar() {
             navigate(`${baseRoute}/undefined`, { replace: true })
             setCore(new Set())
         }
-    }, [coreId, userCores, loading])
+    }, [coreId, cores, loading])
 
     return (
         <>
@@ -119,7 +118,7 @@ function Navbar() {
                     </Dropdown.Menu>
                 </Dropdown.Popover>
             </Dropdown> */}
-            <CoreDropdown isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} userCores={userCores} />
+            <CoreDropdown isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} />
             <CoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getMyCores} />
             <Tabs
                 className="w-full"

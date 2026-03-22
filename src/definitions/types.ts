@@ -31,8 +31,11 @@ export type Core = {
 }
 
 export type CoreContextType = {
+    cores: Core[]
+    setCores: React.Dispatch<React.SetStateAction<Core[]>>
     core: Selection
     setCore: React.Dispatch<React.SetStateAction<Selection>>
+    refreshCores: () => Promise<void>
 }
 
 export type Theme = 'light' | 'dark'

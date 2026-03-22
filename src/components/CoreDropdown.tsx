@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router'
 import { Button, Dropdown, Header, Label } from '@heroui/react'
 import { BiAtom } from 'react-icons/bi'
 import { IoCheckmarkCircle } from 'react-icons/io5'
-import type { Core } from '../definitions/types'
 import { useTheme } from '../contexts/theme/useTheme'
 import { useCore } from '../contexts/core/useCore'
 import { useMediaQuery } from '../hooks'
@@ -12,14 +11,13 @@ type Props = {
     isOpen: boolean
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
-    userCores: Core[]
 }
 
-function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen, userCores }: Props) {
+function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
     const navigate = useNavigate()
 
     const { theme } = useTheme()
-    const { core, setCore } = useCore()
+    const { cores, core, setCore } = useCore()
 
     const isDesktop = useMediaQuery('(min-width: 1024px)')
 
@@ -57,12 +55,12 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen, userCores }: Props) {
                     </Dropdown.Section>
                     <Dropdown.Section>
                         {
-                            userCores.length > 0
+                            cores.length > 0
                                 ?
                                 <>
                                     <Header>Escoge un Núcleo</Header>
                                     {
-                                        userCores.map((core) => {
+                                        cores.map((core) => {
                                             return (
                                                 <Dropdown.Item key={core.id} id={core.id} textValue={core.name}>
                                                     <Dropdown.ItemIndicator>

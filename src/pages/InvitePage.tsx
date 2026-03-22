@@ -1,28 +1,34 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
+import { useCore } from '../contexts/core/useCore'
 import coreService from '../services/core.service'
+import Loading from '../components/Loading'
 
 function InvitePage() {
     const { token } = useParams()
     const navigate = useNavigate()
 
+    const { refreshCores } = useCore()
+
     console.log(token)
 
-    function createInvitation() {
+    function acceptInvitation() {
         coreService
             .acceptInvitationToCore(String(token))
-            .then(({ data }) => navigate(`/home/${data.coreData.id}`, { replace: true }))
+            .then(({ data }) => {
+                refreshCores()
+                navigate(`/home/${data.coreData.id}`, { replace: true })
+            })
             .catch(() => navigate('/home/undefined'))
     }
 
     useEffect(() => {
         if (!token) return
-        createInvitation()
-        // navigate('/home/undefined', { replace: true })
+        acceptInvitation()
     }, [])
 
     return (
-        <h1>Pagina de invitacion</h1>
+        <Loading />
     )
 }
 
