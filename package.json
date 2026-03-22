@@ -1,6 +1,6 @@
 {
     "name": "nuko-web",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "scripts": {
         "dev": "vite",
         "build": "tsc -b && vite build",
