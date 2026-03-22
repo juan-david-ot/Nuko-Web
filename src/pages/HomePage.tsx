@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router'
-import { Button, InputGroup, Label, TextField } from '@heroui/react'
+import { Button, InputGroup, Label, Popover, TextField } from '@heroui/react'
 import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import { BiCopy } from 'react-icons/bi'
 import { FaLink } from 'react-icons/fa6'
@@ -71,9 +71,17 @@ function HomePage() {
                         </InputGroup.Prefix>
                         <InputGroup.Input className="w-full" disabled />
                         <InputGroup.Suffix className="pr-0">
-                            <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" onClick={copyLink}>
-                                <BiCopy className="size-6" />
-                            </Button>
+                            <Popover>
+                                <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" onClick={copyLink}>
+                                    <BiCopy className="size-6" />
+                                </Button>
+                                <Popover.Content placement="top">
+                                    <Popover.Dialog>
+                                        <Popover.Arrow />
+                                        <p className="text-sm">¡Copiado!</p>
+                                    </Popover.Dialog>
+                                </Popover.Content>
+                            </Popover>
                         </InputGroup.Suffix>
                     </InputGroup>
                 </TextField>
