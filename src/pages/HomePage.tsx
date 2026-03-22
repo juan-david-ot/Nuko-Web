@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router'
-import { Button, InputGroup, Label, Popover, TextField } from '@heroui/react'
+import { Button, ErrorMessage, InputGroup, Label, Popover, TextField } from '@heroui/react'
 import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import { BiCopy } from 'react-icons/bi'
 import { FaLink } from 'react-icons/fa6'
@@ -16,12 +16,16 @@ function HomePage() {
     const { theme, toggleTheme } = useTheme()
 
     const [inviteLink, setInviteLink] = useState()
+    const [error, setError] = useState()
 
     function createInvitation() {
         coreService
             .createInvitationToCore(String(coreId))
-            .then(({ data }) => setInviteLink(data.inviteLink))
-            .catch((error) => console.error(error))
+            .then(({ data }) => {
+                setInviteLink(data.inviteLink)
+                setError(undefined)
+            })
+            .catch((error) => setError(error.response.data.error))
     }
 
     function copyLink() {
@@ -72,7 +76,7 @@ function HomePage() {
                         <InputGroup.Input className="w-full" disabled />
                         <InputGroup.Suffix className="pr-0">
                             <Popover>
-                                <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" onClick={copyLink}>
+                                <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" isDisabled={!inviteLink} onClick={copyLink}>
                                     <BiCopy className="size-6" />
                                 </Button>
                                 <Popover.Content placement="top">
@@ -84,6 +88,7 @@ function HomePage() {
                             </Popover>
                         </InputGroup.Suffix>
                     </InputGroup>
+                    <ErrorMessage>{error && 'No tienes ningun nucleo seleccionado o ha habido un error al crear la invitacion'}</ErrorMessage>
                 </TextField>
             </section>
         </article>
