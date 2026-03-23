@@ -6,23 +6,29 @@ import AuthPage from '../pages/AuthPage'
 import HomePage from '../pages/HomePage'
 import NotFoundPage from '../pages/NotFoundPage'
 import TestPage from '../pages/TestPape'
+import PrivateLayout from '../layout/PrivateLayout'
+import GuestLayout from '../layout/GuestLayout'
 
 function AppRouter() {
     return (
         <Routes>
-            <Route path='/' element={<TestPage />} />
-            <Route element={<GuestRouter />}>
-                <Route path='/auth/:mode' element={<AuthPage />} />
+            <Route element={<GuestLayout />}>
+                <Route path='/' element={<TestPage />} />
+                <Route element={<GuestRouter />}>
+                    <Route path='/auth/:mode' element={<AuthPage />} />
+                </Route>
             </Route>
             <Route element={<PrivateRouter />}>
                 <Route path='/invite/:token' element={<InvitePage />} />
-                <Route path='/home/:coreId' element={<HomePage />} />
-                <Route path='/tareas/:coreId' element={<TestPage />} />
-                <Route path='/finanzas/:coreId' element={<TestPage />} />
-                <Route path='/calendario/:coreId' element={<HomePage />} />
-                <Route path='/ajustes/:coreId' element={<HomePage />} />
+                <Route element={<PrivateLayout />}>
+                    <Route path='/home/:coreId' element={<HomePage />} />
+                    <Route path='/tareas/:coreId' element={<TestPage />} />
+                    <Route path='/finanzas/:coreId' element={<TestPage />} />
+                    <Route path='/calendario/:coreId' element={<HomePage />} />
+                    <Route path='/ajustes/:coreId' element={<HomePage />} />
+                </Route>
             </Route>
-            <Route path='*' element={<NotFoundPage />}></Route>
+            <Route path='*' element={<NotFoundPage />} />
         </Routes>
     )
 }

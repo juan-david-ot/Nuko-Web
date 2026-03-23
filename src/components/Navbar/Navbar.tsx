@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router'
+import { useLocation, useNavigate, useParams } from 'react-router'
 import { Tabs } from '@heroui/react'
 import { GoHomeFill } from 'react-icons/go'
 import { FaDollarSign } from 'react-icons/fa6'
@@ -9,7 +9,6 @@ import { TbListDetails } from 'react-icons/tb'
 import { useCore } from '../../contexts/core/useCore'
 import { useTheme } from '../../contexts/theme/useTheme'
 import { useMediaQuery } from '../../hooks'
-import coreService from '../../services/core.service'
 import CoreDropdown from './CoreDropdown'
 import CoreModal from './CoreModal'
 import { getActiveTab } from '../../utils'
@@ -17,9 +16,12 @@ import { getActiveTab } from '../../utils'
 function Navbar() {
     const location = useLocation()
     const navigate = useNavigate()
+    const { coreId } = useParams()
+
+    console.log('coreId', coreId)
 
     const { theme } = useTheme()
-    const { setCore, cores, setCores } = useCore()
+    const { setCore, cores, refreshCores } = useCore()
 
     const isDesktop = useMediaQuery('(min-width: 1024px)')
 
@@ -29,25 +31,21 @@ function Navbar() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [loading, setLoading] = useState(true)
 
-    const isPrivateRoute = /^\/(home|tareas|finanzas|calendario|ajustes)/.test(location.pathname)
-    const coreId = location.pathname.split('/')[2]
-    console.log(location.pathname.split('/'), coreId)
+    // const isPrivateRoute = /^\/(home|tareas|finanzas|calendario|ajustes)/.test(location.pathname)
 
-    function getMyCores() {
-        coreService
-            .getMyCores()
-            .then((res) => setCores(res.data))
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false))
+    function getCores() {
+        refreshCores().finally(() => setLoading(false))
     }
 
     useEffect(() => {
-        getMyCores()
+        getCores()
     }, [])
 
     useEffect(() => {
-        if (!isPrivateRoute) return
+        // if (!isPrivateRoute) return
         if (loading) return
+
+        console.log('coreId', coreId)
 
         if (coreId && cores.some((c) => c.id === coreId)) {
             setCore(new Set([coreId]))
@@ -119,14 +117,15 @@ function Navbar() {
                 </Dropdown.Popover>
             </Dropdown> */}
             <CoreDropdown isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} />
-            <CoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getMyCores} />
+            <CoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getCores} />
             <Tabs
                 className="w-full"
                 orientation={isDesktop ? 'vertical' : 'horizontal'}
                 selectedKey={getActiveTab(location.pathname)}
                 onSelectionChange={(key) => {
-                    if (!isPrivateRoute) return
-                    navigate(`${key}/${coreId || undefined}`)
+                    // if (!isPrivateRoute) return
+                    if (!coreId) return
+                    navigate(`${key}/${coreId}`)
                 }}
             >
                 <Tabs.ListContainer className='w-full'>

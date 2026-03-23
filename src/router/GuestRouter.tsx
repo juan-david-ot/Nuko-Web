@@ -6,6 +6,8 @@ function GuestRouter() {
     const location = useLocation()
     const { user, loading } = useAuth()
 
+    console.log(location.state?.from?.pathname)
+
     if (loading) {
         return <Loading />
     }

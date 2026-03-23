@@ -15,11 +15,11 @@ function InvitePage() {
     function acceptInvitation() {
         coreService
             .acceptInvitationToCore(String(token))
-            .then(({ data }) => {
+            .then(() => {
                 refreshCores()
-                navigate(`/home/${data.coreData.id}`, { replace: true })
+                    .finally(() => navigate('/home/undefined', { replace: true }))
             })
-            .catch(() => navigate('/home/undefined'))
+            .catch(() => navigate('/home/undefined', { replace: true }))
     }
 
     useEffect(() => {
