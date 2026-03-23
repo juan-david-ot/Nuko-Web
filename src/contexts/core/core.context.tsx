@@ -11,7 +11,7 @@ function CoreProviderWrapper({ children }: { children: ReactNode }) {
 
     async function refreshCores() {
         coreService
-            .getMyCores()
+            .getUserCores()
             .then((res) => setCores(res.data))
             .catch((error) => console.error(error))
     }

@@ -1,7 +1,7 @@
 import type { Core } from '../definitions/types'
 import { server } from './server'
 
-async function getMyCores() {
+async function getUserCores() {
     return server.get('/cores')
 }
 
@@ -18,7 +18,7 @@ async function acceptInvitationToCore(token: string) {
 }
 
 export default {
-    getMyCores,
+    getUserCores,
     createCore,
     createInvitationToCore,
     acceptInvitationToCore
