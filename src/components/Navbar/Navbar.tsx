@@ -55,7 +55,7 @@ function Navbar() {
             navigate(`${baseRoute}/undefined`, { replace: true })
             setCore(new Set())
         }
-    }, [coreId, cores, loading])
+    }, [coreId, cores])
 
     return (
         <>
