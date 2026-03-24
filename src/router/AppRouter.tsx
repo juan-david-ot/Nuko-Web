@@ -1,15 +1,9 @@
 import { lazy } from 'react'
 import { Route, Routes } from 'react-router'
-import GuestRouter from './GuestRouter'
-import PrivateRouter from './PrivateRouter'
-import GuestLayout from '../layout/GuestLayout'
-import PrivateLayout from '../layout/PrivateLayout'
-// import InvitePage from '../pages/InvitePage'
-// import AuthPage from '../pages/AuthPage'
-// import HomePage from '../pages/HomePage'
-// import NotFoundPage from '../pages/NotFoundPage'
-// import TestPage from '../pages/TestPape'
-
+const GuestRouter = lazy(() => import('./GuestRouter'))
+const PrivateRouter = lazy(() => import('./PrivateRouter'))
+const GuestLayout = lazy(() => import('../layout/GuestLayout'))
+const PrivateLayout = lazy(() => import('../layout/PrivateLayout'))
 const InvitePage = lazy(() => import('../pages/InvitePage'))
 const AuthPage = lazy(() => import('../pages/AuthPage'))
 const HomePage = lazy(() => import('../pages/HomePage'))
