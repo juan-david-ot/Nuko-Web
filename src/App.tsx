@@ -2,7 +2,6 @@ import AppRouter from './router/AppRouter'
 import { useTheme } from './contexts/theme/useTheme'
 import nukoLight from './assets/nuko-light-small.png'
 import nukoDark from './assets/nuko-dark-small.png'
-import './App.css'
 
 function App() {
     const { theme } = useTheme()
