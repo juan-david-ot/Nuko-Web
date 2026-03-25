@@ -67,7 +67,7 @@ function LogInForm() {
         //             </Tabs.List>
         //         </Tabs.ListContainer>
         //     </Tabs>
-        <Surface className="w-full min-w-72">
+        <Surface className='w-full min-w-72'>
             <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
                 <Fieldset>
                     <Fieldset.Legend>¡Inicia sesión!</Fieldset.Legend>
