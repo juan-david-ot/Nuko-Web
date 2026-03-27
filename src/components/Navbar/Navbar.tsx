@@ -12,7 +12,6 @@ import { useMediaQuery } from '../../hooks'
 import CoreDropdown from './CoreDropdown'
 import CoreModal from './CoreModal'
 import { getActiveTab } from '../../utils'
-import { useAuth } from '../../contexts/auth/useAuth'
 
 function Navbar() {
     const location = useLocation()
@@ -21,8 +20,6 @@ function Navbar() {
 
     console.log('coreId', coreId)
 
-    const { user } = useAuth()
-    console.log(user?.username)
     const { theme } = useTheme()
     const { setCore, cores, refreshCores } = useCore()
 
