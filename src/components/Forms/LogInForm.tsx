@@ -80,7 +80,7 @@ function LogInForm() {
                             type='text'
                         >
                             <Label>Email/Nombre de usuario</Label>
-                            <Input placeholder="Introduce tu email o nombre de usuario" />
+                            <Input placeholder='Introduce tu email o nombre de usuario' />
                             <FieldError>Este campo es obligatorio</FieldError>
                         </TextField>
                         <TextField
