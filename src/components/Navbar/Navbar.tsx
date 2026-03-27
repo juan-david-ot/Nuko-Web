@@ -119,11 +119,6 @@ function Navbar() {
                     </Dropdown.Menu>
                 </Dropdown.Popover>
             </Dropdown> */}
-            {
-                user
-                &&
-                <title>{ `Nuko: ${user.username}` }</title>
-            }
             <CoreDropdown isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} />
             <CoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getCores} />
             <Tabs
