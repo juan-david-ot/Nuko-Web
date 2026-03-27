@@ -76,7 +76,7 @@ function LogInForm() {
                         <TextField
                             variant='secondary'
                             isRequired
-                            name="identifier"
+                            name='identifier'
                             type='text'
                         >
                             <Label>Email/Nombre de usuario</Label>
