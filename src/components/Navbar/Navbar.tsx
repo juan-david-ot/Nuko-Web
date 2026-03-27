@@ -12,6 +12,7 @@ import { useMediaQuery } from '../../hooks'
 import CoreDropdown from './CoreDropdown'
 import CoreModal from './CoreModal'
 import { getActiveTab } from '../../utils'
+import { useAuth } from '../../contexts/auth/useAuth'
 
 function Navbar() {
     const location = useLocation()
@@ -20,6 +21,8 @@ function Navbar() {
 
     console.log('coreId', coreId)
 
+    const { user } = useAuth()
+    console.log(user?.username)
     const { theme } = useTheme()
     const { setCore, cores, refreshCores } = useCore()
 
@@ -116,6 +119,11 @@ function Navbar() {
                     </Dropdown.Menu>
                 </Dropdown.Popover>
             </Dropdown> */}
+            {
+                user
+                &&
+                <title>{ `Nuko: ${user.username}` }</title>
+            }
             <CoreDropdown isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} />
             <CoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getCores} />
             <Tabs
