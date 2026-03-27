@@ -1,8 +1,8 @@
 import AppRouter from './router/AppRouter'
+import { useAuth } from './contexts/auth/useAuth'
 import { useTheme } from './contexts/theme/useTheme'
 import nukoLight from './assets/nuko-light-small.png'
 import nukoDark from './assets/nuko-dark-small.png'
-import { useAuth } from './contexts/auth/useAuth'
 
 function App() {
     const { user } = useAuth()
