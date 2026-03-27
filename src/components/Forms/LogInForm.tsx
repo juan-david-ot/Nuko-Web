@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Spinner, Surface, TextField } from '@heroui/react'
+import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, InputGroup, Label, Spinner, Surface, TextField } from '@heroui/react'
 import { GoCheck } from 'react-icons/go'
 import { useAuth } from '../../contexts/auth/useAuth'
 import authService from '../../services/auth.service'
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
 function LogInForm() {
     const location = useLocation()
@@ -11,6 +12,7 @@ function LogInForm() {
     const { authUser } = useAuth()
 
     const [loading, setLoading] = useState(false)
+    const [isVisible, setIsVisible] = useState(false)
     const [errors, setErrors] = useState([])
 
     const from = location.state?.from?.pathname || '/home/undefined'
@@ -77,7 +79,6 @@ function LogInForm() {
                             variant='secondary'
                             isRequired
                             name='identifier'
-                            type='text'
                         >
                             <Label>Email/Nombre de usuario</Label>
                             <Input placeholder='Introduce tu email o nombre de usuario' />
@@ -87,10 +88,22 @@ function LogInForm() {
                             variant='secondary'
                             isRequired
                             name="password"
-                            type="password"
+                            type={isVisible ? 'text' : 'password'}
                         >
                             <Label>Contraseña</Label>
-                            <Input placeholder="Introduce tu contraseña" />
+                            <InputGroup>
+                                <InputGroup.Input placeholder="Introduce tu contraseña" />
+                                <InputGroup.Suffix className="pr-0">
+                                    <Button
+                                        isIconOnly
+                                        size="sm"
+                                        variant="ghost"
+                                        onClick={() => setIsVisible(!isVisible)}
+                                    >
+                                        {isVisible ? <AiOutlineEye className="size-6" /> : <AiOutlineEyeInvisible className="size-6" />}
+                                    </Button>
+                                </InputGroup.Suffix>
+                            </InputGroup>
                             <FieldError>Este campo es obligatorio</FieldError>
                         </TextField>
                         <ErrorMessage>{Array.isArray(errors) ? errors.join('. ') : errors}</ErrorMessage>
