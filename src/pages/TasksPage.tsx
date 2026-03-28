@@ -8,7 +8,7 @@ import { useAuth } from '../contexts/auth/useAuth'
 import { useTheme } from '../contexts/theme/useTheme'
 import coreService from '../services/core.service'
 
-function HomePage() {
+function TasksPage() {
     const { coreId } = useParams()
     const navigate = useNavigate()
 
@@ -95,4 +95,4 @@ function HomePage() {
     )
 }
 
-export default HomePage
+export default TasksPage
