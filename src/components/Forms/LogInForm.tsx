@@ -93,7 +93,7 @@ function LogInForm() {
                             <Label>Contraseña</Label>
                             <InputGroup>
                                 <InputGroup.Input placeholder='Introduce tu contraseña' />
-                                <InputGroup.Suffix className="pr-0">
+                                <InputGroup.Suffix className='pr-0'>
                                     <Button
                                         isIconOnly
                                         size="sm"
