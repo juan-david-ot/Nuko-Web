@@ -109,7 +109,7 @@ function LogInForm() {
                         <ErrorMessage>{Array.isArray(errors) ? errors.join('. ') : errors}</ErrorMessage>
                     </FieldGroup>
                     <Fieldset.Actions>
-                        <Button type="submit">
+                        <Button type='submit'>
                             {
                                 loading
                                     ?
