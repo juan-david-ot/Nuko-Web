@@ -87,7 +87,7 @@ function LogInForm() {
                         <TextField
                             variant='secondary'
                             isRequired
-                            name="password"
+                            name='password'
                             type={isVisible ? 'text' : 'password'}
                         >
                             <Label>Contraseña</Label>
