@@ -97,7 +97,7 @@ function LogInForm() {
                                     <Button
                                         isIconOnly
                                         size='sm'
-                                        variant="ghost"
+                                        variant='ghost'
                                         onClick={() => setIsVisible(!isVisible)}
                                     >
                                         {isVisible ? <AiOutlineEye className="size-6" /> : <AiOutlineEyeInvisible className="size-6" />}
