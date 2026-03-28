@@ -100,7 +100,7 @@ function LogInForm() {
                                         variant='ghost'
                                         onClick={() => setIsVisible(!isVisible)}
                                     >
-                                        {isVisible ? <AiOutlineEye className='size-6' /> : <AiOutlineEyeInvisible className="size-6" />}
+                                        {isVisible ? <AiOutlineEye className='size-6' /> : <AiOutlineEyeInvisible className='size-6' />}
                                     </Button>
                                 </InputGroup.Suffix>
                             </InputGroup>
