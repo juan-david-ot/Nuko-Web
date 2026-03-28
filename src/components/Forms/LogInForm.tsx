@@ -96,7 +96,7 @@ function LogInForm() {
                                 <InputGroup.Suffix className='pr-0'>
                                     <Button
                                         isIconOnly
-                                        size="sm"
+                                        size='sm'
                                         variant="ghost"
                                         onClick={() => setIsVisible(!isVisible)}
                                     >
