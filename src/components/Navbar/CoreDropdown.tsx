@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { Button, Dropdown, Header, Label } from '@heroui/react'
 import { BiAtom } from 'react-icons/bi'
 import { IoCheckmarkCircle } from 'react-icons/io5'
@@ -14,6 +14,7 @@ type Props = {
 }
 
 function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
+    const location = useLocation()
     const navigate = useNavigate()
 
     const { theme } = useTheme()
