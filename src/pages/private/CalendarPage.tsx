@@ -4,9 +4,9 @@ import { Button, ErrorMessage, InputGroup, Label, Popover, TextField } from '@he
 import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import { BiCopy } from 'react-icons/bi'
 import { FaLink } from 'react-icons/fa6'
-import { useAuth } from '../contexts/auth/useAuth'
-import { useTheme } from '../contexts/theme/useTheme'
-import coreService from '../services/core.service'
+import { useAuth } from '../../contexts/auth/useAuth'
+import { useTheme } from '../../contexts/theme/useTheme'
+import coreService from '../../services/core.service'
 
 function CalendarPage() {
     const { coreId } = useParams()
