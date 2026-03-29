@@ -1,6 +1,5 @@
 import { lazy } from 'react'
 import { Route, Routes } from 'react-router'
-import TasksPage from '../pages/TasksPage'
 const GuestRouter = lazy(() => import('./GuestRouter'))
 const PrivateRouter = lazy(() => import('./PrivateRouter'))
 const GuestLayout = lazy(() => import('../layout/GuestLayout'))
@@ -8,6 +7,7 @@ const PrivateLayout = lazy(() => import('../layout/PrivateLayout'))
 const InvitePage = lazy(() => import('../pages/InvitePage'))
 const AuthPage = lazy(() => import('../pages/AuthPage'))
 const HomePage = lazy(() => import('../pages/HomePage'))
+const TasksPage = lazy(() => import('../pages/TasksPage'))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))
 const TestPage = lazy(() => import('../pages/TestPape'))
 
