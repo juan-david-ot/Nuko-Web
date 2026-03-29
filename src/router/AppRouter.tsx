@@ -9,6 +9,7 @@ const AuthPage = lazy(() => import('../pages/AuthPage'))
 const HomePage = lazy(() => import('../pages/HomePage'))
 const TasksPage = lazy(() => import('../pages/TasksPage'))
 const FinancesPage = lazy(() => import('../pages/FinancesPage'))
+const CalendarPage = lazy(() => import('../pages/CalendarPage'))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))
 const TestPage = lazy(() => import('../pages/TestPage'))
 
@@ -27,7 +28,7 @@ function AppRouter() {
                     <Route path='/home/:coreId?' element={<HomePage />} />
                     <Route path='/tareas/:coreId?' element={<TasksPage />} />
                     <Route path='/finanzas/:coreId?' element={<FinancesPage />} />
-                    <Route path='/calendario/:coreId?' element={<HomePage />} />
+                    <Route path='/calendario/:coreId?' element={<CalendarPage />} />
                     <Route path='/ajustes/:coreId?' element={<HomePage />} />
                 </Route>
             </Route>
