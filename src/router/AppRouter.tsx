@@ -9,7 +9,7 @@ const AuthPage = lazy(() => import('../pages/AuthPage'))
 const HomePage = lazy(() => import('../pages/HomePage'))
 const TasksPage = lazy(() => import('../pages/TasksPage'))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))
-const TestPage = lazy(() => import('../pages/TestPape'))
+const TestPage = lazy(() => import('../pages/TestPage'))
 
 function AppRouter() {
     return (
