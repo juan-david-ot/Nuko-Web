@@ -1,5 +1,6 @@
 import { lazy } from 'react'
 import { Route, Routes } from 'react-router'
+import TasksPage from '../pages/TasksPage'
 const GuestRouter = lazy(() => import('./GuestRouter'))
 const PrivateRouter = lazy(() => import('./PrivateRouter'))
 const GuestLayout = lazy(() => import('../layout/GuestLayout'))
@@ -23,7 +24,7 @@ function AppRouter() {
                 <Route path='/invite/:token' element={<InvitePage />} />
                 <Route element={<PrivateLayout />}>
                     <Route path='/home/:coreId' element={<HomePage />} />
-                    <Route path='/tareas/:coreId' element={<TestPage />} />
+                    <Route path='/tareas/:coreId' element={<TasksPage />} />
                     <Route path='/finanzas/:coreId' element={<TestPage />} />
                     <Route path='/calendario/:coreId' element={<HomePage />} />
                     <Route path='/ajustes/:coreId' element={<HomePage />} />
