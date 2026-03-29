@@ -13,7 +13,7 @@ function GuestRouter() {
     if (user) {
         return (
             <Navigate
-                to={location.state?.from?.pathname || '/home/undefined'}
+                to={location.state?.from?.pathname || '/home'}
                 replace
             />
         )

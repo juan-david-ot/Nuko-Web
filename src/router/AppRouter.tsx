@@ -24,11 +24,11 @@ function AppRouter() {
             <Route element={<PrivateRouter />}>
                 <Route path='/invite/:token' element={<InvitePage />} />
                 <Route element={<PrivateLayout />}>
-                    <Route path='/home/:coreId' element={<HomePage />} />
-                    <Route path='/tareas/:coreId' element={<TasksPage />} />
-                    <Route path='/finanzas/:coreId' element={<FinancesPage />} />
-                    <Route path='/calendario/:coreId' element={<HomePage />} />
-                    <Route path='/ajustes/:coreId' element={<HomePage />} />
+                    <Route path='/home/:coreId?' element={<HomePage />} />
+                    <Route path='/tareas/:coreId?' element={<TasksPage />} />
+                    <Route path='/finanzas/:coreId?' element={<FinancesPage />} />
+                    <Route path='/calendario/:coreId?' element={<HomePage />} />
+                    <Route path='/ajustes/:coreId?' element={<HomePage />} />
                 </Route>
             </Route>
             <Route path='*' element={<NotFoundPage />} />

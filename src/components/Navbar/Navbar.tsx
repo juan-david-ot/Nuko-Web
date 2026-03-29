@@ -52,7 +52,7 @@ function Navbar() {
         }
         else {
             const baseRoute = getActiveTab(location.pathname)
-            navigate(`${baseRoute}/undefined`, { replace: true })
+            navigate(`${baseRoute}`, { replace: true })
             setCore(new Set())
         }
     }, [coreId, cores])
@@ -124,8 +124,8 @@ function Navbar() {
                 selectedKey={getActiveTab(location.pathname)}
                 onSelectionChange={(key) => {
                     // if (!isPrivateRoute) return
-                    if (!coreId) return
-                    navigate(`${key}/${coreId}`)
+                    if (!coreId) navigate(`${key}`)
+                    if (coreId) navigate(`${key}/${coreId}`)
                 }}
             >
                 <Tabs.ListContainer className='w-full'>

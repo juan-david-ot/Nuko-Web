@@ -14,7 +14,7 @@ function NotFoundPage() {
                     Parece que esta página no existe o se ha movido a otro lugar.
                 </p>
             </div>
-            <Link to={'/home/undefined'} className="mt-4 px-5 py-2 rounded-xl bg-accent text-accent-foreground font-medium hover:scale-110 hover:bg-accent-hover transition-all">
+            <Link to={'/home'} className="mt-4 px-5 py-2 rounded-xl bg-accent text-accent-foreground font-medium hover:scale-110 hover:bg-accent-hover transition-all">
                 Volver al inicio
             </Link>
         </section>

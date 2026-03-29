@@ -17,9 +17,9 @@ function InvitePage() {
             .acceptInvitationToCore(String(token))
             .then(() => {
                 refreshCores()
-                    .finally(() => navigate('/home/undefined', { replace: true }))
+                    .finally(() => navigate('/home', { replace: true }))
             })
-            .catch(() => navigate('/home/undefined', { replace: true }))
+            .catch(() => navigate('/home', { replace: true }))
     }
 
     useEffect(() => {

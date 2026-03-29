@@ -15,7 +15,7 @@ function LogInForm() {
     const [isVisible, setIsVisible] = useState(false)
     const [errors, setErrors] = useState([])
 
-    const from = location.state?.from?.pathname || '/home/undefined'
+    const from = location.state?.from?.pathname || '/home'
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
