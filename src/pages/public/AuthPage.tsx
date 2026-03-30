@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router'
 import { Tabs } from '@heroui/react'
-import LogInForm from '../components/Forms/LogInForm'
-import SignUpForm from '../components/Forms/SignUpForm'
+import LogInForm from '../../components/Forms/LogInForm'
+import SignUpForm from '../../components/Forms/SignUpForm'
 
 function AuthPage() {
     const { mode } = useParams()
