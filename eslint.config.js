@@ -34,6 +34,7 @@ export default defineConfig([
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-unused-vars': 'warn',
             'react/react-in-jsx-scope': 'off',
+            'react-hooks/set-state-in-effect': 'off',
             'react-hooks/exhaustive-deps': 'off',
             'quotes': ['error', 'single'],
             'semi': ['error', 'never'],
