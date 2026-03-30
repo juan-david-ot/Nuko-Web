@@ -10,7 +10,7 @@ function SignUpForm() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState()
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -64,7 +64,7 @@ function SignUpForm() {
                             variant='secondary'
                             isRequired
                             name="email"
-                            type='email'
+                            type='text'
                         >
                             <Label>Email</Label>
                             <Input placeholder="Introduce tu email" />
@@ -120,7 +120,7 @@ function SignUpForm() {
                             </InputGroup>
                             <FieldError>Este campo es obligatorio</FieldError>
                         </TextField>
-                        <ErrorMessage>{Array.isArray(errors) ? errors.join('. ') : errors}</ErrorMessage>
+                        <ErrorMessage>{errors && errors}</ErrorMessage>
                     </FieldGroup>
                     <Fieldset.Actions>
                         <Button type="submit">

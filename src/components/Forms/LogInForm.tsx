@@ -13,7 +13,7 @@ function LogInForm() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState()
 
     const from = location.state?.from?.pathname || '/home'
 
@@ -106,7 +106,7 @@ function LogInForm() {
                             </InputGroup>
                             <FieldError>Este campo es obligatorio</FieldError>
                         </TextField>
-                        <ErrorMessage>{Array.isArray(errors) ? errors.join('. ') : errors}</ErrorMessage>
+                        <ErrorMessage>{errors && errors}</ErrorMessage>
                     </FieldGroup>
                     <Fieldset.Actions>
                         <Button type='submit'>
