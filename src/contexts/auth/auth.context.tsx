@@ -6,7 +6,7 @@ const AuthContext = createContext<AuthContextType | null>(null)
 
 function AuthProviderWrapper({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<AuthUser | null>(null)
-    const [loading, setLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
 
     async function authUser() {
         const token = localStorage.getItem('authToken')
@@ -19,7 +19,7 @@ function AuthProviderWrapper({ children }: { children: ReactNode }) {
                     console.error(error)
                     logOut()
                 })
-                .finally(() => setLoading(false))
+                .finally(() => setIsLoading(false))
         }
         else {
             logOut()
@@ -29,7 +29,7 @@ function AuthProviderWrapper({ children }: { children: ReactNode }) {
     async function logOut() {
         localStorage.removeItem('authToken')
         setUser(null)
-        setLoading(false)
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -37,7 +37,7 @@ function AuthProviderWrapper({ children }: { children: ReactNode }) {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ user, loading, authUser, logOut }}>
+        <AuthContext.Provider value={{ user, isLoading, authUser, logOut }}>
             {children}
         </AuthContext.Provider>
     )

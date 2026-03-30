@@ -8,14 +8,14 @@ import authService from '../../services/auth.service'
 function SignUpForm() {
     const navigate = useNavigate()
 
-    const [loading, setLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
     const [errors, setErrors] = useState([])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        setLoading(true)
+        setIsLoading(true)
 
         const formData = new FormData(e.currentTarget)
         const data: Record<string, string> = {}
@@ -27,7 +27,7 @@ function SignUpForm() {
             .signUp(data)
             .then(() => navigate('/auth/iniciar-sesion'))
             .catch(error => setErrors(error.response.data.error))
-            .finally(() => setLoading(false))
+            .finally(() => setIsLoading(false))
     }
 
     return (
@@ -125,7 +125,7 @@ function SignUpForm() {
                     <Fieldset.Actions>
                         <Button type="submit">
                             {
-                                loading
+                                isLoading
                                     ?
                                     <Spinner color='current' size='lg' />
                                     :

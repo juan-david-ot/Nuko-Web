@@ -29,12 +29,12 @@ function Navbar() {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [loading, setLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
 
     // const isPrivateRoute = /^\/(home|tareas|finanzas|calendario|ajustes)/.test(location.pathname)
 
     function getCores() {
-        refreshCores().finally(() => setLoading(false))
+        refreshCores().finally(() => setIsLoading(false))
     }
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function Navbar() {
 
     useEffect(() => {
         // if (!isPrivateRoute) return
-        if (loading) return
+        if (isLoading) return
 
         console.log('coreId', coreId)
 

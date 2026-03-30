@@ -11,13 +11,13 @@ type Props = {
 }
 
 function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
-    const [loading, setLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState([])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        setLoading(true)
+        setIsLoading(true)
 
         const formData = new FormData(e.currentTarget)
         const data: Record<string, any> = {}
@@ -32,7 +32,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                 setIsOpen(false)
             })
             .catch(error => setErrors(error.response.data.error))
-            .finally(() => setLoading(false))
+            .finally(() => setIsLoading(false))
     }
     return (
         <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
@@ -67,7 +67,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                                             <Fieldset.Actions className='flex-row-reverse justify-start'>
                                                 <Button type="submit">
                                                     {
-                                                        loading
+                                                        isLoading
                                                             ?
                                                             <Spinner color='current' size='lg' />
                                                             :

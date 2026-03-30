@@ -11,7 +11,7 @@ function LogInForm() {
     const navigate = useNavigate()
     const { authUser } = useAuth()
 
-    const [loading, setLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
     const [errors, setErrors] = useState([])
 
@@ -20,7 +20,7 @@ function LogInForm() {
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        setLoading(true)
+        setIsLoading(true)
 
         const formData = new FormData(e.currentTarget)
 
@@ -42,7 +42,7 @@ function LogInForm() {
                 navigate(from, { replace: true })
             })
             .catch(error => setErrors(error.response.data.error))
-            .finally(() => setLoading(false))
+            .finally(() => setIsLoading(false))
     }
 
     return (
@@ -111,7 +111,7 @@ function LogInForm() {
                     <Fieldset.Actions>
                         <Button type='submit'>
                             {
-                                loading
+                                isLoading
                                     ?
                                     <Spinner color='current' size='lg' />
                                     :
