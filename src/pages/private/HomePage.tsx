@@ -12,7 +12,7 @@ function HomePage() {
     const { coreId } = useParams()
     const navigate = useNavigate()
 
-    const { logOut } = useAuth()
+    const { user, logOut } = useAuth()
     const { theme, toggleTheme } = useTheme()
 
     const [inviteLink, setInviteLink] = useState()
@@ -41,8 +41,15 @@ function HomePage() {
     return (
         <article className='h-full flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>
             <h1 className="text-7xl font-bold tracking-tight">
-                Esta sera la HomePage
+                {
+                    `¡Hola! @${user?.username}. Bienvenid@`
+                }
             </h1>
+            <h2 className="text-6xl font-semibold tracking-tight">
+                {
+                    `Ahora mismo ${coreId ? `${coreId} esta activo` : 'no hay ningun nucleo activo'}`
+                }
+            </h2>
             <section className='flex gap-3.5'>
                 <Button
                     className='bg-accent hover:scale-110 hover:bg-accent transition-all'
