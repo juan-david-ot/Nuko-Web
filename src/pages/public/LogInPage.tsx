@@ -1,4 +1,4 @@
-import LogInForm from '../components/Forms/LogInForm'
+import LogInForm from '../../components/Forms/LogInForm'
 
 function LogInPage() {
     return (
