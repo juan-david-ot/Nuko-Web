@@ -5,6 +5,10 @@ async function getUserCores() {
     return server.get('/cores')
 }
 
+async function getUserCoreById(coreId: string) {
+    return server.get(`/cores/${coreId}`)
+}
+
 async function createCore(core: Core) {
     return server.post('/cores', core)
 }
@@ -19,6 +23,7 @@ async function acceptInvitationToCore(token: string) {
 
 export default {
     getUserCores,
+    getUserCoreById,
     createCore,
     createInvitationToCore,
     acceptInvitationToCore

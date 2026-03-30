@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { Button, ErrorMessage, InputGroup, Label, Popover, TextField } from '@heroui/react'
 import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import { BiCopy } from 'react-icons/bi'
 import { FaLink } from 'react-icons/fa6'
+import type { Core } from '../../definitions/types'
 import { useAuth } from '../../contexts/auth/useAuth'
 import { useTheme } from '../../contexts/theme/useTheme'
 import coreService from '../../services/core.service'
@@ -15,6 +16,7 @@ function HomePage() {
     const { user, logOut } = useAuth()
     const { theme, toggleTheme } = useTheme()
 
+    const [coreInformation, setCoreInformation] = useState<Core>()
     const [inviteLink, setInviteLink] = useState()
     const [error, setError] = useState()
 
@@ -38,6 +40,21 @@ function HomePage() {
         navigate('/auth/iniciar-sesion')
     }
 
+    useEffect(() => {
+        if (coreId) {
+            coreService
+                .getUserCoreById(coreId)
+                .then(({ data }) => setCoreInformation(data))
+                .catch((error) => {
+                    setCoreInformation(undefined)
+                    console.error(error)
+                })
+        }
+        else {
+            setCoreInformation(undefined)
+        }
+    }, [coreId])
+
     return (
         <article className='h-full flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>
             <h1 className="text-7xl font-bold tracking-tight">
@@ -47,7 +64,7 @@ function HomePage() {
             </h1>
             <h2 className="text-6xl font-semibold tracking-tight">
                 {
-                    `Ahora mismo ${coreId ? `${coreId} esta activo` : 'no hay ningun nucleo activo'}`
+                    `Ahora mismo ${coreInformation ? `${coreInformation.name} esta activo` : 'no hay ningun nucleo activo'}`
                 }
             </h2>
             <section className='flex gap-3.5'>
