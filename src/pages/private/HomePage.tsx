@@ -57,7 +57,7 @@ function HomePage() {
 
     return (
         <article className='h-full flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>
-            <h1 className="text-7xl font-bold tracking-tight">
+            <h1 className='text-7xl font-bold tracking-tight'>
                 {
                     `¡Hola! @${user?.username}. Bienvenid@`
                 }
