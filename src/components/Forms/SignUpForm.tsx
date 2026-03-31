@@ -63,7 +63,7 @@ function SignUpForm() {
                         <TextField
                             variant='secondary'
                             isRequired
-                            name="email"
+                            name='email'
                             type='text'
                         >
                             <Label>Email</Label>
