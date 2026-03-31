@@ -55,7 +55,7 @@ function SignUpForm() {
         //         </Tabs.ListContainer>
         //     </Tabs>
         <Surface className='w-full min-w-72'>
-            <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
+            <Form className='flex flex-col gap-4' onSubmit={onSubmit}>
                 <Fieldset>
                     <Fieldset.Legend>¡Regístrate!</Fieldset.Legend>
                     <Description>Ha-Nuko Matata. Convive y deja vivir.</Description>
