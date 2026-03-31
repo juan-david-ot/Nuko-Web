@@ -4,7 +4,7 @@ import { Button, ErrorMessage, InputGroup, Label, Popover, TextField } from '@he
 import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import { BiCopy } from 'react-icons/bi'
 import { FaLink } from 'react-icons/fa6'
-import type { Core } from '../../definitions/types'
+import type { Core, User } from '../../definitions/types'
 import { useAuth } from '../../contexts/auth/useAuth'
 import { useTheme } from '../../contexts/theme/useTheme'
 import coreService from '../../services/core.service'
@@ -43,8 +43,8 @@ function HomePage() {
     useEffect(() => {
         if (coreId) {
             coreService
-                .getUserCoreById(coreId)
-                .then(({ data }) => setCoreInformation(data))
+                .getUserCoreInformationById(coreId)
+                .then(({ data }) => setCoreInformation(data.core))
                 .catch((error) => {
                     setCoreInformation(undefined)
                     console.error(error)
@@ -67,6 +67,18 @@ function HomePage() {
                     `Ahora mismo ${coreInformation ? `${coreInformation.name} esta activo` : 'no hay ningun nucleo activo'}`
                 }
             </h2>
+            <h2 className="text-5xl font-semibold tracking-tight">
+                Miembros
+            </h2>
+            {
+                coreInformation?.users?.map((user: User) => {
+                    return (
+                        <h3 key={user.username} className="text-5xl font-medium tracking-tight">
+                            - {user.username}
+                        </h3>
+                    )
+                })
+            }
             <section className='flex gap-3.5'>
                 <Button
                     className='bg-accent hover:scale-110 hover:bg-accent transition-all'
