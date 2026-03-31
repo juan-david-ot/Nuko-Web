@@ -67,17 +67,22 @@ function HomePage() {
                     `Ahora mismo ${coreInformation ? `${coreInformation.name} esta activo` : 'no hay ningun nucleo activo'}`
                 }
             </h2>
-            <h2 className="text-5xl font-semibold tracking-tight">
-                Miembros
-            </h2>
             {
-                coreInformation?.users?.map((user: User) => {
-                    return (
-                        <h3 key={user.username} className="text-5xl font-medium tracking-tight">
-                            - {user.username}
-                        </h3>
-                    )
-                })
+                coreInformation &&
+                <>
+                    <h2 className="text-5xl font-semibold tracking-tight">
+                        Miembros
+                    </h2>
+                    {
+                        coreInformation?.users?.map((user: User) => {
+                            return (
+                                <h3 key={user.username} className="text-5xl font-medium tracking-tight">
+                                    - {user.username}
+                                </h3>
+                            )
+                        })
+                    }
+                </>
             }
             <section className='flex gap-3.5'>
                 <Button
