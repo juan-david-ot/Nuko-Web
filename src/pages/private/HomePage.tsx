@@ -44,7 +44,7 @@ function HomePage() {
         if (coreId) {
             coreService
                 .getUserCoreInformationById(coreId)
-                .then(({ data }) => setCoreInformation(data.core))
+                .then(({ data }) => setCoreInformation(data))
                 .catch((error) => {
                     setCoreInformation(undefined)
                     console.error(error)
