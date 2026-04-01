@@ -19,11 +19,6 @@ function App() {
             }
             <link rel='icon' type='image/svg+xml' href={theme === 'dark' ? nukoLight : nukoDark} />
             <AppRouter />
-            {/*
-            <article className='h-screen w-screen pb-12 lg:pb-0 lg:flex-6'>
-                <AppRouter />
-            </article>
-            */}
         </main>
     )
 }
