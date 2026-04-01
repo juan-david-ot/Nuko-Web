@@ -31,29 +31,6 @@ function SignUpForm() {
     }
 
     return (
-        // <div className="flex flex-col items-center justify-center rounded-3xl bg-surface p-6">
-        //     <Tabs
-        //         className="w-fit"
-        //         orientation='horizontal'
-        //         selectedKey={location.pathname}
-        //         onSelectionChange={(key) => navigate(String(key))}
-        //     >
-        //         <Tabs.ListContainer className='w-fit'>
-        //             <Tabs.List
-        //                 className='w-full backdrop-blur-xl bg-background/70 border border-white/10'
-        //                 aria-label="Navbar"
-        //             >
-        //                 <Tabs.Tab id="/iniciar-sesion">
-        //                     Iniciar Ses.
-        //                     <Tabs.Indicator />
-        //                 </Tabs.Tab>
-        //                 <Tabs.Tab id="/registrarse">
-        //                     Registrarse
-        //                     <Tabs.Indicator />
-        //                 </Tabs.Tab>
-        //             </Tabs.List>
-        //         </Tabs.ListContainer>
-        //     </Tabs>
         <Surface className='w-full min-w-72'>
             <Form className='flex flex-col gap-4' onSubmit={onSubmit}>
                 <Fieldset>
