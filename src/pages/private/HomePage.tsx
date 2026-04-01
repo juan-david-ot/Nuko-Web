@@ -94,7 +94,7 @@ function HomePage() {
                     }
                 </>
             }
-            <section className='flex gap-3.5 m-96'>
+            <section className='flex gap-3.5'>
                 <Button
                     className='bg-accent hover:scale-110 hover:bg-accent transition-all'
                     onClick={createInvitation}
