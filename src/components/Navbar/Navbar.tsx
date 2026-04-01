@@ -25,8 +25,6 @@ function Navbar() {
 
     const isDesktop = useMediaQuery('(min-width: 1024px)')
 
-    // const [userCores, setUserCores] = useState<Core[]>([])
-
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
