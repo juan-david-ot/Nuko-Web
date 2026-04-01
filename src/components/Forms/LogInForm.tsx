@@ -13,7 +13,7 @@ function LogInForm() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
-    const [errors, setErrors] = useState()
+    const [error, setError] = useState()
 
     const from = location.state?.from?.pathname || '/home'
 
@@ -41,7 +41,7 @@ function LogInForm() {
                 authUser()
                 navigate(from, { replace: true })
             })
-            .catch(error => setErrors(error.response.data.error))
+            .catch(error => setError(error.response.data.error))
             .finally(() => setIsLoading(false))
     }
 
@@ -106,7 +106,7 @@ function LogInForm() {
                             </InputGroup>
                             <FieldError>Este campo es obligatorio</FieldError>
                         </TextField>
-                        <ErrorMessage>{errors && errors}</ErrorMessage>
+                        <ErrorMessage>{error && error}</ErrorMessage>
                     </FieldGroup>
                     <Fieldset.Actions>
                         <Button type='submit'>
