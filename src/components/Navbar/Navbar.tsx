@@ -123,7 +123,6 @@ function Navbar() {
                 orientation={isDesktop ? 'vertical' : 'horizontal'}
                 selectedKey={getActiveTab(location.pathname)}
                 onSelectionChange={(key) => {
-                    // if (!isPrivateRoute) return
                     if (!coreId) navigate(`${key}`)
                     if (coreId) navigate(`${key}/${coreId}`)
                 }}
