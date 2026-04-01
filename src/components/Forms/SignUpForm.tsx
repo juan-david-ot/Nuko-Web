@@ -67,7 +67,7 @@ function SignUpForm() {
                             type='text'
                         >
                             <Label>Email</Label>
-                            <Input placeholder="Introduce tu email" />
+                            <Input placeholder='Introduce tu email' />
                             <FieldError>Este campo es obligatorio</FieldError>
                         </TextField>
                         <TextField
