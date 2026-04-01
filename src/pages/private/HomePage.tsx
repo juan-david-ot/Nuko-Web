@@ -56,7 +56,7 @@ function HomePage() {
     }, [coreId])
 
     return (
-        <article className='h-full flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>
+        <article className='flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>
             <h1 className='text-7xl font-bold tracking-tight'>
                 {
                     `¡Hola! @${user?.username}. Bienvenid@`
@@ -94,7 +94,7 @@ function HomePage() {
                     }
                 </>
             }
-            <section className='flex gap-3.5'>
+            <section className='flex gap-3.5 m-96'>
                 <Button
                     className='bg-accent hover:scale-110 hover:bg-accent transition-all'
                     onClick={createInvitation}
