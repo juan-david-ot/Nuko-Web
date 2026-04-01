@@ -116,10 +116,12 @@ function Navbar() {
                     </Dropdown.Menu>
                 </Dropdown.Popover>
             </Dropdown> */}
-            <CoreDropdown isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} />
+            <div className='w-fit fixed bottom-20 right-0 z-50 flex flex-col items-end m-2 rounded-4xl lg:static lg:w-full lg:m-0 lg:items-start lg:bg-background-tertiary transition-all'>
+                <CoreDropdown isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} />
+            </div>
             <CoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getCores} />
             <Tabs
-                className="w-full"
+                className="w-full fixed bottom-0 left-0 right-0 z-50 flex flex-col items-end gap-3 p-2 rounded-4xl lg:static lg:m-0 lg:p-0 lg:items-start lg:bg-background-tertiary transition-all"
                 orientation={isDesktop ? 'vertical' : 'horizontal'}
                 selectedKey={getActiveTab(location.pathname)}
                 onSelectionChange={(key) => {
