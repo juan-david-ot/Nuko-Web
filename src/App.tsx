@@ -13,7 +13,7 @@ function App() {
             {
                 user
                     ?
-                    <title>{ `Nuko: ${user.username}` }</title>
+                    <title>{`Nuko: ${user.username}`}</title>
                     :
                     <title>Nuko</title>
             }
