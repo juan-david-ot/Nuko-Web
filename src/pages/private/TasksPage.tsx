@@ -39,7 +39,7 @@ function TasksPage() {
     }
 
     return (
-        <article className='h-full flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>
+        <article className='flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>
             <h1 className="text-7xl font-bold tracking-tight">
                 Esta sera la TasksPage
             </h1>
