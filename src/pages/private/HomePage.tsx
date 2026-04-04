@@ -62,7 +62,7 @@ function HomePage() {
                     `¡Hola! @${user?.username}. Bienvenid@`
                 }
             </h1>
-            <h2 className="text-6xl font-semibold tracking-tight">
+            <h2 className='text-6xl font-semibold tracking-tight'>
                 {
                     `Ahora mismo ${coreInformation ? `${coreInformation.name} esta activo` : 'no hay ningun nucleo activo'}`
                 }
