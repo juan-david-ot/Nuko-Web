@@ -70,7 +70,7 @@ function HomePage() {
             {
                 coreInformation &&
                 <>
-                    <h2 className="text-5xl font-semibold tracking-tight">
+                    <h2 className='text-5xl font-semibold tracking-tight'>
                         Miembros
                     </h2>
                     {
