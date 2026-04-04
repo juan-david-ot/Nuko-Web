@@ -11,7 +11,7 @@
     "type": "module",
     "dependencies": {
         "@heroui/react": "3.0.2",
-        "@heroui/styles": "3.0.1",
+        "@heroui/styles": "3.0.2",
         "@tailwindcss/vite": "4.2.2",
         "axios": "1.14.0",
         "dayjs": "1.11.20",
