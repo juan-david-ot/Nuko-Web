@@ -76,7 +76,7 @@ function HomePage() {
                     {
                         <Virtualizer layout={ListLayout} layoutOptions={{ rowHeight: 50 }}>
                             <ListBox
-                                aria-label="Virtualized list with 1000 items"
+                                aria-label='Virtualized list with 1000 items'
                                 className="overflow-y-auto h-100 w-75"
                                 items={coreInformation.users}
                             >
