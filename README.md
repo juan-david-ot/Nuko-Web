@@ -1,6 +1,6 @@
 # 💾 Nuko-Web
 
-Nuko is an ecosystem. This repository contains Nuko-Web, the web client application.
+Nuko is a multi-platform application. This repository contains Nuko-Web, the web client application.
 
 ---
 
