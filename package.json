@@ -10,8 +10,8 @@
     },
     "type": "module",
     "dependencies": {
-        "@heroui/react": "3.0.2",
-        "@heroui/styles": "3.0.2",
+        "@heroui/react": "3.0.3",
+        "@heroui/styles": "3.0.3",
         "@tailwindcss/vite": "4.2.2",
         "axios": "1.15.0",
         "dayjs": "1.11.20",
