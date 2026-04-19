@@ -50,7 +50,7 @@ function SignUpForm() {
                         <TextField
                             variant='secondary'
                             isRequired
-                            name="username"
+                            name='username'
                             type='text'
                         >
                             <Label>Nombre de usuario</Label>
