@@ -129,7 +129,7 @@ function Navbar() {
             >
                 <Tabs.ListContainer className='w-full'>
                     <Tabs.List
-                        className='w-full backdrop-blur-xl bg-accent-foreground/10 border border-white/10 lg:bg-background/80'
+                        className='w-full rounded-4xl backdrop-blur-xl bg-accent-foreground/10 border border-white/10 lg:bg-background/80 lg:rounded-2xl'
                         aria-label="Navbar"
                     >
                         <Tabs.Tab id="/home">

@@ -17,7 +17,7 @@ function AuthPage() {
                 >
                     <Tabs.ListContainer>
                         <Tabs.List
-                            className='w-full backdrop-blur-xl bg-background/70 border border-white/10'
+                            className='w-full rounded-4xl backdrop-blur-xl bg-background/70 border border-white/10'
                             aria-label="Auth"
                         >
                             <Tabs.Tab id="iniciar-sesion">
