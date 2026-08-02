@@ -13,7 +13,7 @@
         "@heroui/react": "3.2.3",
         "@heroui/styles": "3.2.3",
         "@tailwindcss/vite": "4.3.3",
-        "axios": "1.18.1",
+        "axios": "1.19.0",
         "dayjs": "1.11.21",
         "react": "19.2.8",
         "react-dom": "19.2.8",
