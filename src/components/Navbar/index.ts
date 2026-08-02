@@ -1,3 +1,3 @@
-import Navbar from './Navbar'
+import Navbar from './Navbar.tsx'
 
 export default Navbar

@@ -1,7 +1,7 @@
 import { createContext, useState, type ReactNode } from 'react'
 import type { Selection } from '@heroui/react'
-import type { Core, CoreContextType } from '../../definitions/types'
-import coreService from '../../services/core.service'
+import type { Core, CoreContextType } from '../../definitions/types.ts'
+import coreService from '../../services/core.service.ts'
 
 const CoreContext = createContext<CoreContextType | null>(null)
 

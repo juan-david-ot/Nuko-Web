@@ -1,18 +1,18 @@
 import { lazy } from 'react'
 import { Route, Routes } from 'react-router'
-const GuestRouter = lazy(() => import('./GuestRouter'))
-const PrivateRouter = lazy(() => import('./PrivateRouter'))
-const GuestLayout = lazy(() => import('../layout/GuestLayout'))
-const PrivateLayout = lazy(() => import('../layout/PrivateLayout'))
-const InvitePage = lazy(() => import('../pages/private/InvitePage'))
-const AuthPage = lazy(() => import('../pages/public/AuthPage'))
-const HomePage = lazy(() => import('../pages/private/HomePage'))
-const TasksPage = lazy(() => import('../pages/private/TasksPage'))
-const FinancesPage = lazy(() => import('../pages/private/FinancesPage'))
-const CalendarPage = lazy(() => import('../pages/private/CalendarPage'))
-const SettingsPage = lazy(() => import('../pages/private/SettingsPage'))
-const NotFoundPage = lazy(() => import('../pages/public/NotFoundPage'))
-const TestPage = lazy(() => import('../pages/TestPage'))
+const GuestRouter = lazy(() => import('./GuestRouter.tsx'))
+const PrivateRouter = lazy(() => import('./PrivateRouter.tsx'))
+const GuestLayout = lazy(() => import('../layout/GuestLayout.tsx'))
+const PrivateLayout = lazy(() => import('../layout/PrivateLayout.tsx'))
+const InvitePage = lazy(() => import('../pages/private/InvitePage.tsx'))
+const AuthPage = lazy(() => import('../pages/public/AuthPage.tsx'))
+const HomePage = lazy(() => import('../pages/private/HomePage.tsx'))
+const TasksPage = lazy(() => import('../pages/private/TasksPage.tsx'))
+const FinancesPage = lazy(() => import('../pages/private/FinancesPage.tsx'))
+const CalendarPage = lazy(() => import('../pages/private/CalendarPage.tsx'))
+const SettingsPage = lazy(() => import('../pages/private/SettingsPage.tsx'))
+const NotFoundPage = lazy(() => import('../pages/public/NotFoundPage.tsx'))
+const TestPage = lazy(() => import('../pages/TestPage.tsx'))
 
 function AppRouter() {
     return (

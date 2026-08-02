@@ -4,10 +4,10 @@ import { Button, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayo
 import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import { BiCopy } from 'react-icons/bi'
 import { FaLink } from 'react-icons/fa6'
-import type { Core, User } from '../../definitions/types'
-import { useAuth } from '../../contexts/auth/useAuth'
-import { useTheme } from '../../contexts/theme/useTheme'
-import coreService from '../../services/core.service'
+import type { Core, User } from '../../definitions/types.ts'
+import { useAuth } from '../../contexts/auth/useAuth.ts'
+import { useTheme } from '../../contexts/theme/useTheme.ts'
+import coreService from '../../services/core.service.ts'
 
 function HomePage() {
     const { coreId } = useParams()

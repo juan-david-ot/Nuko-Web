@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router'
-import { useAuth } from '../contexts/auth/useAuth'
-import Loading from '../components/Loading'
+import { useAuth } from '../contexts/auth/useAuth.ts'
+import Loading from '../components/Loading.tsx'
 
 function PrivateRouter() {
     const location = useLocation()

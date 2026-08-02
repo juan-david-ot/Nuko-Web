@@ -1,3 +1,3 @@
-export * from './useAnimatedHeight'
-export * from './useAnimatedWidth'
-export * from './useMediaQuery'
+export * from './useAnimatedHeight.ts'
+export * from './useAnimatedWidth.ts'
+export * from './useMediaQuery.ts'

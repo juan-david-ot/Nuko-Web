@@ -1,5 +1,5 @@
-import type { Core } from '../definitions/types'
-import { server } from './server'
+import type { Core } from '../definitions/types.ts'
+import { server } from './server.ts'
 
 async function getUserCores() {
     return server.get('/cores')

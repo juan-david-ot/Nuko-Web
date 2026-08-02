@@ -6,12 +6,12 @@ import { FaDollarSign } from 'react-icons/fa6'
 import { BiCalendar } from 'react-icons/bi'
 import { AiFillSetting } from 'react-icons/ai'
 import { TbListDetails } from 'react-icons/tb'
-import { useTheme } from '../../contexts/theme/useTheme'
-import { useCore } from '../../contexts/core/useCore'
-import { useMediaQuery } from '../../hooks'
-import CoreDropdown from './CoreDropdown'
-import CoreModal from './CoreModal'
-import { getActiveTab } from '../../utils'
+import { useTheme } from '../../contexts/theme/useTheme.ts'
+import { useCore } from '../../contexts/core/useCore.ts'
+import { useMediaQuery } from '../../hooks/index.ts'
+import CoreDropdown from './CoreDropdown.tsx'
+import CoreModal from './CoreModal.tsx'
+import { getActiveTab } from '../../utils/index.ts'
 
 function Navbar() {
     const location = useLocation()

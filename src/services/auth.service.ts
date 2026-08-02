@@ -1,5 +1,5 @@
-import type { User } from '../definitions/types'
-import { server } from './server'
+import type { User } from '../definitions/types.ts'
+import { server } from './server.ts'
 
 async function signUp(user: User) {
     return server.post('/auth/signUp', user)

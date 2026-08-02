@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from 'react-router'
 import { Tabs } from '@heroui/react'
-import LogInForm from '../../components/Forms/LogInForm'
-import SignUpForm from '../../components/Forms/SignUpForm'
-import { useAnimatedHeight } from '../../hooks'
+import { useAnimatedHeight } from '../../hooks/index.ts'
+import LogInForm from '../../components/Forms/LogInForm.tsx'
+import SignUpForm from '../../components/Forms/SignUpForm.tsx'
 
 function AuthPage() {
     const { mode } = useParams()

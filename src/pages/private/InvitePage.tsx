@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
-import { useCore } from '../../contexts/core/useCore'
-import coreService from '../../services/core.service'
-import Loading from '../../components/Loading'
+import { useCore } from '../../contexts/core/useCore.ts'
+import coreService from '../../services/core.service.ts'
+import Loading from '../../components/Loading.tsx'
 
 function InvitePage() {
     const { token } = useParams()
