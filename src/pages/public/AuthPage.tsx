@@ -2,10 +2,30 @@ import { useNavigate, useParams } from 'react-router'
 import { Tabs } from '@heroui/react'
 import LogInForm from '../../components/Forms/LogInForm'
 import SignUpForm from '../../components/Forms/SignUpForm'
+import { useAnimatedHeight } from '../../hooks'
 
 function AuthPage() {
     const { mode } = useParams()
     const navigate = useNavigate()
+
+    const { ref, style } = useAnimatedHeight<HTMLDivElement>()
+
+    // const contentRef = useRef<HTMLDivElement>(null)
+    // const [height, setHeight] = useState<number | 'auto'>('auto')
+
+    // useEffect(() => {
+    //     const el = contentRef.current
+    //     if (!el) return
+
+    //     const resizeObserver = new ResizeObserver(([entry]) => {
+    //         setHeight(entry.contentRect.height)
+    //     })
+
+    //     resizeObserver.observe(el)
+    //     setHeight(el.offsetHeight)
+
+    //     return () => resizeObserver.disconnect()
+    // }, [])
 
     return (
         <article className='h-full flex justify-center items-start pt-20 lg:items-start lg:pt-40'>
@@ -30,12 +50,16 @@ function AuthPage() {
                             </Tabs.Tab>
                         </Tabs.List>
                     </Tabs.ListContainer>
-                    <Tabs.Panel className="pt-4" id="iniciar-sesion">
-                        <LogInForm />
-                    </Tabs.Panel>
-                    <Tabs.Panel className="pt-4" id="registrarse">
-                        <SignUpForm />
-                    </Tabs.Panel>
+                    <div style={style}>
+                        <div ref={ref}>
+                            <Tabs.Panel className="pt-4" id="iniciar-sesion">
+                                <LogInForm />
+                            </Tabs.Panel>
+                            <Tabs.Panel className="pt-4" id="registrarse">
+                                <SignUpForm />
+                            </Tabs.Panel>
+                        </div>
+                    </div>
                 </Tabs>
             </div>
         </article>
