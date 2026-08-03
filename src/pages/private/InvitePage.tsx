@@ -35,7 +35,7 @@ function InvitePage() {
             .acceptInvitationToCore(String(token))
             .then(() => {
                 refreshCores()
-                    .finally(() => navigate('/home', { replace: true }))
+                    .finally(() => navigate(`/home/${core?.id}`, { replace: true }))
             })
             .catch(() => navigate('/home', { replace: true }))
     }

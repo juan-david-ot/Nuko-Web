@@ -10,7 +10,7 @@ function CoreProviderWrapper({ children }: { children: ReactNode }) {
     const [core, setCore] = useState<Selection>(new Set())
 
     async function refreshCores() {
-        coreService
+        return coreService
             .getUserCores()
             .then(({ data }) => setCores(data))
             .catch((error) => console.error(error))
