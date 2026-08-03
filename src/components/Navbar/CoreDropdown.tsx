@@ -33,6 +33,18 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
                 {isDesktop ? 'Núcleos' : <BiAtom className='scale-125' />}
             </Button>
             <Dropdown.Popover className='transition-all'>
+                <Dropdown.Menu>
+                    <Dropdown.Section>
+                        <Dropdown.Item
+                            onAction={() => {
+                                setIsModalOpen(true)
+                            }}
+                            className={`${theme === 'dark' ? 'bg-accent text-accent-foreground hover:bg-accent-hover' : 'bg-background border-2 border-accent hover:bg-background-secondary'} backdrop-blur-xl border lg:w-full lg:scale-100 transition-all`}
+                        >
+                            Crear núcleo
+                        </Dropdown.Item>
+                    </Dropdown.Section>
+                </Dropdown.Menu>
                 <Dropdown.Menu
                     selectedKeys={core}
                     selectionMode='single'
@@ -43,17 +55,6 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
                         navigate(`${baseRoute}/${selected}`)
                     }}
                 >
-                    <Dropdown.Section>
-                        <Dropdown.Item
-                            onAction={() => {
-                                setIsOpen(false)
-                                setIsModalOpen(true)
-                            }}
-                            className={`${theme === 'dark' ? 'bg-accent text-accent-foreground hover:bg-accent-hover' : 'bg-background border-2 border-accent hover:bg-background-secondary'} backdrop-blur-xl border lg:w-full lg:scale-100 transition-all`}
-                        >
-                            Crear núcleo
-                        </Dropdown.Item>
-                    </Dropdown.Section>
                     <Dropdown.Section>
                         {
                             cores.length > 0
