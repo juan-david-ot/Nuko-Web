@@ -64,7 +64,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                                                 </TextField>
                                                 <ErrorMessage>{Array.isArray(errors) ? errors.join('. ') : errors}</ErrorMessage>
                                             </FieldGroup>
-                                            <Fieldset.Actions className='flex-row-reverse justify-start'>
+                                            <Fieldset.Actions className='flex-row justify-end'>
                                                 <Button type="submit">
                                                     {
                                                         isLoading

@@ -21,6 +21,10 @@ async function createInvitationToCore(coreId: string) {
     return server.post(`/cores/${coreId}/invitation`)
 }
 
+async function decodeInvitationToCore(token: string) {
+    return server.get(`/cores/invitation/${token}`)
+}
+
 async function acceptInvitationToCore(token: string) {
     return server.post(`/cores/invitation/${token}`)
 }
@@ -31,5 +35,6 @@ export default {
     getUserCoreInformationById,
     createCore,
     createInvitationToCore,
+    decodeInvitationToCore,
     acceptInvitationToCore
 }

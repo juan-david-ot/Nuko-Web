@@ -12,7 +12,7 @@ function CoreProviderWrapper({ children }: { children: ReactNode }) {
     async function refreshCores() {
         coreService
             .getUserCores()
-            .then((res) => setCores(res.data))
+            .then(({ data }) => setCores(data))
             .catch((error) => console.error(error))
     }
 
