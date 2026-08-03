@@ -8,7 +8,7 @@ function PrivateLayout() {
                 <Navbar />
             </nav>
 
-            <article className='pb-16 h-screen w-screen overflow-y-auto lg:pb-0 lg:m-0 lg:flex-6'>
+            <article className='pb-16 h-screen w-screen overflow-y-auto overflow-x-hidden lg:pb-0 lg:m-0 lg:flex-6'>
                 <Outlet />
             </article>
         </>
