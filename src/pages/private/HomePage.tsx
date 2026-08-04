@@ -8,21 +8,26 @@ import type { Core, User } from '../../definitions/types.ts'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useTheme } from '../../contexts/theme/useTheme.ts'
 import coreService from '../../services/core.service.ts'
+import { useCore } from '../../contexts/core/useCore.ts'
 
 function HomePage() {
-    const { coreId } = useParams()
+    const { coreId: coreIdParam } = useParams()
     const navigate = useNavigate()
 
     const { user, logOut } = useAuth()
+    const { core } = useCore()
     const { theme, toggleTheme } = useTheme()
+
+    const coreIdContext = Array.from(core)[0]
 
     const [coreInformation, setCoreInformation] = useState<Core>()
     const [inviteLink, setInviteLink] = useState()
     const [error, setError] = useState()
 
+
     function createInvitation() {
         coreService
-            .createInvitationToCore(String(coreId))
+            .createInvitationToCore(String(coreIdContext || coreIdParam))
             .then(({ data }) => {
                 setInviteLink(data.inviteLink)
                 setError(undefined)
@@ -41,9 +46,9 @@ function HomePage() {
     }
 
     useEffect(() => {
-        if (coreId) {
+        if (coreIdContext || coreIdParam) {
             coreService
-                .getUserCoreInformationById(coreId)
+                .getUserCoreInformationById(String(coreIdContext || coreIdParam))
                 .then(({ data }) => setCoreInformation(data))
                 .catch((error) => {
                     setCoreInformation(undefined)
@@ -53,7 +58,7 @@ function HomePage() {
         else {
             setCoreInformation(undefined)
         }
-    }, [coreId])
+    }, [coreIdContext || coreIdParam])
 
     return (
         <article className='flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>

@@ -16,12 +16,15 @@ import { getActiveTab } from '../../utils/index.ts'
 function Navbar() {
     const location = useLocation()
     const navigate = useNavigate()
-    const { coreId } = useParams()
-
-    console.log('coreId', coreId)
+    const { coreId: coreIdParam } = useParams()
 
     const { theme } = useTheme()
-    const { setCore, cores, refreshCores } = useCore()
+    const { core, setCore, cores, refreshCores } = useCore()
+
+    const coreIdContext = Array.from(core)[0]
+
+    // console.log('coreId', coreId)
+    // console.log('core', Array.from(core)[0])
 
     const isDesktop = useMediaQuery('(min-width: 1024px)')
 
@@ -32,28 +35,33 @@ function Navbar() {
     // const isPrivateRoute = /^\/(home|tareas|finanzas|calendario|ajustes)/.test(location.pathname)
 
     function getCores() {
-        refreshCores().finally(() => setIsLoading(false))
+        setIsLoading(true)
+        return refreshCores().finally(() => setIsLoading(false))
     }
 
     useEffect(() => {
         getCores()
     }, [])
 
+    // useEffect(() => {
+    //     console.log('useEffect', coreId)
+    // }, [coreId])
+
     useEffect(() => {
         // if (!isPrivateRoute) return
         if (isLoading) return
 
-        console.log('coreId', coreId)
-
-        if (coreId && cores.some((c) => c.id === coreId)) {
-            setCore(new Set([coreId]))
+        const baseRoute = getActiveTab(location.pathname)
+        if ((coreIdContext && cores.some((core) => core.id === coreIdContext)) || (coreIdParam && cores.some((core) => core.id === coreIdParam))) {
+            setCore(new Set([coreIdContext || String(coreIdParam)]))
+            navigate(`${baseRoute}/${coreIdContext || coreIdParam}`, { replace: true })
         }
+        // if (!Array.from(core)[0] || !cores.some((c) => c.id === Array.from(core)[0])) {
         else {
-            const baseRoute = getActiveTab(location.pathname)
-            navigate(`${baseRoute}`, { replace: true })
             setCore(new Set())
+            navigate(`${baseRoute}`, { replace: true })
         }
-    }, [coreId, cores])
+    }, [location.pathname, cores])
 
     return (
         <>
@@ -123,8 +131,8 @@ function Navbar() {
                 orientation={isDesktop ? 'vertical' : 'horizontal'}
                 selectedKey={getActiveTab(location.pathname)}
                 onSelectionChange={(key) => {
-                    if (!coreId) navigate(`${key}`)
-                    if (coreId) navigate(`${key}/${coreId}`)
+                    if (!coreIdContext) navigate(`${key}`)
+                    if (coreIdContext) navigate(`${key}/${coreIdContext}`)
                 }}
             >
                 <Tabs.ListContainer className='w-full'>

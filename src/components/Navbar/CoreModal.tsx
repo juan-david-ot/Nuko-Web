@@ -3,14 +3,20 @@ import { Button, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, La
 import { BiAtom } from 'react-icons/bi'
 import { GoCheck } from 'react-icons/go'
 import coreService from '../../services/core.service.ts'
+import { useNavigate } from 'react-router'
+import { useCore } from '../../contexts/core/useCore.ts'
 
 type Props = {
     isOpen: boolean
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-    refreshCores: () => void
+    getCores: () => Promise<void>
 }
 
-function CoreModal({ isOpen, setIsOpen, refreshCores }: Props) {
+function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
+    const navigate = useNavigate()
+
+    const { setCore } = useCore()
+
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState([])
 
@@ -27,13 +33,21 @@ function CoreModal({ isOpen, setIsOpen, refreshCores }: Props) {
 
         coreService
             .createCore(data)
-            .then(() => {
-                refreshCores()
+            .then(async ({ data }) => {
+                return getCores()
+                    .then(() => {
+                        setIsOpen(false)
+                        setCore(new Set([data.newCore.id]))
+                    })
+                await getCores()
                 setIsOpen(false)
+                setCore(new Set([data.newCore.id]))
+                navigate(`/home/${data.newCore.id}`, { replace: true })
             })
             .catch(error => setErrors(error.response.data.error))
             .finally(() => setIsLoading(false))
     }
+
     return (
         <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
             <div className='flex flex-col justify-center items-center'>
