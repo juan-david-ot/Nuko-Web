@@ -7,10 +7,10 @@ import coreService from '../../services/core.service.ts'
 type Props = {
     isOpen: boolean
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-    getCores: () => void
+    refreshCores: () => void
 }
 
-function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
+function CoreModal({ isOpen, setIsOpen, refreshCores }: Props) {
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState([])
 
@@ -28,7 +28,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
         coreService
             .createCore(data)
             .then(() => {
-                getCores()
+                refreshCores()
                 setIsOpen(false)
             })
             .catch(error => setErrors(error.response.data.error))
