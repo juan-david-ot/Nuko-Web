@@ -10,7 +10,7 @@ function SignUpForm() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
-    const [errors, setErrors] = useState()
+    const [error, setError] = useState()
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -26,7 +26,7 @@ function SignUpForm() {
         authService
             .signUp(data)
             .then(() => navigate('/auth/iniciar-sesion'))
-            .catch(error => setErrors(error.response.data.error))
+            .catch(error => setError(error.response.data.error))
             .finally(() => setIsLoading(false))
     }
 
@@ -97,7 +97,7 @@ function SignUpForm() {
                             </InputGroup>
                             <FieldError>Este campo es obligatorio</FieldError>
                         </TextField>
-                        <ErrorMessage>{errors && errors}</ErrorMessage>
+                        <ErrorMessage>{error && error}</ErrorMessage>
                     </FieldGroup>
                     <Fieldset.Actions>
                         <Button type="submit">

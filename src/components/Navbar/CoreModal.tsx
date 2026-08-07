@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, FieldError, FieldGroup, Fieldset, Form, Input, Label, Modal, Spinner, Surface, TextField } from '@heroui/react'
+import { Button, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Modal, Spinner, Surface, TextField } from '@heroui/react'
 import { BiAtom } from 'react-icons/bi'
 import { GoCheck } from 'react-icons/go'
 import coreService from '../../services/core.service.ts'
@@ -15,7 +15,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
     const { setCore } = useCore()
 
     const [isLoading, setIsLoading] = useState(false)
-    const [errors, setErrors] = useState([])
+    const [error, setError] = useState([])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -37,7 +37,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                         setCore(new Set([data.newCore.id]))
                     })
             })
-            .catch(error => setErrors(error.response.data.error))
+            .catch(error => setError(error.response.data.error))
             .finally(() => setIsLoading(false))
     }
 
@@ -69,7 +69,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                                                     <Input placeholder="Nombre de tu nuevo Núcleo" />
                                                     <FieldError>Este campo es obligatorio</FieldError>
                                                 </TextField>
-                                                <FieldError>{Array.isArray(errors) ? errors.join('. ') : errors}</FieldError>
+                                                <ErrorMessage>{error && error}</ErrorMessage>
                                             </FieldGroup>
                                             <Fieldset.Actions className='flex-row justify-end'>
                                                 <Button type="submit">
