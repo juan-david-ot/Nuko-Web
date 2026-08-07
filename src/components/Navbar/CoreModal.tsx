@@ -76,7 +76,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                                                     <Input placeholder="Nombre de tu nuevo Núcleo" />
                                                     <FieldError>Este campo es obligatorio</FieldError>
                                                 </TextField>
-                                                <ErrorMessage>{Array.isArray(errors) ? errors.join('. ') : errors}</ErrorMessage>
+                                                <FieldError>{Array.isArray(errors) ? errors.join('. ') : errors}</FieldError>
                                             </FieldGroup>
                                             <Fieldset.Actions className='flex-row justify-end'>
                                                 <Button type="submit">
