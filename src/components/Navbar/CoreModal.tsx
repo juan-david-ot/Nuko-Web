@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { Button, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Modal, Spinner, Surface, TextField } from '@heroui/react'
+import { Button, FieldError, FieldGroup, Fieldset, Form, Input, Label, Modal, Spinner, Surface, TextField } from '@heroui/react'
 import { BiAtom } from 'react-icons/bi'
 import { GoCheck } from 'react-icons/go'
 import coreService from '../../services/core.service.ts'
-import { useNavigate } from 'react-router'
 import { useCore } from '../../contexts/core/useCore.ts'
 
 type Props = {
@@ -13,8 +12,6 @@ type Props = {
 }
 
 function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
-    const navigate = useNavigate()
-
     const { setCore } = useCore()
 
     const [isLoading, setIsLoading] = useState(false)
@@ -39,10 +36,6 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                         setIsOpen(false)
                         setCore(new Set([data.newCore.id]))
                     })
-                await getCores()
-                setIsOpen(false)
-                setCore(new Set([data.newCore.id]))
-                navigate(`/home/${data.newCore.id}`, { replace: true })
             })
             .catch(error => setErrors(error.response.data.error))
             .finally(() => setIsLoading(false))
