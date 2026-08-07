@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { Tabs } from '@heroui/react'
 import { GoHomeFill } from 'react-icons/go'
@@ -13,6 +13,8 @@ import CoreDropdown from './CoreDropdown.tsx'
 import CoreModal from './CoreModal.tsx'
 import { getActiveTab } from '../../utils/index.ts'
 
+const TAB_ORDER = ['/home', '/calendario', '/finanzas', '/tareas', '/ajustes']
+
 function Navbar() {
     const location = useLocation()
     const navigate = useNavigate()
@@ -21,22 +23,76 @@ function Navbar() {
     const { theme } = useTheme()
     const { core, setCore, cores, refreshCores } = useCore()
 
-    const coreIdContext = Array.from(core)[0]
-
     // console.log('coreId', coreId)
     // console.log('core', Array.from(core)[0])
 
     const isDesktop = useMediaQuery('(min-width: 1024px)')
 
+    const dragContainerRef = useRef<HTMLDivElement>(null)
+    const startKeyRef = useRef<string | null>(null)
+
+    const [isDragging, setIsDragging] = useState(false)
+    const [dragKey, setDragKey] = useState<string | null>(null)
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+
+    const coreIdContext = Array.from(core)[0]
+    const activeTab = getActiveTab(location.pathname)
+    const visualKey = dragKey ?? activeTab
 
     // const isPrivateRoute = /^\/(home|tareas|finanzas|calendario|ajustes)/.test(location.pathname)
 
     function getCores() {
         setIsLoading(true)
         return refreshCores().finally(() => setIsLoading(false))
+    }
+
+    function keyAtPoint(x: number, y: number) {
+        const container = dragContainerRef.current
+        if (!container) return null
+        const tabEls = container.querySelectorAll('[role="tab"]')
+        for (let i = 0; i < tabEls.length; i++) {
+            const rect = tabEls[i].getBoundingClientRect()
+            if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+                return TAB_ORDER[i] ?? null
+            }
+        }
+        return null
+    }
+
+    function handlePointerDown(e: React.PointerEvent) {
+        e.currentTarget.setPointerCapture(e.pointerId)
+        startKeyRef.current = keyAtPoint(e.clientX, e.clientY)
+    }
+
+    function handlePointerMove(e: React.PointerEvent) {
+        if (e.buttons === 0) return
+        const key = keyAtPoint(e.clientX, e.clientY)
+        if (!key) return
+
+        if (key !== startKeyRef.current) {
+            if (!isDragging) setIsDragging(true)
+            setDragKey(key)
+        }
+        else if (isDragging) {
+            setDragKey(key)
+        }
+    }
+
+    function handlePointerUp() {
+        if (isDragging && dragKey && dragKey !== activeTab) {
+            commitNavigation(dragKey)
+        }
+        else {
+            setDragKey(null)
+        }
+        setIsDragging(false)
+    }
+
+    function commitNavigation(key: string) {
+        if (!coreIdContext) navigate(key)
+        if (coreIdContext) navigate(`${key}/${coreIdContext}`)
     }
 
     useEffect(() => {
@@ -46,6 +102,9 @@ function Navbar() {
     // useEffect(() => {
     //     console.log('useEffect', coreId)
     // }, [coreId])
+    useEffect(() => {
+        if (dragKey && dragKey === activeTab) setDragKey(null)
+    }, [activeTab, dragKey])
 
     useEffect(() => {
         // if (!isPrivateRoute) return
@@ -129,39 +188,45 @@ function Navbar() {
             <Tabs
                 className="w-full fixed bottom-0 left-0 right-0 z-50 flex flex-col items-end gap-3 p-2 rounded-4xl lg:static lg:m-0 lg:p-0 lg:items-start lg:bg-background-tertiary transition-all"
                 orientation={isDesktop ? 'vertical' : 'horizontal'}
-                selectedKey={getActiveTab(location.pathname)}
-                onSelectionChange={(key) => {
-                    if (!coreIdContext) navigate(`${key}`)
-                    if (coreIdContext) navigate(`${key}/${coreIdContext}`)
-                }}
+                selectedKey={visualKey}
+                onSelectionChange={(key) => commitNavigation(key as string)}
             >
-                <Tabs.ListContainer className='w-full'>
-                    <Tabs.List
-                        className='w-full rounded-4xl backdrop-blur-xl bg-accent-foreground/10 border border-white/10 lg:bg-background/80 lg:rounded-2xl'
-                        aria-label="Navbar"
-                    >
-                        <Tabs.Tab id="/home">
-                            {isDesktop ? 'Home' : <GoHomeFill className='scale-200' />}
-                            <Tabs.Indicator className={`${theme === 'dark' ? 'bg-accent-soft-hover' : 'bg-accent/60'} backdrop-blur-xl border border-white/10`} />
-                        </Tabs.Tab>
-                        <Tabs.Tab id="/calendario">
-                            {isDesktop ? 'Calendario' : <BiCalendar className='scale-200' />}
-                            <Tabs.Indicator className={`${theme === 'dark' ? 'bg-accent-soft-hover' : 'bg-accent/60'} backdrop-blur-xl border border-white/10`} />
-                        </Tabs.Tab>
-                        <Tabs.Tab id="/finanzas">
-                            {isDesktop ? 'Finanzas' : <FaDollarSign className='scale-200' />}
-                            <Tabs.Indicator className={`${theme === 'dark' ? 'bg-accent-soft-hover' : 'bg-accent/60'} backdrop-blur-xl border border-white/10`} />
-                        </Tabs.Tab>
-                        <Tabs.Tab id="/tareas">
-                            {isDesktop ? 'Tareas' : <TbListDetails className='scale-200' />}
-                            <Tabs.Indicator className={`${theme === 'dark' ? 'bg-accent-soft-hover' : 'bg-accent/60'} backdrop-blur-xl border border-white/10`} />
-                        </Tabs.Tab>
-                        <Tabs.Tab id="/ajustes">
-                            {isDesktop ? 'Ajustes' : <AiFillSetting className='scale-200' />}
-                            <Tabs.Indicator className={`${theme === 'dark' ? 'bg-accent-soft-hover' : 'bg-accent/60'} backdrop-blur-xl border border-white/10`} />
-                        </Tabs.Tab>
-                    </Tabs.List>
-                </Tabs.ListContainer>
+                <div
+                    ref={dragContainerRef}
+                    onPointerDownCapture={handlePointerDown}
+                    onPointerMoveCapture={handlePointerMove}
+                    onPointerUpCapture={handlePointerUp}
+                    onPointerCancel={handlePointerUp}
+                    className='w-full touch-none'
+                >
+                    <Tabs.ListContainer className='w-full'>
+                        <Tabs.List
+                            className='w-full rounded-4xl backdrop-blur-xl bg-accent-foreground/10 border border-white/10 lg:bg-background/80 lg:rounded-2xl'
+                            aria-label="Navbar"
+                        >
+                            <Tabs.Tab id="/home">
+                                {isDesktop ? 'Home' : <GoHomeFill className='scale-200' />}
+                                <Tabs.Indicator className={`${theme === 'dark' ? 'bg-accent-soft-hover' : 'bg-accent/60'} backdrop-blur-xl border border-white/10`} />
+                            </Tabs.Tab>
+                            <Tabs.Tab id="/calendario">
+                                {isDesktop ? 'Calendario' : <BiCalendar className='scale-200' />}
+                                <Tabs.Indicator className={`${theme === 'dark' ? 'bg-accent-soft-hover' : 'bg-accent/60'} backdrop-blur-xl border border-white/10`} />
+                            </Tabs.Tab>
+                            <Tabs.Tab id="/finanzas">
+                                {isDesktop ? 'Finanzas' : <FaDollarSign className='scale-200' />}
+                                <Tabs.Indicator className={`${theme === 'dark' ? 'bg-accent-soft-hover' : 'bg-accent/60'} backdrop-blur-xl border border-white/10`} />
+                            </Tabs.Tab>
+                            <Tabs.Tab id="/tareas">
+                                {isDesktop ? 'Tareas' : <TbListDetails className='scale-200' />}
+                                <Tabs.Indicator className={`${theme === 'dark' ? 'bg-accent-soft-hover' : 'bg-accent/60'} backdrop-blur-xl border border-white/10`} />
+                            </Tabs.Tab>
+                            <Tabs.Tab id="/ajustes">
+                                {isDesktop ? 'Ajustes' : <AiFillSetting className='scale-200' />}
+                                <Tabs.Indicator className={`${theme === 'dark' ? 'bg-accent-soft-hover' : 'bg-accent/60'} backdrop-blur-xl border border-white/10`} />
+                            </Tabs.Tab>
+                        </Tabs.List>
+                    </Tabs.ListContainer>
+                </div>
             </Tabs>
         </>
     )
