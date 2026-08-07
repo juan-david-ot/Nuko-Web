@@ -18,12 +18,11 @@ function HomePage() {
     const { core } = useCore()
     const { theme, toggleTheme } = useTheme()
 
-    const coreIdContext = Array.from(core)[0]
-
     const [coreInformation, setCoreInformation] = useState<Core>()
     const [inviteLink, setInviteLink] = useState()
     const [error, setError] = useState()
 
+    const coreIdContext = Array.from(core)[0]
 
     function createInvitation() {
         coreService

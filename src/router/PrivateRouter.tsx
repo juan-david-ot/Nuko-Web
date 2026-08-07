@@ -4,6 +4,7 @@ import Loading from '../components/Loading.tsx'
 
 function PrivateRouter() {
     const location = useLocation()
+
     const { user, isLoading } = useAuth()
 
     if (isLoading) {

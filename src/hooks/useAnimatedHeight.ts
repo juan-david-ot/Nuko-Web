@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 
 function useAnimatedHeight<T extends HTMLElement>() {
     const ref = useRef<T>(null)
+
     const [height, setHeight] = useState<number | 'auto'>('auto')
 
     useEffect(() => {

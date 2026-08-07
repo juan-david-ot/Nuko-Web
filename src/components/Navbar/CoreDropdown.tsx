@@ -17,10 +17,10 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
     const location = useLocation()
     const navigate = useNavigate()
 
+    const isDesktop = useMediaQuery('(min-width: 1024px)')
+
     const { theme } = useTheme()
     const { cores, core, setCore } = useCore()
-
-    const isDesktop = useMediaQuery('(min-width: 1024px)')
 
     return (
         <Dropdown isOpen={isOpen} onOpenChange={setIsOpen} className='transition-all'>

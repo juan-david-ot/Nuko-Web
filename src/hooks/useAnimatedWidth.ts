@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 
 function useAnimatedWidth<T extends HTMLElement>() {
     const ref = useRef<T>(null)
+
     const [width, setWidth] = useState<number | 'auto'>('auto')
 
     useEffect(() => {
