@@ -1,5 +1,5 @@
-import { Button } from '@heroui/react'
 import { useNavigate } from 'react-router'
+import { Button } from '@heroui/react'
 
 function LandingPage() {
     const navigate = useNavigate()

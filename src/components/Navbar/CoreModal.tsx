@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Button, FieldError, FieldGroup, Fieldset, Form, Input, Label, Modal, Spinner, Surface, TextField } from '@heroui/react'
 import { BiAtom } from 'react-icons/bi'
 import { GoCheck } from 'react-icons/go'
-import coreService from '../../services/core.service.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
+import coreService from '../../services/core.service.ts'
 
 type Props = {
     isOpen: boolean

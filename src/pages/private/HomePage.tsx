@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { Button, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayout, Popover, TextField, Virtualizer } from '@heroui/react'
-import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import { BiCopy } from 'react-icons/bi'
 import { FaLink } from 'react-icons/fa6'
+import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import type { Core, User } from '../../definitions/types.ts'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
+import { useCore } from '../../contexts/core/useCore.ts'
 import { useTheme } from '../../contexts/theme/useTheme.ts'
 import coreService from '../../services/core.service.ts'
-import { useCore } from '../../contexts/core/useCore.ts'
 
 function HomePage() {
     const { coreId: coreIdParam } = useParams()

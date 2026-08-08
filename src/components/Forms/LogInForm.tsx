@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, InputGroup, Label, Spinner, Surface, TextField } from '@heroui/react'
-import { GoCheck } from 'react-icons/go'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+import { GoCheck } from 'react-icons/go'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
 import authService from '../../services/auth.service.ts'
 
 function LogInForm() {
     const location = useLocation()
     const navigate = useNavigate()
+
     const { authUser } = useAuth()
 
     const [isLoading, setIsLoading] = useState(false)

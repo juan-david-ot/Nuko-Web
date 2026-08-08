@@ -1,27 +1,30 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { Tabs } from '@heroui/react'
-import { GoHomeFill } from 'react-icons/go'
-import { FaDollarSign } from 'react-icons/fa6'
-import { BiCalendar } from 'react-icons/bi'
 import { AiFillSetting } from 'react-icons/ai'
+import { BiCalendar } from 'react-icons/bi'
+import { FaDollarSign } from 'react-icons/fa6'
+import { GoHomeFill } from 'react-icons/go'
 import { TbListDetails } from 'react-icons/tb'
-import { useTheme } from '../../contexts/theme/useTheme.ts'
+import { TABS } from '../../definitions/consts.ts'
+import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
+import { useTheme } from '../../contexts/theme/useTheme.ts'
 import { useMediaQuery } from '../../hooks/index.ts'
 import CoreDropdown from './CoreDropdown.tsx'
 import CoreModal from './CoreModal.tsx'
 import { getActiveTab } from '../../utils/index.ts'
 
-const TAB_ORDER = ['/home', '/calendario', '/finanzas', '/tareas', '/ajustes']
+// const TAB_ORDER = ['/home', '/calendario', '/finanzas', '/tareas', '/ajustes']
 
 function Navbar() {
     const location = useLocation()
     const navigate = useNavigate()
     const { coreId: coreIdParam } = useParams()
 
-    const { theme } = useTheme()
+    const { authUser } = useAuth()
     const { core, setCore, cores, refreshCores } = useCore()
+    const { theme } = useTheme()
 
     // console.log('coreId', coreId)
     // console.log('core', Array.from(core)[0])
@@ -55,7 +58,7 @@ function Navbar() {
         for (let i = 0; i < tabEls.length; i++) {
             const rect = tabEls[i].getBoundingClientRect()
             if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-                return TAB_ORDER[i] ?? null
+                return TABS[i] ?? null
             }
         }
         return null
@@ -91,6 +94,7 @@ function Navbar() {
     }
 
     function commitNavigation(key: string) {
+        authUser()
         if (!coreIdContext) navigate(key)
         if (coreIdContext) navigate(`${key}/${coreIdContext}`)
     }

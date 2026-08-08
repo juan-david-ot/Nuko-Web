@@ -2,8 +2,9 @@ import { useLocation, useNavigate } from 'react-router'
 import { Button, Dropdown, Header, Label } from '@heroui/react'
 import { BiAtom } from 'react-icons/bi'
 import { IoCheckmarkCircle } from 'react-icons/io5'
-import { useTheme } from '../../contexts/theme/useTheme.ts'
+import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
+import { useTheme } from '../../contexts/theme/useTheme.ts'
 import { useMediaQuery } from '../../hooks/index.ts'
 import { getActiveTab } from '../../utils/index.ts'
 
@@ -17,10 +18,11 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const isDesktop = useMediaQuery('(min-width: 1024px)')
-
-    const { theme } = useTheme()
+    const { authUser } = useAuth()
     const { cores, core, setCore } = useCore()
+    const { theme } = useTheme()
+
+    const isDesktop = useMediaQuery('(min-width: 1024px)')
 
     return (
         <Dropdown isOpen={isOpen} onOpenChange={setIsOpen} className='transition-all'>
@@ -49,6 +51,7 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
                     selectedKeys={core}
                     selectionMode='single'
                     onSelectionChange={(key) => {
+                        authUser()
                         setCore(key)
                         const selected = Array.from(key)[0]
                         const baseRoute = getActiveTab(location.pathname)

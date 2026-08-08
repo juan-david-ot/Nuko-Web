@@ -5,7 +5,7 @@ function useCore() {
     const context = useContext(CoreContext)
 
     if (!context) {
-        throw new Error('useTheme must be used inside ThemeProviderWrapper')
+        throw new Error('useCore must be used inside CoreProviderWrapper')
     }
 
     return context

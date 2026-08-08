@@ -15,7 +15,7 @@ function PrivateLayout() {
             <div className='flex h-screen w-screen'>
                 <nav
                     style={{ width: navWidth }}
-                    className='flex flex-col items-start gap-3 rounded-4xl h-full m-0 p-3 bg-background-tertiary shrink-0'
+                    className='flex flex-col items-start gap-3 rounded-r-4xl h-full m-0 p-3 bg-background-tertiary shrink-0'
                 >
                     <Navbar />
                 </nav>

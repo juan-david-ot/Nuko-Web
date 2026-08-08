@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, InputGroup, Label, Spinner, Surface, TextField } from '@heroui/react'
-import { GoCheck } from 'react-icons/go'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+import { GoCheck } from 'react-icons/go'
 import authService from '../../services/auth.service.ts'
 
 function SignUpForm() {

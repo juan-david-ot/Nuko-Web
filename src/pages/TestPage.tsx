@@ -9,6 +9,7 @@ import viteLogo from '/vite.svg'
 
 function TestPage() {
     const navigate = useNavigate()
+
     const { logOut } = useAuth()
     const { theme, toggleTheme } = useTheme()
 
