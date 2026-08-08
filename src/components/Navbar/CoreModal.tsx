@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, Label, Modal, Spinner, Surface, TextField } from '@heroui/react'
+import { Button, FieldError, FieldGroup, Fieldset, Form, Input, Label, Modal, Spinner, Surface, TextField } from '@heroui/react'
 import { BiAtom } from 'react-icons/bi'
 import { GoCheck } from 'react-icons/go'
 import coreService from '../../services/core.service.ts'
@@ -69,7 +69,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                                                     <Input placeholder="Nombre de tu nuevo Núcleo" />
                                                     <FieldError>Este campo es obligatorio</FieldError>
                                                 </TextField>
-                                                <ErrorMessage>{error && error}</ErrorMessage>
+                                                <FieldError>{error && error}</FieldError>
                                             </FieldGroup>
                                             <Fieldset.Actions className='flex-row justify-end'>
                                                 <Button type="submit">
