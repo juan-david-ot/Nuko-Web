@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
-import { Button, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayout, Popover, TextField, Virtualizer } from '@heroui/react'
+import { Button, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayout, Popover, Tabs, TextField, Typography, Virtualizer } from '@heroui/react'
 import { BiCopy } from 'react-icons/bi'
 import { FaLink } from 'react-icons/fa6'
 import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
@@ -9,6 +9,7 @@ import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
 import { useTheme } from '../../contexts/theme/useTheme.ts'
 import coreService from '../../services/core.service.ts'
+import { capitalize } from '../../utils/index.ts'
 
 function HomePage() {
     const { coreId: coreIdParam } = useParams()
@@ -60,8 +61,40 @@ function HomePage() {
     }, [coreIdContext || coreIdParam])
 
     return (
-        <article className='flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>
-            <h1 className='text-7xl font-bold tracking-tight'>
+        <article className='pt-2 flex flex-col justify-center items-center text-center'>
+            <Tabs className="w-full flex flex-col items-center lg:w-11/12 lg:flex-row lg:flex-wrap lg:justify-between" variant="secondary">
+                <div className='w-11/12 flex flex-col justify-start items-start text-start lg:w-1/3'>
+                    <Typography color='muted' type='h6' className=''>Buenos días</Typography>
+                    <Typography type='h5' className=''>{capitalize(String(user?.username))}</Typography>
+                </div>
+                <Tabs.ListContainer className='w-full lg:w-1/3'>
+                    <Tabs.List aria-label="Options">
+                        <Tabs.Tab id="resumen">
+                            Resumen
+                            <Tabs.Indicator />
+                        </Tabs.Tab>
+                        <Tabs.Tab id="nucleo">
+                            Nucleo
+                            <Tabs.Indicator />
+                        </Tabs.Tab>
+                        <Tabs.Tab id="chat">
+                            Chat
+                            <Tabs.Indicator />
+                        </Tabs.Tab>
+                    </Tabs.List>
+                </Tabs.ListContainer>
+                <Tabs.Panel className="w-full h-96 pt-4" id="resumen">
+                    <p>Aqui va a ir un resumen del nucleo</p>
+                </Tabs.Panel>
+                <Tabs.Panel className="w-full pt-4" id="nucleo">
+                    <p>Aqui va a ir la configuracion del nucleo y la parte de psicologia</p>
+                </Tabs.Panel>
+                <Tabs.Panel className="w-full pt-4" id="chat">
+                    <p>Aqui va a ir el chat</p>
+                </Tabs.Panel>
+            </Tabs>
+
+            {/* <h1 className='text-7xl font-bold tracking-tight'>
                 {
                     `¡Hola! @${user?.username}. Bienvenid@`
                 }
@@ -145,7 +178,7 @@ function HomePage() {
                     </InputGroup>
                     <ErrorMessage>{error && 'No tienes ningun nucleo seleccionado o ha habido un error al crear la invitacion'}</ErrorMessage>
                 </TextField>
-            </section>
+            </section> */}
         </article>
     )
 }

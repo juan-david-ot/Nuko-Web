@@ -1,12 +1,7 @@
-function stringUtilFunction1(): void {
-    console.log('stringUtilFunction1')
-}
-
-function stringUtilFunction2(): void {
-    console.log('stringUtilFunction2')
+function capitalize(string: string): string {
+    return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 }
 
 export {
-    stringUtilFunction1,
-    stringUtilFunction2
+    capitalize
 }
