@@ -58,12 +58,12 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
                         navigate(`${baseRoute}/${selected}`)
                     }}
                 >
-                    <Dropdown.Section>
+                    <Header>Escoge un Núcleo</Header>
+                    <Dropdown.Section className='max-h-28 overflow-y-auto'>
                         {
                             cores.length > 0
                                 ?
                                 <>
-                                    <Header>Escoge un Núcleo</Header>
                                     {
                                         cores.map((core) => {
                                             return (

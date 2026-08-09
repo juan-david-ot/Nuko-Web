@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
-import { Button, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayout, Popover, Tabs, TextField, Typography, Virtualizer } from '@heroui/react'
-import { BiCopy } from 'react-icons/bi'
-import { FaLink } from 'react-icons/fa6'
-import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
+import { Button, Card, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayout, Popover, Tabs, TextField, Typography, Virtualizer } from '@heroui/react'
+import { BiCalendar, BiCopy } from 'react-icons/bi'
+import { FaDollarSign, FaLink } from 'react-icons/fa6'
+import { TbListDetails, TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import type { Core, User } from '../../definitions/types.ts'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
@@ -63,11 +63,11 @@ function HomePage() {
     return (
         <article className='pt-2 flex flex-col justify-center items-center text-center'>
             <Tabs className="w-full flex flex-col items-center lg:w-11/12 lg:flex-row lg:flex-wrap lg:justify-between" variant="secondary">
-                <div className='w-11/12 flex flex-col justify-start items-start text-start lg:w-1/3'>
+                <div className='w-11/12 flex flex-col justify-start items-start text-start lg:w-1/4'>
                     <Typography color='muted' type='h6' className=''>Buenos días</Typography>
                     <Typography type='h5' className=''>{capitalize(String(user?.username))}</Typography>
                 </div>
-                <Tabs.ListContainer className='w-full lg:w-1/3'>
+                <Tabs.ListContainer className='w-full lg:w-2/4'>
                     <Tabs.List aria-label="Options">
                         <Tabs.Tab id="resumen">
                             Resumen
@@ -83,8 +83,40 @@ function HomePage() {
                         </Tabs.Tab>
                     </Tabs.List>
                 </Tabs.ListContainer>
-                <Tabs.Panel className="w-full h-96 pt-4" id="resumen">
-                    <p>Aqui va a ir un resumen del nucleo</p>
+                <Tabs.Panel className="w-full pt-4 flex flex-col justify-center items-center gap-2" id="resumen">
+                    <Card className="w-11/12 md:w-full" variant="default">
+                        <Card.Header>
+                            <Card.Title className='flex items-center gap-3'><BiCalendar className='scale-150' /><Typography>Próximos Eventos</Typography></Card.Title>
+                        </Card.Header>
+                        <Card.Content className='md:flex md:flex-row md:gap-10'>
+                            <Typography>Cumpleaños Mama</Typography>
+                            <Typography color='muted'>Cena con Sara</Typography>
+                            <Typography color='muted'>Cine en Familia</Typography>
+                            <Typography color='muted'>Veterinario</Typography>
+                        </Card.Content>
+                    </Card>
+                    <div className='w-full flex flex-col justify-center items-center gap-2 md:flex-row md:items-stretch'>
+                        <Card className="w-11/12 md:w-full" variant="default">
+                            <Card.Header>
+                                <Card.Title className='flex items-center gap-3'><TbListDetails className='scale-150' /><Typography>Tareas Pendientes</Typography></Card.Title>
+                            </Card.Header>
+                            <Card.Content className='md:flex md:flex-row md:gap-10'>
+                                <Typography>Comprar Fruta</Typography>
+                                <Typography color='muted'>Llamar al banco</Typography>
+                                <Typography color='muted'>Ordenar el trastero</Typography>
+                            </Card.Content>
+                        </Card>
+                        <Card className="w-11/12 md:w-full" variant="default">
+                            <Card.Header>
+                                <Card.Title className='flex items-center gap-3'><FaDollarSign className='scale-150' /><Typography>Últimos Gastos</Typography></Card.Title>
+                            </Card.Header>
+                            <Card.Content className='md:flex md:flex-row md:gap-10'>
+                                <Typography>Netflix: 12€</Typography>
+                                <Typography color='muted'>Compra: 70€</Typography>
+                                <Typography color='muted'>Cena Familiar: 100€</Typography>
+                            </Card.Content>
+                        </Card>
+                    </div>
                 </Tabs.Panel>
                 <Tabs.Panel className="w-full pt-4" id="nucleo">
                     <p>Aqui va a ir la configuracion del nucleo y la parte de psicologia</p>
