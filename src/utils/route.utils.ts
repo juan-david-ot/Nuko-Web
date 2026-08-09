@@ -1,4 +1,4 @@
-import { TABS } from '../definitions/consts'
+import { NAV_TABS } from '../definitions/consts'
 
 function getActiveTab(pathname: string) {
     // if (pathname.startsWith('/home')) return '/home'
@@ -8,7 +8,7 @@ function getActiveTab(pathname: string) {
     // if (pathname.startsWith('/ajustes')) return '/ajustes'
 
     // return pathname
-    return TABS.find(tab => pathname.startsWith(tab)) ?? pathname
+    return NAV_TABS.find(tab => pathname.startsWith(tab)) ?? pathname
 }
 
 export {

@@ -6,7 +6,7 @@ import { BiCalendar } from 'react-icons/bi'
 import { FaDollarSign } from 'react-icons/fa6'
 import { GoHomeFill } from 'react-icons/go'
 import { TbListDetails } from 'react-icons/tb'
-import { TABS } from '../../definitions/consts.ts'
+import { NAV_TABS } from '../../definitions/consts.ts'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
 import { useTheme } from '../../contexts/theme/useTheme.ts'
@@ -58,7 +58,7 @@ function Navbar() {
         for (let i = 0; i < tabEls.length; i++) {
             const rect = tabEls[i].getBoundingClientRect()
             if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-                return TABS[i] ?? null
+                return NAV_TABS[i] ?? null
             }
         }
         return null

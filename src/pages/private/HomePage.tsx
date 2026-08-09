@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { Button, Card, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayout, Popover, Tabs, TextField, Typography, Virtualizer } from '@heroui/react'
 import { BiCalendar, BiCopy } from 'react-icons/bi'
 import { FaDollarSign, FaLink } from 'react-icons/fa6'
 import { TbListDetails, TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
 import type { Core, User } from '../../definitions/types.ts'
+import { HOME_TABS } from '../../definitions/consts.ts'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
 import { useTheme } from '../../contexts/theme/useTheme.ts'
@@ -19,11 +20,45 @@ function HomePage() {
     const { core } = useCore()
     const { theme, toggleTheme } = useTheme()
 
+    const dragContainerRef = useRef<HTMLDivElement>(null)
+    const startKeyRef = useRef<string | null>(null)
+
+    const [selectedKey, setSelectedKey] = useState('resumen')
+    const [isDragging, setIsDragging] = useState(false)
+    const [dragKey, setDragKey] = useState<string | null>(null)
     const [coreInformation, setCoreInformation] = useState<Core>()
     const [inviteLink, setInviteLink] = useState()
     const [error, setError] = useState()
 
     const coreIdContext = Array.from(core)[0]
+    const visualKey = dragKey ?? selectedKey
+
+    function keyAtPoint(x: number, y: number) {
+        const container = dragContainerRef.current
+        if (!container) return null
+        const tabEls = container.querySelectorAll('[role="tab"]')
+        for (let i = 0; i < tabEls.length; i++) {
+            const rect = tabEls[i].getBoundingClientRect()
+            if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+                return HOME_TABS[i] ?? null
+            }
+        }
+        return null
+    }
+
+    function handlePointerMove(e: React.PointerEvent) {
+        if (e.buttons === 0) return
+        const key = keyAtPoint(e.clientX, e.clientY)
+        if (!key) return // fuera de cualquier tab: conserva el último válido
+
+        if (key !== startKeyRef.current) {
+            if (!isDragging) setIsDragging(true)
+            setDragKey(key)
+        }
+        else if (isDragging) {
+            setDragKey(key)
+        }
+    }
 
     function createInvitation() {
         coreService
@@ -62,12 +97,12 @@ function HomePage() {
 
     return (
         <article className='pt-2 flex flex-col justify-center items-center text-center'>
-            <Tabs className="w-full flex flex-col items-center lg:w-11/12 lg:flex-row lg:flex-wrap lg:justify-between" variant="secondary">
+            <Tabs className="w-full flex flex-col items-center lg:w-11/12 lg:flex-row lg:flex-wrap lg:justify-between" variant="secondary" selectedKey={visualKey} onSelectionChange={(key) => setSelectedKey(key as string)}>
                 <div className='w-11/12 flex flex-col justify-start items-start text-start lg:w-1/4'>
                     <Typography color='muted' type='h6' className=''>Buenos días</Typography>
                     <Typography type='h5' className=''>{capitalize(String(user?.username))}</Typography>
                 </div>
-                <Tabs.ListContainer className='w-full lg:w-2/4'>
+                <Tabs.ListContainer className='w-full lg:w-2/4' ref={dragContainerRef} onPointerMoveCapture={handlePointerMove}>
                     <Tabs.List aria-label="Options">
                         <Tabs.Tab id="resumen">
                             Resumen

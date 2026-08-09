@@ -9,7 +9,7 @@ function App() {
     const { theme } = useTheme()
 
     return (
-        <main className='m-0 h-screen w-screen overflow-hidden flex flex-col-reverse justify-between items-center lg:flex-row lg:justify-start lg:items-start bg-background text-foreground'>
+        <main className='m-0 h-svh w-screen overflow-hidden flex flex-col-reverse justify-between items-center lg:flex-row lg:justify-start lg:items-start bg-background text-foreground'>
             {
                 user
                     ?
