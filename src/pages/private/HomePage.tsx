@@ -165,7 +165,7 @@ function HomePage() {
                             <Typography>No hay ningun núcleo activo</Typography>
                     }
                 </Tabs.Panel>
-                <Tabs.Panel className="w-full pt-4 flex flex-col justify-center items-center gap-2 lg:flex-row lg:justify-around lg:items-start" id="nucleo">
+                <Tabs.Panel className="w-full pt-4 flex flex-col justify-center items-center gap-2 md:flex-row md:justify-around md:items-start" id="nucleo">
                     {
                         coreInformation
                             ?
