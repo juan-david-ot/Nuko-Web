@@ -132,10 +132,10 @@ function HomePage() {
                                         <Card.Title className='flex items-center gap-3'><BiCalendar className='scale-150' /><Typography>Próximos Eventos</Typography></Card.Title>
                                     </Card.Header>
                                     <Card.Content className='md:flex md:flex-row md:gap-10'>
-                                        <Typography>Cumpleaños Mama</Typography>
-                                        <Typography color='muted'>Cena con Sara</Typography>
-                                        <Typography color='muted'>Cine en Familia</Typography>
-                                        <Typography color='muted'>Veterinario</Typography>
+                                        <Typography>Reunion con Olivas</Typography>
+                                        <Typography color='muted'>Reunion para conspirar contra PayCargo</Typography>
+                                        <Typography color='muted'>Lectura del Manifiesto Comunista</Typography>
+                                        <Typography color='muted'>Cervecitas</Typography>
                                     </Card.Content>
                                 </Card>
                                 <div className='w-full flex flex-col justify-center items-center gap-2 md:flex-row md:items-stretch'>
@@ -144,9 +144,9 @@ function HomePage() {
                                             <Card.Title className='flex items-center gap-3'><TbListDetails className='scale-150' /><Typography>Tareas Pendientes</Typography></Card.Title>
                                         </Card.Header>
                                         <Card.Content className='md:flex md:flex-row md:gap-10'>
-                                            <Typography>Comprar Fruta</Typography>
-                                            <Typography color='muted'>Llamar al banco</Typography>
-                                            <Typography color='muted'>Ordenar el trastero</Typography>
+                                            <Typography>Comprar Monster</Typography>
+                                            <Typography color='muted'>Comprar el Manifiesto Comunista</Typography>
+                                            <Typography color='muted'>Quemar PayCargo</Typography>
                                         </Card.Content>
                                     </Card>
                                     <Card className="w-11/12 md:w-full" variant="default">
@@ -154,9 +154,9 @@ function HomePage() {
                                             <Card.Title className='flex items-center gap-3'><FaDollarSign className='scale-150' /><Typography>Últimos Gastos</Typography></Card.Title>
                                         </Card.Header>
                                         <Card.Content className='md:flex md:flex-row md:gap-10'>
-                                            <Typography>Netflix: 12€</Typography>
-                                            <Typography color='muted'>Compra: 70€</Typography>
-                                            <Typography color='muted'>Cena Familiar: 100€</Typography>
+                                            <Typography>Monster: 20€</Typography>
+                                            <Typography color='muted'>Helado: 10€</Typography>
+                                            <Typography color='muted'>Mojitos: 25€</Typography>
                                         </Card.Content>
                                     </Card>
                                 </div>
