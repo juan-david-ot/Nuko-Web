@@ -14,7 +14,7 @@
         "@heroui/styles": "3.2.4",
         "@tailwindcss/vite": "4.3.3",
         "axios": "1.19.0",
-        "dayjs": "1.11.21",
+        "dayjs": "1.11.23",
         "motion": "13.1.0",
         "react": "19.2.8",
         "react-dom": "19.2.8",
