@@ -65,16 +65,14 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
                                 ?
                                 <>
                                     {
-                                        cores.map((core) => {
-                                            return (
-                                                <Dropdown.Item key={core.id} id={core.id} textValue={core.name}>
-                                                    <Dropdown.ItemIndicator>
-                                                        {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
-                                                    </Dropdown.ItemIndicator>
-                                                    <Label>{core.name}</Label>
-                                                </Dropdown.Item>
-                                            )
-                                        })
+                                        cores.map((core) => (
+                                            <Dropdown.Item key={core.id} id={core.id} textValue={core.name}>
+                                                <Dropdown.ItemIndicator>
+                                                    {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
+                                                </Dropdown.ItemIndicator>
+                                                <Label>{core.name}</Label>
+                                            </Dropdown.Item>
+                                        ))
                                     }
                                 </>
                                 :

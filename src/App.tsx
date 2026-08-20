@@ -1,6 +1,7 @@
 import AppRouter from './router/AppRouter.tsx'
 import { useAuth } from './contexts/auth/useAuth.ts'
 import { useTheme } from './contexts/theme/useTheme.ts'
+import { capitalize } from './utils/string.utils.ts'
 import nukoLight from './assets/nuko-light-small.png'
 import nukoDark from './assets/nuko-dark-small.png'
 
@@ -13,7 +14,7 @@ function App() {
             {
                 user
                     ?
-                    <title>{`Nuko: ${user.username}`}</title>
+                    <title>{`Nuko: ${capitalize(user.username)}`}</title>
                     :
                     <title>Nuko</title>
             }
