@@ -1,37 +1,16 @@
-import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router'
-import { Button, ErrorMessage, InputGroup, Label, Popover, TextField } from '@heroui/react'
-import { BiCopy } from 'react-icons/bi'
-import { FaLink } from 'react-icons/fa6'
-import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
+import { useNavigate } from 'react-router'
+import { Accordion, Avatar, Button, Description, Label, Surface, Switch, Typography } from '@heroui/react'
+import { FaCaretDown } from 'react-icons/fa6'
+import { TbMoon, TbSunLow } from 'react-icons/tb'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useTheme } from '../../contexts/theme/useTheme.ts'
-import coreService from '../../services/core.service.ts'
+import { capitalize, getCapitals } from '../../utils/index.ts'
 
 function SettingsPage() {
-    const { coreId } = useParams()
     const navigate = useNavigate()
 
-    const { logOut } = useAuth()
+    const { user, logOut } = useAuth()
     const { theme, toggleTheme } = useTheme()
-
-    const [inviteLink, setInviteLink] = useState()
-    const [error, setError] = useState()
-
-    function createInvitation() {
-        coreService
-            .createInvitationToCore(String(coreId))
-            .then(({ data }) => {
-                setInviteLink(data.inviteLink)
-                setError(undefined)
-            })
-            .catch((error) => setError(error.response.data.error))
-    }
-
-    function copyLink() {
-        if (!inviteLink) return
-        navigator.clipboard.writeText(inviteLink)
-    }
 
     function closeSession() {
         logOut()
@@ -39,8 +18,74 @@ function SettingsPage() {
     }
 
     return (
-        <article className='flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>
-            <h1 className="text-7xl font-bold tracking-tight">
+        <article className='pt-2 flex flex-col justify-center items-center text-center'>
+            <div className="w-11/12 flex flex-col items-center lg:w-11/12">
+                <Typography type='h5' className='w-full'>Ajustes</Typography>
+                <Surface className='w-full mt-5 flex flex-col rounded-3xl'>
+                    <Accordion className="w-full flex flex-row rounded-3xl" variant="surface">
+                        <Accordion.Item className="w-full" key={user?.id}>
+                            <Accordion.Heading>
+                                <Accordion.Trigger>
+                                    <Avatar className='m-2' color='default'>
+                                        <Avatar.Image
+                                            alt={user?.username}
+                                            src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/green.jpg"
+                                        />
+                                        <Avatar.Fallback>{getCapitals(String(user?.name))}</Avatar.Fallback>
+                                    </Avatar>
+                                    <div className="m-2 flex flex-col">
+                                        <Label>@{capitalize(String(user?.username))} - {user?.name}</Label>
+                                        <Description>{user?.email}</Description>
+                                    </div>
+                                    <Accordion.Indicator>
+                                        <FaCaretDown />
+                                    </Accordion.Indicator>
+                                </Accordion.Trigger>
+                            </Accordion.Heading>
+                            <Accordion.Panel>
+                                <Accordion.Body>
+                                    Aqui tiene que ir la configuracion del usuario, como cambiar el nombre, el correo, la contraseña, etc.
+                                </Accordion.Body>
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                    </Accordion>
+                    <Accordion className="w-full flex flex-row rounded-3xl" variant="surface">
+                        <Accordion.Item className="w-full" key={user?.id}>
+                            <Accordion.Heading>
+                                <Accordion.Trigger>
+                                    Cambiar Contraseña
+                                    <Accordion.Indicator>
+                                        <FaCaretDown />
+                                    </Accordion.Indicator>
+                                </Accordion.Trigger>
+                            </Accordion.Heading>
+                            <Accordion.Panel>
+                                <Accordion.Body>
+                                    Aqui tiene que ir el formulario para cambiar la contraseña, con los campos de contraseña actual, nueva contraseña y confirmar nueva contraseña.
+                                </Accordion.Body>
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                    </Accordion>
+                    <Switch className='w-full p-4' size="lg" isSelected={theme === 'dark'} onChange={toggleTheme}>
+                        <Switch.Content className='w-full justify-between'>
+                            Modo Oscuro
+                            <Switch.Control>
+                                <Switch.Thumb>
+                                    <Switch.Icon>{theme === 'dark' ? <TbMoon /> : <TbSunLow />}</Switch.Icon>
+                                </Switch.Thumb>
+                            </Switch.Control>
+                        </Switch.Content>
+                    </Switch>
+                    <Button
+                        className='w-full h-fit p-4 justify-start text-danger'
+                        variant='ghost'
+                        onClick={closeSession}
+                    >
+                        Cerrar sesion
+                    </Button>
+                </Surface>
+            </div>
+            {/* <h1 className="text-7xl font-bold tracking-tight">
                 Esta sera la SettingsPage
             </h1>
             <section className='flex gap-3.5'>
@@ -90,7 +135,7 @@ function SettingsPage() {
                     </InputGroup>
                     <ErrorMessage>{error && 'No tienes ningun nucleo seleccionado o ha habido un error al crear la invitacion'}</ErrorMessage>
                 </TextField>
-            </section>
+            </section> */}
         </article>
     )
 }

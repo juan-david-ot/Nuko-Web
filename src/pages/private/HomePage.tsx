@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 import { Avatar, Button, Card, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayout, Modal, Popover, Surface, Tabs, TextField, Typography, Virtualizer, type Selection } from '@heroui/react'
 import { BiCalendar, BiCopy } from 'react-icons/bi'
-import { FaDollarSign, FaLink, FaPlus, FaRegFaceLaughBeam, FaRegFaceMeh, FaRegFaceTired } from 'react-icons/fa6'
+import { FaDollarSign, FaPlus, FaRegFaceLaughBeam, FaRegFaceMeh, FaRegFaceTired } from 'react-icons/fa6'
 import { TbListDetails } from 'react-icons/tb'
 import type { Core, User } from '../../definitions/types.ts'
 import { HOME_TABS } from '../../definitions/consts.ts'
@@ -132,10 +132,10 @@ function HomePage() {
                                         <Card.Title className='flex items-center gap-3'><BiCalendar className='scale-150' /><Typography>Próximos Eventos</Typography></Card.Title>
                                     </Card.Header>
                                     <Card.Content className='md:flex md:flex-row md:gap-10'>
-                                        <Typography>Reunion con Olivas</Typography>
-                                        <Typography color='muted'>Reunion para conspirar contra PayCargo</Typography>
-                                        <Typography color='muted'>Lectura del Manifiesto Comunista</Typography>
-                                        <Typography color='muted'>Cervecitas</Typography>
+                                        <Typography>Cumpleaños Mama</Typography>
+                                        <Typography color='muted'>Cena con Sara</Typography>
+                                        <Typography color='muted'>Cine en Familia</Typography>
+                                        <Typography color='muted'>Veterinario</Typography>
                                     </Card.Content>
                                 </Card>
                                 <div className='w-full flex flex-col justify-center items-center gap-2 md:flex-row md:items-stretch'>
@@ -144,9 +144,9 @@ function HomePage() {
                                             <Card.Title className='flex items-center gap-3'><TbListDetails className='scale-150' /><Typography>Tareas Pendientes</Typography></Card.Title>
                                         </Card.Header>
                                         <Card.Content className='md:flex md:flex-row md:gap-10'>
-                                            <Typography>Comprar Monster</Typography>
-                                            <Typography color='muted'>Comprar el Manifiesto Comunista</Typography>
-                                            <Typography color='muted'>Quemar PayCargo</Typography>
+                                            <Typography>Comprar Fruta</Typography>
+                                            <Typography color='muted'>Llamar al banco</Typography>
+                                            <Typography color='muted'>Ordenar el trastero</Typography>
                                         </Card.Content>
                                     </Card>
                                     <Card className="w-11/12 md:w-full" variant="default">
@@ -154,15 +154,15 @@ function HomePage() {
                                             <Card.Title className='flex items-center gap-3'><FaDollarSign className='scale-150' /><Typography>Últimos Gastos</Typography></Card.Title>
                                         </Card.Header>
                                         <Card.Content className='md:flex md:flex-row md:gap-10'>
-                                            <Typography>Monster: 20€</Typography>
+                                            <Typography>Netflix: 12€</Typography>
                                             <Typography color='muted'>Helado: 10€</Typography>
-                                            <Typography color='muted'>Mojitos: 25€</Typography>
+                                            <Typography color='muted'>Cena Familiar: 100€</Typography>
                                         </Card.Content>
                                     </Card>
                                 </div>
                             </>
                             :
-                            <Typography>No hay ningun núcleo activo</Typography>
+                            <Typography>No hay ningun núcleo activo, selecciona o crea uno</Typography>
                     }
                 </Tabs.Panel>
                 <Tabs.Panel className="w-full pt-4 flex flex-col justify-center items-center gap-2 md:flex-row md:justify-around md:items-start" id="nucleo">
@@ -176,16 +176,11 @@ function HomePage() {
                                             <Modal.Container placement='center' size='xs'>
                                                 <Modal.Dialog className="sm:max-w-md">
                                                     <Modal.Header>
-                                                        <Modal.Heading>¡Crea una invitacion y compartela!</Modal.Heading>
+                                                        <Modal.Heading>¡Comparte la invitacion!</Modal.Heading>
                                                     </Modal.Header>
                                                     <Modal.Body className="p-6">
                                                         <TextField className="w-full" defaultValue='invitacion' value={inviteLink} name="website">
                                                             <InputGroup className='bg-background-secondary'>
-                                                                <InputGroup.Prefix>
-                                                                    <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" onClick={createInvitation}>
-                                                                        <FaLink className="size-6" />
-                                                                    </Button>
-                                                                </InputGroup.Prefix>
                                                                 <InputGroup.Input className="w-full" disabled />
                                                                 <InputGroup.Suffix className="pr-0">
                                                                     <Popover>
@@ -246,7 +241,10 @@ function HomePage() {
                                         </Virtualizer>
                                         <Button
                                             className='w-11/12 my-2'
-                                            onClick={() => setIsModalOpen(true)}
+                                            onClick={() => {
+                                                setIsModalOpen(true)
+                                                createInvitation()
+                                            }}
                                         >
                                             <FaPlus className='scale-90' /> Invitar Miembro
                                         </Button>
@@ -269,7 +267,7 @@ function HomePage() {
                                 </section>
                             </>
                             :
-                            <Typography>No hay ningun núcleo activo</Typography>
+                            <Typography>No hay ningun núcleo activo, selecciona o crea uno</Typography>
                     }
 
                 </Tabs.Panel>
@@ -279,7 +277,7 @@ function HomePage() {
                             ?
                             <Typography>Aqui va a ir el chat</Typography>
                             :
-                            <Typography>No hay ningun núcleo activo</Typography>
+                            <Typography>No hay ningun núcleo activo, selecciona o crea uno</Typography>
                     }
                 </Tabs.Panel>
             </Tabs>
