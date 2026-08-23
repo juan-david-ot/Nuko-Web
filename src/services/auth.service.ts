@@ -13,6 +13,10 @@ async function forgotPassword(email: string) {
     return server.post('/auth/forgotPassword', { email })
 }
 
+async function resetPassword(token: string, newPassword: string, confirmNewPassword: string) {
+    return server.post('/auth/resetPassword', { token, newPassword, confirmNewPassword })
+}
+
 async function changePassword(password: string, newPassword: string, confirmNewPassword: string) {
     return server.post('/auth/changePassword', { password, newPassword, confirmNewPassword })
 }
@@ -25,6 +29,7 @@ export default {
     signUp,
     logIn,
     forgotPassword,
+    resetPassword,
     changePassword,
     verify
 }

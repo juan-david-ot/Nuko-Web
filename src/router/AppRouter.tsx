@@ -7,6 +7,7 @@ const PrivateLayout = lazy(() => import('../layout/PrivateLayout.tsx'))
 const LandingPage = lazy(() => import('../pages/public/LandingPage.tsx'))
 const AuthPage = lazy(() => import('../pages/public/AuthPage.tsx'))
 const ForgotPasswordPage = lazy(() => import('../pages/public/ForgotPasswordPage.tsx'))
+const ResetPasswordPage = lazy(() => import('../pages/public/ResetPasswordPage.tsx'))
 const InvitePage = lazy(() => import('../pages/private/InvitePage.tsx'))
 const HomePage = lazy(() => import('../pages/private/HomePage.tsx'))
 const TasksPage = lazy(() => import('../pages/private/TasksPage.tsx'))
@@ -24,7 +25,7 @@ function AppRouter() {
                 <Route element={<GuestRouter />}>
                     <Route path='/auth/:mode' element={<AuthPage />} />
                     <Route path='/recuperar-contraseña' element={<ForgotPasswordPage />} />
-                    <Route path='/recuperar-contraseña/:token' element={<LandingPage />} />
+                    <Route path='/recuperar-contraseña/:token' element={<ResetPasswordPage />} />
                 </Route>
             </Route>
             <Route element={<PrivateRouter />}>
