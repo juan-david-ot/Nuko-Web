@@ -30,8 +30,8 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
 
         coreService
             .createCore(data)
-            .then(async ({ data }) => {
-                return getCores()
+            .then(({ data }) => {
+                getCores()
                     .then(() => {
                         setIsOpen(false)
                         setCore(new Set([data.newCore.id]))
@@ -60,13 +60,13 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                                             <FieldGroup>
                                                 <TextField
                                                     variant='secondary'
-                                                    className="w-full"
+                                                    fullWidth
                                                     isRequired
                                                     name="name"
                                                     type="text"
                                                 >
                                                     <Label>Nombre</Label>
-                                                    <Input placeholder="Nombre de tu nuevo Núcleo" />
+                                                    <Input placeholder="Nombre del nuevo Núcleo" />
                                                     <FieldError>Este campo es obligatorio</FieldError>
                                                 </TextField>
                                                 <FieldError>{error && error}</FieldError>
@@ -80,12 +80,12 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                                                             :
                                                             <>
                                                                 <GoCheck />
-                                                                Submit
+                                                                Crear
                                                             </>
                                                     }
                                                 </Button>
                                                 <Button slot='close' variant="tertiary">
-                                                    Cancel
+                                                    Cancelar
                                                 </Button>
                                             </Fieldset.Actions>
                                         </Fieldset>
