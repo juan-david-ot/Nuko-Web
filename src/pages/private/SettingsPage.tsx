@@ -48,7 +48,8 @@ function SettingsPage() {
 
         authService
             .changePassword(password, newPassword, confirmNewPassword)
-            .then(() => {
+            .then(({ data }) => {
+                localStorage.setItem('authToken', data.authToken)
                 setExpandedKeys(new Set([]))
                 setPassword('')
                 setNewPassword('')
