@@ -9,12 +9,17 @@ async function logIn(user: User) {
     return server.post('/auth/logIn', user)
 }
 
-async function verify(authToken: string) {
-    return server.get('/auth/verify', { headers: { Authorization: `Bearer ${authToken}` } })
+async function changePassword(password: string, newPassword: string, confirmNewPassword: string) {
+    return server.post('/auth/changePassword', { password, newPassword, confirmNewPassword })
+}
+
+async function verify() {
+    return server.get('/auth/verify')
 }
 
 export default {
     signUp,
     logIn,
+    changePassword,
     verify
 }

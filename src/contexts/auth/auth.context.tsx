@@ -13,7 +13,7 @@ function AuthProviderWrapper({ children }: { children: ReactNode }) {
 
         if (token) {
             authService
-                .verify(token)
+                .verify()
                 .then(({ data }) => setUser(data.authUser))
                 .catch(error => {
                     console.error(error)

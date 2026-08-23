@@ -25,7 +25,7 @@ function PrivateLayout() {
                     dragMomentum={false}
                     dragElastic={0}
                     onDrag={(_, info) => {
-                        setNavWidth((w) => Math.min(400, Math.max(120, w + info.delta.x)))
+                        setNavWidth((w) => Math.min(300, Math.max(120, w + info.delta.x)))
                     }}
                     className='w-1.5 cursor-col-resize shrink-0 touch-none  hover:bg-background-tertiary/75 active:bg-background-tertiary transition-colors mask-[linear-gradient(to_bottom,transparent_0%,black_9%,black_91%,transparent_100%)]'
                 />
