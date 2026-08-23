@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, InputGroup, Label, Spinner, Surface, TextField } from '@heroui/react'
+import { Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, Input, InputGroup, Label, Link, Spinner, Surface, TextField } from '@heroui/react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { GoCheck } from 'react-icons/go'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
@@ -106,6 +106,11 @@ function LogInForm() {
                                 </InputGroup.Suffix>
                             </InputGroup>
                             <FieldError>Este campo es obligatorio</FieldError>
+                            <div className='flex flex-row justify-end'>
+                                <Link href="/recuperar-contraseña" className='font-semibold text-xs text-muted'>
+                                    ¿Has olvidado tu contraseña?
+                                </Link>
+                            </div>
                         </TextField>
                         <ErrorMessage>{error && error}</ErrorMessage>
                     </FieldGroup>

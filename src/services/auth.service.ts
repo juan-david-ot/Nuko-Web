@@ -9,6 +9,10 @@ async function logIn(user: User) {
     return server.post('/auth/logIn', user)
 }
 
+async function forgotPassword(email: string) {
+    return server.post('/auth/forgotPassword', { email })
+}
+
 async function changePassword(password: string, newPassword: string, confirmNewPassword: string) {
     return server.post('/auth/changePassword', { password, newPassword, confirmNewPassword })
 }
@@ -20,6 +24,7 @@ async function verify() {
 export default {
     signUp,
     logIn,
+    forgotPassword,
     changePassword,
     verify
 }
