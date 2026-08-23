@@ -7,8 +7,8 @@ import { GoCheck } from 'react-icons/go'
 import { TbMoon, TbSunLow } from 'react-icons/tb'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useTheme } from '../../contexts/theme/useTheme.ts'
-import { capitalize, getCapitals } from '../../utils/index.ts'
 import authService from '../../services/auth.service.ts'
+import { capitalize, getCapitals } from '../../utils/index.ts'
 
 function SettingsPage() {
     const navigate = useNavigate()
