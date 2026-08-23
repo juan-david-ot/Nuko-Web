@@ -33,6 +33,8 @@ function Navbar() {
 
     const dragContainerRef = useRef<HTMLDivElement>(null)
     const startKeyRef = useRef<string | null>(null)
+    const startPosRef = useRef<{ x: number; y: number } | null>(null)
+    const pointerIdRef = useRef<number | null>(null)
 
     const [isDragging, setIsDragging] = useState(false)
     const [dragKey, setDragKey] = useState<string | null>(null)
@@ -40,13 +42,14 @@ function Navbar() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
+    const DRAG_THRESHOLD = 8
     const coreIdContext = Array.from(core)[0]
     const activeTab = getActiveTab(location.pathname)
     const visualKey = dragKey ?? activeTab
 
     // const isPrivateRoute = /^\/(home|tareas|finanzas|calendario|ajustes)/.test(location.pathname)
 
-    function getCores() {
+    async function getCores() {
         setIsLoading(true)
         return refreshCores().finally(() => setIsLoading(false))
     }
@@ -65,32 +68,49 @@ function Navbar() {
     }
 
     function handlePointerDown(e: React.PointerEvent) {
-        e.currentTarget.setPointerCapture(e.pointerId)
         startKeyRef.current = keyAtPoint(e.clientX, e.clientY)
+        startPosRef.current = { x: e.clientX, y: e.clientY }
+        pointerIdRef.current = e.pointerId
     }
 
     function handlePointerMove(e: React.PointerEvent) {
         if (e.buttons === 0) return
-        const key = keyAtPoint(e.clientX, e.clientY)
-        if (!key) return
+        if (!startPosRef.current) return
 
-        if (key !== startKeyRef.current) {
-            if (!isDragging) setIsDragging(true)
-            setDragKey(key)
+        const dx = e.clientX - startPosRef.current.x
+        const dy = e.clientY - startPosRef.current.y
+        const movedEnough = Math.hypot(dx, dy) > DRAG_THRESHOLD
+
+        if (!isDragging) {
+            if (!movedEnough) return
+            if (pointerIdRef.current != null) {
+                e.currentTarget.setPointerCapture(pointerIdRef.current)
+            }
+            setIsDragging(true)
         }
-        else if (isDragging) {
-            setDragKey(key)
-        }
+
+        const key = keyAtPoint(e.clientX, e.clientY)
+        if (key) setDragKey(key)
     }
 
-    function handlePointerUp() {
-        if (isDragging && dragKey && dragKey !== activeTab) {
-            commitNavigation(dragKey)
+    function handlePointerUp(e: React.PointerEvent) {
+        if (isDragging) {
+            if (dragKey && dragKey !== activeTab) {
+                commitNavigation(dragKey)
+            }
+            else {
+                setDragKey(null)
+            }
+            if (pointerIdRef.current != null && e.currentTarget.hasPointerCapture(pointerIdRef.current)) {
+                e.currentTarget.releasePointerCapture(pointerIdRef.current)
+            }
         }
         else {
             setDragKey(null)
         }
         setIsDragging(false)
+        startPosRef.current = null
+        pointerIdRef.current = null
     }
 
     function commitNavigation(key: string) {
