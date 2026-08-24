@@ -46,6 +46,11 @@ function HomePage() {
         return null
     }
 
+    function handlePointerDown(e: React.PointerEvent) {
+        const key = keyAtPoint(e.clientX, e.clientY)
+        startKeyRef.current = key
+    }
+
     function handlePointerMove(e: React.PointerEvent) {
         if (e.buttons === 0) return
         const key = keyAtPoint(e.clientX, e.clientY)
@@ -58,6 +63,15 @@ function HomePage() {
         else if (isDragging) {
             setDragKey(key)
         }
+    }
+
+    function handlePointerUp() {
+        if (isDragging && dragKey) {
+            setSelectedKey(dragKey)
+        }
+        setIsDragging(false)
+        setDragKey(null)
+        startKeyRef.current = null
     }
 
     function createInvitation() {
@@ -105,7 +119,9 @@ function HomePage() {
                 <Tabs.ListContainer
                     className='w-full sticky top-0 z-10 bg-background lg:w-2/4'
                     ref={dragContainerRef}
+                    onPointerDownCapture={handlePointerDown}
                     onPointerMoveCapture={handlePointerMove}
+                    onPointerUp={handlePointerUp}
                 >
                     <Tabs.List aria-label="Options">
                         <Tabs.Tab id="resumen">
@@ -217,7 +233,7 @@ function HomePage() {
                                         <Typography className='ml-5 my-2'>Miembros</Typography>
                                         <Virtualizer layout={ListLayout}>
                                             <ListBox
-                                                className='max-h-52 overflow-y-auto scrollbar-thin'
+                                                className='max-h-52 overflow-y-auto scrollbar-gutter-stable scrollbar-thin'
                                                 aria-label="Users"
                                                 items={coreInformation.users}
                                             >
