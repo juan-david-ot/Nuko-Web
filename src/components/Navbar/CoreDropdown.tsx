@@ -34,7 +34,7 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
             >
                 {isDesktop ? 'Núcleos' : <BiAtom className='scale-125' />}
             </Button>
-            <Dropdown.Popover className='transition-all'>
+            <Dropdown.Popover className='h-52 min-h-52 overflow-y-hidden transition-all'>
                 <Dropdown.Menu>
                     <Dropdown.Section>
                         <Dropdown.Item
@@ -59,7 +59,7 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
                     }}
                 >
                     <Header>Escoge un Núcleo</Header>
-                    <Dropdown.Section className='max-h-28 overflow-y-auto'>
+                    <Dropdown.Section className='max-h-28 overflow-y-auto scrollbar-gutter-stable'>
                         {
                             cores.length > 0
                                 ?

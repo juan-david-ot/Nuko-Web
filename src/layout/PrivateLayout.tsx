@@ -29,7 +29,7 @@ function PrivateLayout() {
                     }}
                     className='w-1.5 cursor-col-resize shrink-0 touch-none  hover:bg-background-tertiary/75 active:bg-background-tertiary transition-colors mask-[linear-gradient(to_bottom,transparent_0%,black_9%,black_91%,transparent_100%)]'
                 />
-                <article className='pb-0 h-screen w-screen overflow-y-auto overflow-x-hidden m-0 flex-1'>
+                <article className='pb-0 h-screen w-screen overflow-y-auto overflow-x-hidden scrollbar-gutter-stable m-0 flex-1'>
                     <Outlet />
                 </article>
             </div>
@@ -39,7 +39,7 @@ function PrivateLayout() {
                     <Navbar />
                 </nav>
 
-                <article className='pb-16 h-svh w-screen overflow-y-auto overflow-x-hidden lg:pb-0 lg:m-0 lg:flex-6'>
+                <article className='pb-16 h-svh w-screen overflow-y-auto overflow-x-hidden scrollbar-gutter-stable lg:pb-0 lg:m-0 lg:flex-6'>
                     <Outlet />
                 </article>
 
