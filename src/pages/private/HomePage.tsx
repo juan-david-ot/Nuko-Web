@@ -103,7 +103,7 @@ function HomePage() {
                     <Typography type='h5' className=''>{capitalize(String(user?.username))}</Typography>
                 </div>
                 <Tabs.ListContainer
-                    className='w-full lg:w-2/4'
+                    className='w-full sticky top-0 z-10 bg-background lg:w-2/4'
                     ref={dragContainerRef}
                     onPointerMoveCapture={handlePointerMove}
                 >
