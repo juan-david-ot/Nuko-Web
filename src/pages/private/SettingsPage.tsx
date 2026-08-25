@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router'
 import { useState } from 'react'
-import { Accordion, Avatar, Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, InputGroup, Label, Spinner, Surface, Switch, TextField, Typography } from '@heroui/react'
+import { Accordion, Avatar, Button, Description, ErrorMessage, FieldError, FieldGroup, Fieldset, Form, InputGroup, Label, Separator, Spinner, Surface, Switch, TextField, Typography } from '@heroui/react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { FaCaretDown } from 'react-icons/fa6'
 import { GoCheck } from 'react-icons/go'
@@ -96,6 +96,7 @@ function SettingsPage() {
                             </Accordion.Panel>
                         </Accordion.Item>
                     </Accordion>
+                    <Separator variant="default" className='w-11/12 mx-auto' />
                     <Accordion className="w-full flex flex-row rounded-3xl" variant="surface" expandedKeys={expandedKeys} onExpandedChange={setExpandedKeys}>
                         <Accordion.Item className="w-full" key='changePassword'>
                             <Accordion.Heading>
@@ -214,6 +215,7 @@ function SettingsPage() {
                             </Accordion.Panel>
                         </Accordion.Item>
                     </Accordion>
+                    <Separator variant="default" className='w-11/12 mx-auto' />
                     <Switch className='w-full p-4' size="lg" isSelected={theme === 'dark'} onChange={toggleTheme}>
                         <Switch.Content className='w-full justify-between'>
                             Modo Oscuro
@@ -224,6 +226,7 @@ function SettingsPage() {
                             </Switch.Control>
                         </Switch.Content>
                     </Switch>
+                    <Separator variant="default" className='w-11/12 mx-auto' />
                     <Button
                         className='w-full h-fit p-4 justify-start text-danger'
                         variant='ghost'
