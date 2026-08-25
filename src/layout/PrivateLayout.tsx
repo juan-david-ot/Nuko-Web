@@ -27,8 +27,12 @@ function PrivateLayout() {
                     onDrag={(_, info) => {
                         setNavWidth((w) => Math.min(300, Math.max(120, w + info.delta.x)))
                     }}
-                    className='w-1.5 cursor-col-resize shrink-0 touch-none  hover:bg-background-tertiary/75 active:bg-background-tertiary transition-colors mask-[linear-gradient(to_bottom,transparent_0%,black_9%,black_91%,transparent_100%)]'
-                />
+                    className='relative w-2 cursor-col-resize shrink-0 touch-none group hover:bg-background-tertiary/75 active:bg-background-tertiary transition-colors mask-[linear-gradient(to_bottom,transparent_0%,black_30%,black_70%,transparent_100%)]'
+                >
+                    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-1 opacity-40 group-hover:opacity-100 transition-opacity'>
+                        <span className='w-1 h-5 rounded-full bg-current' />
+                    </div>
+                </motion.div>
                 <article className='pb-0 h-screen w-screen overflow-y-auto overflow-x-hidden scrollbar-gutter-stable m-0 flex-1'>
                     <Outlet />
                 </article>
