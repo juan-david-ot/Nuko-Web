@@ -233,12 +233,12 @@ function HomePage() {
                                         <Typography className='ml-5 my-2'>Miembros</Typography>
                                         <Virtualizer layout={ListLayout}>
                                             <ListBox
-                                                className='max-h-52 overflow-y-auto scrollbar-gutter-stable scrollbar-thin'
+                                                className='max-h-52 w-full px-0 overflow-y-auto scrollbar-gutter-stable scrollbar-thin'
                                                 aria-label="Users"
                                                 items={coreInformation.users}
                                             >
                                                 {(user: User) => (
-                                                    <ListBox.Item id={user.id} textValue={user.name}>
+                                                    <ListBox.Item id={user.id} textValue={user.name} className='w-11/12 mx-auto'>
                                                         <Avatar color='default'>
                                                             <Avatar.Image
                                                                 alt={user.username}
