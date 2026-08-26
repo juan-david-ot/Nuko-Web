@@ -8,6 +8,7 @@ export type User = {
     name?: string
     surname?: string
     createdAt?: Date
+    passwordChangedAt?: Date
 }
 
 export type AuthUser = {
