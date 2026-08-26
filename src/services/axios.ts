@@ -1,10 +1,10 @@
-import axios from 'axios'
+import { create } from 'axios'
 
-const server = axios.create({
+const axios = create({
     baseURL: `${import.meta.env.REACT_APP_API_URL}`
 })
 
-server.interceptors.request.use((config) => {
+axios.interceptors.request.use((config) => {
     const authToken = localStorage.getItem('authToken')
 
     if (authToken) {
@@ -15,5 +15,5 @@ server.interceptors.request.use((config) => {
 })
 
 export {
-    server
+    axios
 }

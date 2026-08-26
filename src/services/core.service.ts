@@ -1,32 +1,32 @@
 import type { Core } from '../definitions/types.ts'
-import { server } from './server.ts'
+import { axios } from './axios.ts'
 
 async function getUserCores() {
-    return server.get('/cores')
+    return axios.get('/cores')
 }
 
 async function getUserCoreById(coreId: string) {
-    return server.get(`/cores/${coreId}`)
+    return axios.get(`/cores/${coreId}`)
 }
 
 async function getUserCoreInformationById(coreId: string) {
-    return server.get(`/cores/${coreId}/information`)
+    return axios.get(`/cores/${coreId}/information`)
 }
 
 async function createCore(core: Core) {
-    return server.post('/cores', core)
+    return axios.post('/cores', core)
 }
 
 async function createInvitationToCore(coreId: string) {
-    return server.post(`/cores/${coreId}/invitation`)
+    return axios.post(`/cores/${coreId}/invitation`)
 }
 
 async function decodeInvitationToCore(token: string) {
-    return server.get(`/cores/invitation/${token}`)
+    return axios.get(`/cores/invitation/${token}`)
 }
 
 async function acceptInvitationToCore(token: string) {
-    return server.post(`/cores/invitation/${token}`)
+    return axios.post(`/cores/invitation/${token}`)
 }
 
 export default {
