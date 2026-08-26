@@ -223,7 +223,7 @@ function Navbar() {
                     onPointerCancel={handlePointerUp}
                     className='w-full touch-none'
                 >
-                    <Tabs.ListContainer className='w-full'>
+                    <Tabs.ListContainer className='w-full bg-transparent'>
                         <Tabs.List
                             className='w-full rounded-4xl backdrop-blur-xl bg-accent-foreground/10 border border-white/10 lg:bg-background/80 lg:rounded-2xl'
                             aria-label="Navbar"
