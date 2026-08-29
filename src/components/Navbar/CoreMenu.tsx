@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from 'react-router'
 import { Button, Dropdown, Header, Label } from '@heroui/react'
-import { BiAtom } from 'react-icons/bi'
-import { IoCheckmarkCircle } from 'react-icons/io5'
+import { IoCheckmarkCircle, IoLogoReact } from 'react-icons/io5'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
 import { useTheme } from '../../contexts/theme/useTheme.ts'
 import { useMediaQuery } from '../../hooks/index.ts'
 import { getActiveTab } from '../../utils/index.ts'
+import { PiPlusCircle } from 'react-icons/pi'
 
 type Props = {
     isOpen: boolean
@@ -14,7 +14,7 @@ type Props = {
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
+function CoreMenu({ isOpen, setIsOpen, setIsModalOpen }: Props) {
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -27,14 +27,14 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
     return (
         <Dropdown isOpen={isOpen} onOpenChange={setIsOpen} className='transition-all'>
             <Button
-                className={`${theme === 'dark' ? 'bg-background border-accent/70' : 'bg-accent'} scale-105 backdrop-blur-xl border hover:scale-105 lg:w-full lg:scale-100 transition-all`}
+                className={'bg-accent-foreground/10 scale-105 backdrop-blur-xl border border-foreground/30 hover:scale-105 lg:w-full lg:scale-100 transition-all'}
                 variant='tertiary'
                 size={isDesktop ? 'md' : 'lg'}
                 isIconOnly
             >
-                {isDesktop ? 'Núcleos' : <BiAtom className='scale-125' />}
+                {isDesktop ? 'Núcleos' : <IoLogoReact className='scale-150' />}
             </Button>
-            <Dropdown.Popover className='h-52 min-h-52 overflow-y-hidden transition-all'>
+            <Dropdown.Popover className='max-h-52 overflow-y-hidden transition-all'>
                 <Dropdown.Menu>
                     <Dropdown.Section>
                         <Dropdown.Item
@@ -43,7 +43,7 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
                             }}
                             className={`${theme === 'dark' ? 'bg-accent text-accent-foreground hover:bg-accent-hover' : 'bg-background border-2 border-accent hover:bg-background-secondary'} backdrop-blur-xl border lg:w-full lg:scale-100 transition-all`}
                         >
-                            Crear núcleo
+                            <PiPlusCircle className='scale-125' /> Crear núcleo
                         </Dropdown.Item>
                     </Dropdown.Section>
                 </Dropdown.Menu>
@@ -85,4 +85,4 @@ function CoreDropdown({ isOpen, setIsOpen, setIsModalOpen }: Props) {
     )
 }
 
-export default CoreDropdown
+export default CoreMenu

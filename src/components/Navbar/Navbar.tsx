@@ -11,9 +11,9 @@ import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
 import { useTheme } from '../../contexts/theme/useTheme.ts'
 import { useMediaQuery } from '../../hooks/index.ts'
-import CoreDropdown from './CoreDropdown.tsx'
-import CoreModal from './CoreModal.tsx'
 import { getActiveTab } from '../../utils/index.ts'
+import CoreMenu from './CoreMenu.tsx'
+import CoreModal from './CoreModal.tsx'
 
 // const TAB_ORDER = ['/home', '/calendario', '/finanzas', '/tareas', '/ajustes']
 
@@ -206,7 +206,7 @@ function Navbar() {
                 </Dropdown.Popover>
             </Dropdown> */}
             <div className='w-fit fixed bottom-20 right-0 z-50 flex flex-col items-end m-2 rounded-4xl lg:static lg:w-full lg:m-0 lg:items-start lg:bg-background-tertiary transition-all'>
-                <CoreDropdown isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} />
+                <CoreMenu isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} />
             </div>
             <CoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getCores} />
             <Tabs
