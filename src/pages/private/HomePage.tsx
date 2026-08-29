@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 import { Avatar, Button, Card, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayout, Modal, Popover, Skeleton, Surface, Tabs, TextField, Typography, Virtualizer, type Selection } from '@heroui/react'
 import { BiCalendar, BiCopy } from 'react-icons/bi'
-import { FaDollarSign, FaPlus, FaRegFaceLaughBeam, FaRegFaceMeh, FaRegFaceTired } from 'react-icons/fa6'
+import { FaDollarSign, FaPlus } from 'react-icons/fa6'
 import { TbListDetails } from 'react-icons/tb'
 import type { Core, User } from '../../definitions/types.ts'
 import { HOME_TABS } from '../../definitions/consts.ts'
@@ -10,6 +10,8 @@ import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
 import coreService from '../../services/core.service.ts'
 import { capitalize, getCapitals } from '../../utils/index.ts'
+import { BsSlashCircleFill } from 'react-icons/bs'
+import { IoCheckmarkCircle, IoCloseCircle } from 'react-icons/io5'
 
 function HomePage() {
     const { coreId: coreIdParam } = useParams()
@@ -150,8 +152,9 @@ function HomePage() {
                 onSelectionChange={(key) => setSelectedKey(key as string)}
             >
                 <div className='w-11/12 flex flex-col justify-start items-start text-start lg:w-1/4'>
-                    <Typography color='muted' type='h6' className=''>Buenos días</Typography>
-                    <Typography type='h5' className=''>{capitalize(String(user?.username))}</Typography>
+                    <Typography type='h5' className='w-full'>Home</Typography>
+                    {/* <Typography color='muted' type='h6' className=''>Buenos días</Typography>
+                    <Typography type='h5' className=''>{capitalize(String(user?.username))}</Typography> */}
                 </div>
                 <Tabs.ListContainer
                     className='w-full sticky top-0 z-10 bg-background lg:w-2/4'
@@ -299,9 +302,9 @@ function HomePage() {
                                         <Surface className="w-75 mt-5 rounded-3xl shadow-surface">
                                             <Typography className='ml-5 my-2'>¿Como te sientes hoy?</Typography>
                                             <div className='w-full p-1 flex flex-row justify-around gap-5'>
-                                                <Button variant='outline' className='w-full'><FaRegFaceLaughBeam /></Button>
-                                                <Button variant='outline' className='w-full'><FaRegFaceMeh /></Button>
-                                                <Button variant='outline' className='w-full'><FaRegFaceTired /></Button>
+                                                <Button variant='outline' className='w-full'><IoCheckmarkCircle className='scale-125' /></Button>
+                                                <Button variant='outline' className='w-full'><BsSlashCircleFill /></Button>
+                                                <Button variant='outline' className='w-full'><IoCloseCircle className='scale-125' /></Button>
                                             </div>
                                         </Surface>
                                         <Surface className="w-75 mt-5 rounded-3xl shadow-surface">
