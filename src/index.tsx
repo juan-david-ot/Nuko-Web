@@ -1,19 +1,19 @@
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
-import { AuthProviderWrapper } from './contexts/auth/auth.context.tsx'
-import { ThemeProviderWrapper } from './contexts/theme/theme.context.tsx'
-import { CoreProviderWrapper } from './contexts/core/core.context.tsx'
+import { AuthProvider } from './contexts/auth/auth.context.provider.tsx'
+import { ThemeProvider } from './contexts/theme/theme.context.provider.tsx'
+import { CoreProvider } from './contexts/core/core.context.provider.tsx'
 import App from './App.tsx'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(
-    <AuthProviderWrapper>
-        <ThemeProviderWrapper>
-            <CoreProviderWrapper>
+    <AuthProvider>
+        <ThemeProvider>
+            <CoreProvider>
                 <BrowserRouter>
                     <App />
                 </BrowserRouter>
-            </CoreProviderWrapper>
-        </ThemeProviderWrapper>
-    </AuthProviderWrapper>
+            </CoreProvider>
+        </ThemeProvider>
+    </AuthProvider>
 )

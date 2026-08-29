@@ -27,21 +27,21 @@ function CoreMenu({ isOpen, setIsOpen, setIsModalOpen }: Props) {
     return (
         <Dropdown isOpen={isOpen} onOpenChange={setIsOpen} className='transition-all'>
             <Button
-                className={'bg-accent-foreground/10 scale-105 backdrop-blur-xl border border-foreground/30 hover:scale-105 lg:w-full lg:scale-100 transition-all'}
+                className='bg-transparent scale-105 backdrop-blur-xs border border-foreground/10 hover:scale-105 lg:w-full lg:bg-accent/90 lg:border-accent/90 lg:text-accent-foreground lg:scale-100 transition-all'
                 variant='tertiary'
                 size={isDesktop ? 'md' : 'lg'}
                 isIconOnly
             >
-                {isDesktop ? 'Núcleos' : <IoLogoReact className='scale-150' />}
+                {isDesktop ? 'Núcleos' : <IoLogoReact className='scale-140 bg-transparent backdrop-blur-xl' />}
             </Button>
-            <Dropdown.Popover className='max-h-52 overflow-y-hidden transition-all'>
+            <Dropdown.Popover className='max-h-52 bg-transparent backdrop-blur overflow-y-hidden transition-all'>
                 <Dropdown.Menu>
                     <Dropdown.Section>
                         <Dropdown.Item
                             onAction={() => {
                                 setIsModalOpen(true)
                             }}
-                            className={`${theme === 'dark' ? 'bg-accent text-accent-foreground hover:bg-accent-hover' : 'bg-background border-2 border-accent hover:bg-background-secondary'} backdrop-blur-xl border lg:w-full lg:scale-100 transition-all`}
+                            className='hover:bg-muted/40 backdrop-blur-xl lg:w-full lg:scale-100 transition-all'
                         >
                             <PiPlusCircle className='scale-125' /> Crear núcleo
                         </Dropdown.Item>
@@ -66,9 +66,9 @@ function CoreMenu({ isOpen, setIsOpen, setIsModalOpen }: Props) {
                                 <>
                                     {
                                         cores.map((core) => (
-                                            <Dropdown.Item key={core.id} id={core.id} textValue={core.name}>
+                                            <Dropdown.Item key={core.id} id={core.id} textValue={core.name} className='hover:bg-muted/40'>
                                                 <Dropdown.ItemIndicator>
-                                                    {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-accent scale-150' /> : null)}
+                                                    {({ isSelected }) => (isSelected ? <IoCheckmarkCircle className='text-foreground scale-150' /> : null)}
                                                 </Dropdown.ItemIndicator>
                                                 <Label>{core.name}</Label>
                                             </Dropdown.Item>

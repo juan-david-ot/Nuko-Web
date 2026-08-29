@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { CoreContext } from './core.context.tsx'
+import { CoreContext } from './core.context.ts'
 
 function useCore() {
     const context = useContext(CoreContext)

@@ -1,9 +1,8 @@
-import { createContext, useEffect, useState, type ReactNode } from 'react'
-import type { Theme, ThemeContextType } from '../../definitions/types.ts'
+import { useEffect, useState, type ReactNode } from 'react'
+import type { Theme } from '../../definitions/types.ts'
+import { ThemeContext } from './theme.context.ts'
 
-const ThemeContext = createContext<ThemeContextType | null>(null)
-
-function ThemeProviderWrapper({ children }: { children: ReactNode }) {
+function ThemeProvider({ children }: { children: ReactNode }) {
     const [theme, setTheme] = useState<Theme>((localStorage.getItem('theme') as Theme) || 'dark')
 
     async function toggleTheme() {
@@ -17,13 +16,12 @@ function ThemeProviderWrapper({ children }: { children: ReactNode }) {
     }, [theme])
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext value={{ theme, toggleTheme }}>
             {children}
-        </ThemeContext.Provider>
+        </ThemeContext>
     )
 }
 
 export {
-    ThemeContext,
-    ThemeProviderWrapper
+    ThemeProvider
 }
