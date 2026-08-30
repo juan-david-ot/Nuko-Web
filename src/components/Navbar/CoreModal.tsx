@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, FieldError, FieldGroup, Fieldset, Form, Input, Label, Modal, Spinner, Surface, TextField } from '@heroui/react'
-import { BiAtom } from 'react-icons/bi'
 import { GoCheck } from 'react-icons/go'
+import { IoLogoReact } from 'react-icons/io5'
 import { useCore } from '../../contexts/core/useCore.ts'
 import coreService from '../../services/core.service.ts'
 
@@ -49,7 +49,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                         <Modal.Dialog className="sm:max-w-md">
                             <Modal.Header>
                                 <Modal.Icon className="bg-accent text-accent-foreground">
-                                    <BiAtom className="scale-125" />
+                                    <IoLogoReact className="scale-140" />
                                 </Modal.Icon>
                                 <Modal.Heading>¡Crea un Nuevo Núcleo!</Modal.Heading>
                             </Modal.Header>

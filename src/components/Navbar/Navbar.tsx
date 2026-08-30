@@ -205,7 +205,7 @@ function Navbar() {
                     </Dropdown.Menu>
                 </Dropdown.Popover>
             </Dropdown> */}
-            <div className='w-fit fixed bottom-20 right-0 z-50 flex flex-col items-end m-2 rounded-4xl lg:static lg:w-full lg:m-0 lg:items-start lg:bg-background-tertiary transition-all'>
+            <div className='w-fit fixed bottom-15 right-0 z-50 flex flex-col items-end m-2 rounded-4xl lg:static lg:w-full lg:m-0 lg:items-start lg:bg-background-tertiary transition-all'>
                 <CoreMenu isOpen={isDropdownOpen} setIsOpen={setIsDropdownOpen} setIsModalOpen={setIsModalOpen} />
             </div>
             <CoreModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} getCores={getCores} />
