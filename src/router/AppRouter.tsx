@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { Route, Routes } from 'react-router'
+import { Navigate, Route, Routes } from 'react-router'
 const GuestRouter = lazy(() => import('./GuestRouter.tsx'))
 const PrivateRouter = lazy(() => import('./PrivateRouter.tsx'))
 const GuestLayout = lazy(() => import('../layout/GuestLayout.tsx'))
@@ -21,7 +21,7 @@ function AppRouter() {
     return (
         <Routes>
             <Route element={<GuestLayout />}>
-                <Route path='/' element={<LandingPage />} />
+                <Route path='/' element={<Navigate to='/home' replace />} />
                 <Route element={<GuestRouter />}>
                     <Route path='/auth/:mode' element={<AuthPage />} />
                     <Route path='/recuperar-contraseña' element={<ForgotPasswordPage />} />
