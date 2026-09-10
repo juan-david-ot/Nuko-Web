@@ -10,23 +10,6 @@ function AuthPage() {
 
     const { ref, style } = useAnimatedHeight<HTMLDivElement>()
 
-    // const contentRef = useRef<HTMLDivElement>(null)
-    // const [height, setHeight] = useState<number | 'auto'>('auto')
-
-    // useEffect(() => {
-    //     const el = contentRef.current
-    //     if (!el) return
-
-    //     const resizeObserver = new ResizeObserver(([entry]) => {
-    //         setHeight(entry.contentRect.height)
-    //     })
-
-    //     resizeObserver.observe(el)
-    //     setHeight(el.offsetHeight)
-
-    //     return () => resizeObserver.disconnect()
-    // }, [])
-
     return (
         <article className='h-full flex justify-center items-start pt-10 lg:items-start lg:pt-40'>
             <div className="flex flex-col items-center justify-center rounded-4xl bg-surface p-3">
