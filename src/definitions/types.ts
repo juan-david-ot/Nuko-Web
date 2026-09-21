@@ -30,14 +30,16 @@ export type Core = {
     name?: string
     creatorId?: string
     createdAt?: Date
+    role?: string
     users?: User[]
 }
 
 export type CoreContextType = {
     cores: Core[]
     setCores: React.Dispatch<React.SetStateAction<Core[]>>
-    core: Selection
-    setCore: React.Dispatch<React.SetStateAction<Selection>>
+    coreId: Selection
+    setCoreId: React.Dispatch<React.SetStateAction<Selection>>
+    core?: Core
     refreshCores: () => Promise<void>
 }
 

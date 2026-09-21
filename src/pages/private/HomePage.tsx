@@ -17,7 +17,7 @@ function HomePage() {
     const { coreId: coreIdParam } = useParams()
 
     const { user } = useAuth()
-    const { core } = useCore()
+    const { coreId } = useCore()
 
     const dragContainerRef = useRef<HTMLDivElement>(null)
     const startKeyRef = useRef<string | null>(null)
@@ -33,7 +33,7 @@ function HomePage() {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const selectedItems = Array.from(selected)
-    const coreIdContext = Array.from(core)[0]
+    const coreIdContext = Array.from(coreId)[0]
     const visualKey = dragKey ?? selectedKey
 
     function keyAtPoint(x: number, y: number) {

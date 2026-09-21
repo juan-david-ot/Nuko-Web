@@ -19,7 +19,7 @@ function CoreMenu({ isOpen, setIsOpen, setIsModalOpen }: Props) {
     const navigate = useNavigate()
 
     const { authUser } = useAuth()
-    const { cores, core, setCore } = useCore()
+    const { cores, coreId, setCoreId } = useCore()
     const { theme } = useTheme()
 
     const isDesktop = useMediaQuery('(min-width: 1024px)')
@@ -48,11 +48,11 @@ function CoreMenu({ isOpen, setIsOpen, setIsModalOpen }: Props) {
                     </Dropdown.Section>
                 </Dropdown.Menu>
                 <Dropdown.Menu
-                    selectedKeys={core}
+                    selectedKeys={coreId}
                     selectionMode='single'
                     onSelectionChange={(key) => {
                         authUser()
-                        setCore(key)
+                        setCoreId(key)
                         const selected = Array.from(key)[0]
                         const baseRoute = getActiveTab(location.pathname)
                         navigate(`${baseRoute}/${selected}`)

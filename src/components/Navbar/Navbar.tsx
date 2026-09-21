@@ -23,7 +23,7 @@ function Navbar() {
     const { coreId: coreIdParam } = useParams()
 
     const { authUser } = useAuth()
-    const { core, setCore, cores, refreshCores } = useCore()
+    const { coreId, setCoreId, cores, refreshCores } = useCore()
     const { theme } = useTheme()
 
     // console.log('coreId', coreId)
@@ -43,7 +43,7 @@ function Navbar() {
     const [isLoading, setIsLoading] = useState(true)
 
     const DRAG_THRESHOLD = 8
-    const coreIdContext = Array.from(core)[0]
+    const coreIdContext = Array.from(coreId)[0]
     const activeTab = getActiveTab(location.pathname)
     const visualKey = dragKey ?? activeTab
 
@@ -136,12 +136,12 @@ function Navbar() {
 
         const baseRoute = getActiveTab(location.pathname)
         if ((coreIdContext && cores.some((core) => core.id === coreIdContext)) || (coreIdParam && cores.some((core) => core.id === coreIdParam))) {
-            setCore(new Set([coreIdContext || String(coreIdParam)]))
+            setCoreId(new Set([coreIdContext || String(coreIdParam)]))
             navigate(`${baseRoute}/${coreIdContext || coreIdParam}`, { replace: true })
         }
-        // if (!Array.from(core)[0] || !cores.some((c) => c.id === Array.from(core)[0])) {
+        // if (!Array.from(coreId)[0] || !cores.some((c) => c.id === Array.from(coreId)[0])) {
         else {
-            setCore(new Set())
+            setCoreId(new Set())
             navigate(`${baseRoute}`, { replace: true })
         }
     }, [location.pathname, cores])

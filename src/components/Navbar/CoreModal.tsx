@@ -12,7 +12,7 @@ type Props = {
 }
 
 function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
-    const { setCore } = useCore()
+    const { setCoreId } = useCore()
 
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState([])
@@ -34,7 +34,7 @@ function CoreModal({ isOpen, setIsOpen, getCores }: Props) {
                 getCores()
                     .then(() => {
                         setIsOpen(false)
-                        setCore(new Set([data.newCore.id]))
+                        setCoreId(new Set([data.newCore.id]))
                     })
             })
             .catch(error => setError(error.response.data.error))
