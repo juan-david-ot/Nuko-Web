@@ -29,6 +29,10 @@ async function acceptInvitationToCore(token: string) {
     return axios.post(`/cores/invitation/${token}`)
 }
 
+async function leaveCore(coreId: string) {
+    return axios.delete(`/cores/${coreId}/leave`)
+}
+
 export default {
     getUserCores,
     getUserCoreById,
@@ -36,5 +40,6 @@ export default {
     createCore,
     createInvitationToCore,
     decodeInvitationToCore,
-    acceptInvitationToCore
+    acceptInvitationToCore,
+    leaveCore
 }
