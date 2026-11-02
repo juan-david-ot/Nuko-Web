@@ -17,7 +17,7 @@ function HomePage() {
     const { coreId: coreIdParam } = useParams()
 
     const { user } = useAuth()
-    const { coreId } = useCore()
+    const { coreId, setCoreId, refreshCores } = useCore()
 
     const dragContainerRef = useRef<HTMLDivElement>(null)
     const startKeyRef = useRef<string | null>(null)
@@ -85,6 +85,18 @@ function HomePage() {
                 setError(undefined)
             })
             .catch((error) => setError(error.response.data.error))
+    }
+
+    function leaveCore() {
+        coreService
+            .leaveCore(String(coreIdContext || coreIdParam))
+            .then(({ data }) => {
+                console.log(data)
+                refreshCores()
+                setCoreId(new Set())
+            })
+            .catch((error) => setError(error.response.data.error))
+
     }
 
     function copyLink() {
@@ -301,7 +313,7 @@ function HomePage() {
                                             <Typography className='ml-5 my-2 text-danger'>Peligro</Typography>
                                             <Button
                                                 className='w-11/12 my-2 bg-danger-soft border border-danger text-danger'
-                                                onClick={() => { }}
+                                                onClick={leaveCore}
                                             >
                                                 <TbLogout className='scale-110' /> Abandonar Núcleo
                                             </Button>
