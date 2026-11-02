@@ -123,9 +123,6 @@ function Navbar() {
         getCores()
     }, [])
 
-    // useEffect(() => {
-    //     console.log('useEffect', coreId)
-    // }, [coreId])
     useEffect(() => {
         if (dragKey && dragKey === activeTab) setDragKey(null)
     }, [activeTab, dragKey])

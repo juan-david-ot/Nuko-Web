@@ -96,7 +96,6 @@ function HomePage() {
                 setCoreId(new Set())
             })
             .catch((error) => setError(error.response.data.error))
-
     }
 
     function copyLink() {
