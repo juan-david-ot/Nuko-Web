@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import { Avatar, Button, Card, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayout, Modal, Popover, Skeleton, Surface, Tabs, TextField, Typography, Virtualizer, type Selection } from '@heroui/react'
 import { BiCalendar, BiCopy } from 'react-icons/bi'
 import { FaDollarSign, FaPlus } from 'react-icons/fa6'
-import { TbListDetails } from 'react-icons/tb'
+import { TbListDetails, TbLogout } from 'react-icons/tb'
 import type { Core, User } from '../../definitions/types.ts'
 import { HOME_TABS } from '../../definitions/consts.ts'
 import { useAuth } from '../../contexts/auth/useAuth.ts'
@@ -239,7 +239,8 @@ function HomePage() {
                                 <section className='flex flex-col justify-center items-center'>
                                     <Skeleton className='w-36 h-7 mx-auto rounded-xl' />
                                     <Skeleton className='w-75 h-20 mt-5 rounded-3xl' />
-                                    <Skeleton className='w-75 h-40 mt-5 rounded-3xl' />
+                                    <Skeleton className='w-75 h-72 mt-5 rounded-3xl' />
+                                    <Skeleton className='w-75 h-24 mt-5 rounded-3xl' />
                                 </section>
                                 <section className='flex flex-col justify-center items-center'>
                                     <Skeleton className='w-20 h-7 mx-auto rounded-xl' />
@@ -264,7 +265,7 @@ function HomePage() {
                                             <Typography className='ml-5 my-2'>Miembros</Typography>
                                             <Virtualizer layout={ListLayout}>
                                                 <ListBox
-                                                    className='max-h-52 w-full px-0 overflow-y-auto scrollbar-gutter-stable scrollbar-thin'
+                                                    className='max-h-48 w-full px-0 overflow-y-auto scrollbar-gutter-stable scrollbar-thin'
                                                     aria-label="Users"
                                                     items={coreInformation.users}
                                                 >
@@ -294,6 +295,15 @@ function HomePage() {
                                                 }}
                                             >
                                                 <FaPlus className='scale-90' /> Invitar Miembro
+                                            </Button>
+                                        </Surface>
+                                        <Surface className="w-75 mt-5 rounded-3xl shadow-surface bg-danger-soft">
+                                            <Typography className='ml-5 my-2 text-danger'>Peligro</Typography>
+                                            <Button
+                                                className='w-11/12 my-2 bg-danger-soft border border-danger text-danger'
+                                                onClick={() => { }}
+                                            >
+                                                <TbLogout className='scale-110' /> Abandonar Núcleo
                                             </Button>
                                         </Surface>
                                     </section>
