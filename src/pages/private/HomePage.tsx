@@ -291,7 +291,7 @@ function HomePage() {
                                                             </Avatar>
                                                             <div className="flex flex-col">
                                                                 <Label>@{capitalize(String(user.username))} - {user.name}</Label>
-                                                                <Description>{user.email}</Description>
+                                                                <Description className='w-fit'>{user.email}</Description>
                                                             </div>
                                                             <ListBox.ItemIndicator />
                                                         </ListBox.Item>
