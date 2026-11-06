@@ -49,3 +49,15 @@ export type ThemeContextType = {
     theme: Theme
     toggleTheme: () => void
 }
+
+export type TaskList = {
+    id: string,
+    coreId: string,
+    name: string,
+    icon: string,
+    color: string,
+    position: number,
+    creatorId: string,
+    archivedAt: Date,
+    createdAt: Date
+}
