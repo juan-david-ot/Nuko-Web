@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 import { Avatar, Button, Card, Description, ErrorMessage, InputGroup, Label, ListBox, ListLayout, Modal, Popover, Skeleton, Surface, Tabs, TextField, Typography, Virtualizer, type Selection } from '@heroui/react'
 import { BiCalendar, BiCopy } from 'react-icons/bi'
+import { BsSlashCircleFill } from 'react-icons/bs'
 import { FaDollarSign, FaPlus } from 'react-icons/fa6'
+import { IoCheckmarkCircle, IoCloseCircle } from 'react-icons/io5'
 import { TbListDetails, TbLogout } from 'react-icons/tb'
 import type { Core, User } from '../../definitions/types.ts'
 import { HOME_TABS } from '../../definitions/consts.ts'
@@ -10,8 +12,6 @@ import { useAuth } from '../../contexts/auth/useAuth.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
 import coreService from '../../services/core.service.ts'
 import { capitalize, getCapitals } from '../../utils/index.ts'
-import { BsSlashCircleFill } from 'react-icons/bs'
-import { IoCheckmarkCircle, IoCloseCircle } from 'react-icons/io5'
 
 function HomePage() {
     const { coreId: coreIdParam } = useParams()
