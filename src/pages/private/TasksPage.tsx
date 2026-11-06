@@ -1,52 +1,82 @@
-import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router'
-import { Button, ErrorMessage, InputGroup, Label, Popover, TextField } from '@heroui/react'
-import { BiCopy } from 'react-icons/bi'
-import { FaLink } from 'react-icons/fa6'
-import { TbMoonFilled, TbSunLowFilled } from 'react-icons/tb'
-import { useAuth } from '../../contexts/auth/useAuth.ts'
-import { useTheme } from '../../contexts/theme/useTheme.ts'
-import coreService from '../../services/core.service.ts'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
+import { Button, Card, Skeleton, Typography } from '@heroui/react'
+import type { TaskList } from '../../definitions/types.ts'
+import taskListService from '../../services/task-list.service.ts'
+import { useCore } from '../../contexts/core/useCore.ts'
 
 function TasksPage() {
-    const { coreId } = useParams()
-    const navigate = useNavigate()
+    const { coreId: coreIdParam } = useParams()
 
-    const { logOut } = useAuth()
-    const { theme, toggleTheme } = useTheme()
+    const { coreId } = useCore()
 
-    const [inviteLink, setInviteLink] = useState()
-    const [error, setError] = useState()
+    const [taskLists, setTaskLists] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
-    function createInvitation() {
-        coreService
-            .createInvitationToCore(String(coreId))
-            .then(({ data }) => {
-                setInviteLink(data.inviteLink)
-                setError(undefined)
-            })
-            .catch((error) => setError(error.response.data.error))
-    }
+    const coreIdContext = Array.from(coreId)[0]
 
-    function copyLink() {
-        if (!inviteLink) return
-        navigator.clipboard.writeText(inviteLink)
-    }
-
-    function closeSession() {
-        logOut()
-        navigate('/auth/iniciar-sesion')
-    }
+    useEffect(() => {
+        if (coreIdContext || coreIdParam) {
+            setIsLoading(true)
+            taskListService
+                .getTaskListsByCoreId(String(coreIdContext || coreIdParam))
+                .then(({ data }) => {
+                    setTaskLists(data)
+                })
+                .catch((error) => {
+                    setTaskLists([])
+                    console.error(error)
+                })
+                .finally(() => setIsLoading(false))
+        }
+        else {
+            setTaskLists([])
+        }
+    }, [coreIdContext || coreIdParam])
 
     return (
-        <article className='flex flex-col justify-center items-center text-center lg:justify-start lg:pt-40'>
-            <h1 className="text-7xl font-bold tracking-tight">
+        <article className='pt-2 flex flex-col justify-center items-center text-center lg:h-full'>
+            <div className='w-11/12 flex flex-row items-center lg:w-11/12 lg:flex-row lg:flex-wrap lg:justify-between'>
+                <div className='w-9/12 flex flex-col justify-start items-start text-start lg:w-1/4'>
+                    <Typography type='h5' className='w-full'>Tareas</Typography>
+                </div>
+                <div className='w-3/12 lg:w-1/4 lg:h-8.25'>
+                    <Button size='sm' className='min-h-7 h-full'>Crear Lista</Button>
+                </div>
+            </div>
+            {
+                isLoading
+                    ?
+                    <section className='w-full px-2 pt-6 flex flex-col justify-start items-start gap-2 lg:h-full lg:flex-row lg:overflow-y-auto'>
+                        <Skeleton className='w-full h-96 rounded-3xl lg:w-2/5 lg:max-w-96 lg:shrink-0' />
+                        <Skeleton className='w-full h-96 rounded-3xl lg:w-2/5 lg:max-w-96 lg:shrink-0' />
+                        <Skeleton className='w-full h-96 rounded-3xl lg:w-2/5 lg:max-w-96 lg:shrink-0' />
+                    </section>
+                    :
+                    taskLists.length > 0
+                        ?
+                        <section className='w-full px-2 pt-6 flex flex-col justify-start items-start gap-2 lg:h-full lg:flex-row lg:overflow-y-auto'>
+                            {
+                                taskLists.map((taskList: TaskList) => (
+                                    <Card key={taskList.id} className='w-full max-h-96 lg:w-2/5 lg:max-w-96 lg:shrink-0'>
+                                        <Typography type='h6' className='w-full'>{taskList.name}</Typography>
+                                        <Typography type='body' className='w-full'>Tareas...</Typography>
+                                    </Card>
+                                ))
+                            }
+                        </section>
+                        :
+                        <section className='w-full px-2 pt-6 flex flex-col justify-center items-start gap-2 lg:h-full lg:flex-row lg:overflow-y-auto'>
+                            <Typography>No hay ningun núcleo activo o lista disponible</Typography>
+                        </section>
+            }
+            {/* <h1 className="text-7xl font-bold tracking-tight">
                 Esta sera la TasksPage
             </h1>
             <section className='flex gap-3.5'>
                 <Button
                     className='bg-accent hover:scale-110 hover:bg-accent transition-all'
-                    onClick={createInvitation}
+                    onClick={() => console.log('Crear invitacion')}
                 >
                     Crear Invitacion
                 </Button>
@@ -59,24 +89,24 @@ function TasksPage() {
                 </Button>
                 <Button
                     className='bg-accent hover:scale-110 hover:bg-accent transition-all'
-                    onClick={closeSession}
+                    onClick={() => console.log('Cerrar sesion')}
                 >
                     Cerrar sesion
                 </Button>
             </section>
             <section className='w-full flex justify-center'>
-                <TextField className="w-full max-w-80" defaultValue='invitacion' value={inviteLink} name="website">
+                <TextField className="w-full max-w-80" defaultValue='invitacion' value={'inviteLink'} name="website">
                     <Label>Generar invitacion</Label>
                     <InputGroup>
                         <InputGroup.Prefix>
-                            <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" onClick={createInvitation}>
+                            <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" onClick={() => console.log('Crear invitacion')}>
                                 <FaLink className="size-6" />
                             </Button>
                         </InputGroup.Prefix>
                         <InputGroup.Input className="w-full" disabled />
                         <InputGroup.Suffix className="pr-0">
                             <Popover>
-                                <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" isDisabled={!inviteLink} onClick={copyLink}>
+                                <Button className='active:bg-accent/75' isIconOnly aria-label="Copy" size="sm" variant="ghost" isDisabled={true} onClick={() => console.log('Copiar enlace')}>
                                     <BiCopy className="size-6" />
                                 </Button>
                                 <Popover.Content placement="top">
@@ -88,9 +118,9 @@ function TasksPage() {
                             </Popover>
                         </InputGroup.Suffix>
                     </InputGroup>
-                    <ErrorMessage>{error && 'No tienes ningun nucleo seleccionado o ha habido un error al crear la invitacion'}</ErrorMessage>
+                    <ErrorMessage>{'No tienes ningun nucleo seleccionado o ha habido un error al crear la invitacion'}</ErrorMessage>
                 </TextField>
-            </section>
+            </section> */}
         </article>
     )
 }
