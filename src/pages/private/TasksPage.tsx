@@ -36,18 +36,20 @@ function TasksPage() {
 
     return (
         <article className='pt-2 flex flex-col justify-center items-center text-center lg:h-full'>
-            <div className='w-11/12 flex flex-row items-center lg:w-11/12 lg:flex-row lg:flex-wrap lg:justify-between'>
-                <div className='w-9/12 flex flex-col justify-start items-start text-start lg:w-1/4'>
-                    <Typography type='h5' className='w-full'>Tareas</Typography>
-                </div>
-                <div className='w-3/12 lg:w-1/4 lg:h-8.25'>
-                    <Button size='sm' className='min-h-7 h-full'>Crear Lista</Button>
+            <div className='w-full pb-2 sticky top-0 z-10 bg-background flex flex-col justify-center items-center text-center'>
+                <div className='w-11/12 flex flex-row items-center lg:w-11/12 lg:flex-row lg:flex-wrap lg:justify-between'>
+                    <div className='w-8/12 flex flex-col justify-start items-start text-start lg:w-1/4'>
+                        <Typography type='h5' className='w-full'>Tareas</Typography>
+                    </div>
+                    <div className='w-4/12 lg:w-1/4 lg:h-8.25'>
+                        <Button size='sm' className='min-h-7 h-full'>Crear Lista</Button>
+                    </div>
                 </div>
             </div>
             {
                 isLoading
                     ?
-                    <section className='w-full px-2 pt-6 flex flex-col justify-start items-start gap-2 lg:h-full lg:flex-row lg:overflow-y-auto'>
+                    <section className='w-full px-2 pt-4 flex flex-col justify-start items-start gap-2 lg:h-full lg:flex-row lg:overflow-y-auto'>
                         <Skeleton className='w-full h-96 rounded-3xl lg:w-2/5 lg:max-w-96 lg:shrink-0' />
                         <Skeleton className='w-full h-96 rounded-3xl lg:w-2/5 lg:max-w-96 lg:shrink-0' />
                         <Skeleton className='w-full h-96 rounded-3xl lg:w-2/5 lg:max-w-96 lg:shrink-0' />
@@ -55,7 +57,7 @@ function TasksPage() {
                     :
                     taskLists.length > 0
                         ?
-                        <section className='w-full px-2 pt-6 flex flex-col justify-start items-start gap-2 lg:h-full lg:flex-row lg:overflow-y-auto'>
+                        <section className='w-full px-2 pt-4 flex flex-col justify-start items-start gap-2 lg:h-full lg:flex-row lg:overflow-y-auto'>
                             {
                                 taskLists.map((taskList: TaskList) => (
                                     <Card key={taskList.id} className='w-full max-h-96 lg:w-2/5 lg:max-w-96 lg:shrink-0'>
@@ -66,7 +68,7 @@ function TasksPage() {
                             }
                         </section>
                         :
-                        <section className='w-full px-2 pt-6 flex flex-col justify-center items-start gap-2 lg:h-full lg:flex-row lg:overflow-y-auto'>
+                        <section className='w-full px-2 pt-6 flex flex-col justify-center items-center gap-2 lg:h-full lg:flex-row lg:overflow-y-auto'>
                             <Typography>No hay ningun núcleo activo o lista disponible</Typography>
                         </section>
             }
