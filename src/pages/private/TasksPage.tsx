@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { Button, Card, Skeleton, Typography } from '@heroui/react'
 import type { TaskList } from '../../definitions/types.ts'
-import taskListService from '../../services/task-list.service.ts'
 import { useCore } from '../../contexts/core/useCore.ts'
+import taskListService from '../../services/task-list.service.ts'
 
 function TasksPage() {
     const { coreId: coreIdParam } = useParams()
