@@ -165,8 +165,6 @@ function HomePage() {
                 <div className='w-full sticky top-0 z-10 bg-background flex flex-col items-center lg:items-start lg:w-1/4'>
                     <div className='w-11/12 flex flex-col'>
                         <Typography type='h5' className='w-full'>Home</Typography>
-                        {/* <Typography color='muted' type='h6' className=''>Buenos días</Typography>
-                    <Typography type='h5' className=''>{capitalize(String(user?.username))}</Typography> */}
                     </div>
                 </div>
                 <Tabs.ListContainer
