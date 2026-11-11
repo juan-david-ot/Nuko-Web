@@ -351,9 +351,6 @@ function HomePage() {
             </Tabs>
 
             {/* <h1 className='text-7xl font-bold tracking-tight'>
-                {
-                    `¡Hola! @${user?.username}. Bienvenid@`
-                }
             </h1>
             <h2 className='text-6xl font-semibold tracking-tight'>
                 {
