@@ -5,12 +5,12 @@ async function getUserCores() {
     return axios.get('/cores')
 }
 
-async function getUserCoreById(coreId: string) {
+async function getCoreById(coreId: string) {
     return axios.get(`/cores/${coreId}`)
 }
 
-async function getUserCoreInformationById(coreId: string) {
-    return axios.get(`/cores/${coreId}/information`)
+async function getCoreUsersById(coreId: string) {
+    return axios.get(`/cores/${coreId}/users`)
 }
 
 async function createCore(core: Core) {
@@ -29,17 +29,17 @@ async function acceptInvitationToCore(token: string) {
     return axios.post(`/cores/invitation/${token}`)
 }
 
-async function leaveCore(coreId: string) {
+async function leaveCoreById(coreId: string) {
     return axios.delete(`/cores/${coreId}/leave`)
 }
 
 export default {
     getUserCores,
-    getUserCoreById,
-    getUserCoreInformationById,
+    getCoreById,
+    getCoreUsersById,
     createCore,
     createInvitationToCore,
     decodeInvitationToCore,
     acceptInvitationToCore,
-    leaveCore
+    leaveCoreById
 }

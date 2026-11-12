@@ -25,7 +25,8 @@ function HomePage() {
     const [selectedKey, setSelectedKey] = useState('resumen')
     const [isDragging, setIsDragging] = useState(false)
     const [dragKey, setDragKey] = useState<string | null>(null)
-    const [coreInformation, setCoreInformation] = useState<Core>()
+    const [core, setCore] = useState<Core>()
+    const [coreUsers, setCoreUsers] = useState<User[]>([])
     const [isLoading, setIsLoading] = useState(false)
     const [inviteLink, setInviteLink] = useState()
     const [error, setError] = useState()
@@ -89,7 +90,7 @@ function HomePage() {
 
     function leaveCore() {
         coreService
-            .leaveCore(String(coreIdContext || coreIdParam))
+            .leaveCoreById(String(coreIdContext || coreIdParam))
             .then(({ data }) => {
                 console.log(data)
                 refreshCores()
@@ -106,17 +107,24 @@ function HomePage() {
     useEffect(() => {
         if (coreIdContext || coreIdParam) {
             setIsLoading(true)
-            coreService
-                .getUserCoreInformationById(String(coreIdContext || coreIdParam))
-                .then(({ data }) => setCoreInformation(data))
+            Promise.all([
+                coreService.getCoreById(String(coreIdContext || coreIdParam)),
+                coreService.getCoreUsersById(String(coreIdContext || coreIdParam))
+            ])
+                .then(([{ data: coreData }, { data: usersData }]) => {
+                    setCore(coreData)
+                    setCoreUsers(usersData)
+                })
                 .catch((error) => {
-                    setCoreInformation(undefined)
+                    setCore(undefined)
+                    setCoreUsers([])
                     console.error(error)
                 })
                 .finally(() => setIsLoading(false))
         }
         else {
-            setCoreInformation(undefined)
+            setCore(undefined)
+            setCoreUsers([])
         }
     }, [coreIdContext || coreIdParam])
 
@@ -201,7 +209,7 @@ function HomePage() {
                                 </div>
                             </>
                             :
-                            coreInformation
+                            core
                                 ?
                                 <>
                                     <Card className="w-11/12 md:w-full" variant="default">
@@ -260,7 +268,7 @@ function HomePage() {
                                 </section>
                             </>
                             :
-                            coreInformation
+                            core
                                 ?
                                 <>
                                     <section className='flex flex-col justify-center items-center'>
@@ -269,7 +277,7 @@ function HomePage() {
                                             <Typography className='ml-5 my-2'>Núcleo</Typography>
                                             <div className='w-full ml-5 my-2 flex flex-row'>
                                                 <Typography>Nombre:</Typography>
-                                                <Typography className='w-full px-5'>{coreInformation?.name}</Typography>
+                                                <Typography className='w-full px-5'>{core?.name}</Typography>
                                             </div>
                                         </Surface>
                                         <Surface className="w-75 mt-5 rounded-3xl shadow-surface">
@@ -278,7 +286,7 @@ function HomePage() {
                                                 <ListBox
                                                     className='max-h-48 w-full px-0 overflow-y-auto scrollbar-gutter-stable scrollbar-thin'
                                                     aria-label="Users"
-                                                    items={coreInformation.users}
+                                                    items={coreUsers}
                                                 >
                                                     {(user: User) => (
                                                         <ListBox.Item id={user.id} textValue={user.name} className='w-11/12 mx-auto'>
@@ -341,7 +349,7 @@ function HomePage() {
                 </Tabs.Panel>
                 <Tabs.Panel className="w-full pt-4 flex flex-col justify-center items-center" id="chat">
                     {
-                        coreInformation
+                        core
                             ?
                             <Typography>Aqui va a ir el chat</Typography>
                             :

@@ -31,7 +31,6 @@ export type Core = {
     creatorId?: string
     createdAt?: Date
     role?: string
-    users?: User[]
 }
 
 export type CoreContextType = {
