@@ -17,11 +17,14 @@ function CoreProvider({ children }: { children: ReactNode }) {
     }
 
     useEffect(() => {
-        const selectedCore = cores.find((core: Core) => core.id === String(Array.from(coreId)[0]))
-        if (selectedCore) {
-            setCore(selectedCore)
+        const selectedCoreId = Array.from(coreId)[0]
+        const selectedCore = cores.find((core: Core) => core.id === String(selectedCoreId))
+        setCore(selectedCore)
+
+        if (selectedCoreId !== undefined && selectedCoreId !== 'all' && !selectedCore) {
+            setCoreId(new Set())
         }
-    }, [coreId])
+    }, [cores, coreId])
 
     return (
         <CoreContext value={{ cores, setCores, coreId, setCoreId, core, refreshCores }}>
